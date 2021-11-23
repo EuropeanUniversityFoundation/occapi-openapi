@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  node:
+    image: node:${NODE_TAG}
+    container_name: "${PROJECT_NAME}_node"
+    user: "node"
+    working_dir: /var/www/html
+    environment:
+      - NODE_ENV={NODE_ENV}
+    volumes:
+      - ./:/var/www/html
+    expose:
+      - "3000"
+    command: sh -c "tail -f /dev/null"
