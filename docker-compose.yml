@@ -9,6 +9,14 @@ services:
       - NODE_ENV={NODE_ENV}
     volumes:
       - ./:/var/www/html
-    expose:
-      - "3000"
+    ports:
+      - "${NODEHTTP_PORT}:8080"
     command: sh -c "tail -f /dev/null"
+  lighttpd:
+    image: sebp/lighttpd
+    container_name: "${PROJECT_NAME}_lighttpd"
+    volumes:
+      - ./web:/var/www/localhost/htdocs
+    ports:
+      - "${LIGHTTPD_PORT}:80"
+    tty: true

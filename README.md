@@ -1,3 +1,32 @@
+# OCCAPI OpenAPI definition
+
+_Clone of [OpenAPI Definition Starter](https://github.com/Redocly/openapi-starter)._
+
+## Quickstart
+
+    # Clone the repository
+    git clone git@github.com:EuropeanUniversityFoundation/occapi-openapi.git
+    # Create an environment file
+    cp .env.example .env
+    # Review parameters: NODEHTTP_PORT and LIGHTTPD_PORT
+    nano .env
+    # Start the containers
+    make up
+    # Access the NodeJS
+    make shell
+    # Start watching for changes to the OpenAPI specs
+    npm start
+    # Build into dist.yaml
+    npm run build
+
+## Preview DEV vs Preview PROD
+
+When `npm start` is executed, a web server serves the DEV version of ReDoc, available at `http://localhost:3000` (or whatever NODEHTTP_PORT is defined).
+
+When `npm run build` is executed, a copy of the `dist.yaml` is placed inside the `web` and included in the PROD version, which is always available at `http://localhost:8080` (or whatever LIGHTTPD_PORT is defined).
+
+---
+
 # OpenAPI Definition Starter
 
 ## Working on your OpenAPI Definition
