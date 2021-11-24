@@ -1,37 +1,15 @@
-This is an **example** API to demonstrate features of the OpenAPI specification.
+This is an **example** API to demonstrate features of the Open Course Catalogue API specification.
 
 # Introduction
 
-This API definition is intended to to be a good starting point for
-describing your API in 
+The **Open Course Catalogue API** specification aims to standardize the way in which Higher Education Institutions expose their course catalogues in a machine-readable format.
 
-[OpenAPI/Swagger
-format](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md).
+By facilitating access to their course catalogues, Institutions can allow consumer applications to implement user friendly ways to explore course offers for prospective students.
 
-It also demonstrates features of the
-[create-openapi-repo](https://github.com/Redocly/create-openapi-repo) tool
-and 
+## Comparison with other standards and specifications
 
-the [Redoc](https://github.com/Redocly/Redoc) documentation engine. Beyond
-the standard OpenAPI syntax, we use a few 
+The Open Course Catalogue specification is heavily inspired by the [Erasmus Without Paper](https://www.erasmuswithoutpaper.eu/) API specifications and attempts to follow most of its conventions. However, it takes a different approach to exposing curricular structure as its main focus.
 
-[vendor
-extensions](https://github.com/Redocly/Redoc/blob/master/docs/redoc-vendor-extensions.md).
+This API specification also differs from EWP APIs by adopting the [JSON:API](https://jsonapi.org/) format following industry trends.
 
-
-# OpenAPI Specification
-
-The goal of The OpenAPI Specification is to define a standard,
-language-agnostic interface to REST APIs which
-
-allows both humans and computers to discover and understand the capabilities
-of the service without access to source
-
-code, documentation, or through network traffic inspection. When properly
-defined via OpenAPI, a consumer can 
-
-understand and interact with the remote service with a minimal amount of
-implementation logic. Similar to what
-
-interfaces have done for lower-level programming, OpenAPI removes the
-guesswork in calling the service.
+Another example of modern practices in the education space is the [Open Education API](https://open-education-api.github.io/specification/v3/docs.html) which covers a wider array of use cases.

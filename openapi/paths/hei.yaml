@@ -1,0 +1,22 @@
+get:
+  tags:
+    - Institutions
+  summary: Get all Institutions
+  description: Institutions covered by the OCC API provider
+  operationId: hei
+  responses:
+    '200':
+      description: OK
+      headers:
+        X-Rate-Limit:
+          description: calls per hour allowed by the user
+          schema:
+            type: integer
+            format: int32
+      content:
+        application/json:
+          schema:
+            type: string
+          examples:
+            response:
+              value: Hello world!

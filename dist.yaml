@@ -21,7 +21,7 @@ info:
 
     This API definition is intended to to be a good starting point for
 
-    describing your API in 
+    describing your API in
 
 
     [OpenAPI/Swagger
@@ -33,12 +33,12 @@ info:
 
     [create-openapi-repo](https://github.com/Redocly/create-openapi-repo) tool
 
-    and 
+    and
 
 
     the [Redoc](https://github.com/Redocly/Redoc) documentation engine. Beyond
 
-    the standard OpenAPI syntax, we use a few 
+    the standard OpenAPI syntax, we use a few
 
 
     [vendor
@@ -62,7 +62,7 @@ info:
 
     code, documentation, or through network traffic inspection. When properly
 
-    defined via OpenAPI, a consumer can 
+    defined via OpenAPI, a consumer can
 
 
     understand and interact with the remote service with a minimal amount of
