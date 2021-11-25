@@ -1,0 +1,17 @@
+type: array
+description: |
+  External URL with information related to this resource.
+
+  This allows to provide URLs to pages in multiple languages.
+
+  If it exists, the item with `en` should be listed first.
+items:
+  type: object
+  required:
+    - uri
+  properties:
+    uri:
+      type: stringUri
+      description: Value
+    lang:
+      $ref: ./Lang.yaml

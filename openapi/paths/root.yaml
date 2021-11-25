@@ -1,9 +1,9 @@
 get:
   tags:
-    - Institutions
-  summary: Get all Institutions
-  description: Institutions covered by this provider.
-  operationId: getInstitutions
+    - API provider
+  summary: <root>
+  description: Get primary Hypermedia links and optional metadata about the provider.
+  operationId: getRoot
   responses:
     '200':
       description: OK
@@ -16,7 +16,7 @@ get:
       content:
         application/vnd.api+json:
           schema:
-            $ref: ../components/schemas/InstitutionCollection.yaml
+            $ref: ../components/schemas/Root.yaml
           examples:
             response:
-              value: InstitutionCollectionResponse
+              value: RootResponse

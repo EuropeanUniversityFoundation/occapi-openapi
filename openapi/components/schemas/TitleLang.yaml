@@ -1,0 +1,17 @@
+type: array
+description: |
+  Title with optional language code.
+
+  This allows to provide the title in multiple languages.
+
+  If it exists, the item with `en` should be listed first.
+items:
+  type: object
+  required:
+    - string
+  properties:
+    string:
+      type: string
+      description: Value
+    lang:
+      $ref: ./Lang.yaml

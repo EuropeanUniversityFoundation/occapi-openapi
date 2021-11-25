@@ -1,0 +1,7 @@
+type: object
+description: Hypermedia link to this resource collection.
+required:
+  - href
+properties:
+  href:
+    type: stringUri

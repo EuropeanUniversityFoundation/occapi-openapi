@@ -1,174 +1,109 @@
 openapi: 3.1.0
 info:
   version: 1.0.0
-  title: Example.com
-  termsOfService: https://example.com/terms/
+  title: Open Course Catalogue API
+  termsOfService: ''
   contact:
-    email: contact@example.com
-    url: http://example.com/contact
-  license:
-    name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
+    email: contact@uni-foundation.eu
+    url: https://uni-foundation.eu
   x-logo:
-    url: https://redocly.github.io/openapi-template/logo.png
+    url: https://uni-foundation.eu/wp-content/uploads/2019/04/EUF-1.png
   description: >
-    This is an **example** API to demonstrate features of the OpenAPI
-    specification.
+    This is an **example** API to demonstrate features of the Open Course
+    Catalogue API specification.
 
 
     # Introduction
 
 
-    This API definition is intended to to be a good starting point for
-
-    describing your API in
-
-
-    [OpenAPI/Swagger
-
-    format](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md).
+    The **Open Course Catalogue API** specification aims to standardize the way
+    in which Higher Education Institutions expose their course catalogues in a
+    machine-readable format.
 
 
-    It also demonstrates features of the
-
-    [create-openapi-repo](https://github.com/Redocly/create-openapi-repo) tool
-
-    and
+    By facilitating access to their course catalogues, Institutions can allow
+    consumer applications to implement user friendly ways to explore course
+    offers for prospective students.
 
 
-    the [Redoc](https://github.com/Redocly/Redoc) documentation engine. Beyond
-
-    the standard OpenAPI syntax, we use a few
+    ## Comparison with other standards and specifications
 
 
-    [vendor
-
-    extensions](https://github.com/Redocly/Redoc/blob/master/docs/redoc-vendor-extensions.md).
-
-
-
-    # OpenAPI Specification
+    The Open Course Catalogue specification is heavily inspired by the [Erasmus
+    Without Paper](https://www.erasmuswithoutpaper.eu/) API specifications and
+    attempts to follow most of its conventions. However, it takes a different
+    approach to exposing curricular structure as its main focus.
 
 
-    The goal of The OpenAPI Specification is to define a standard,
-
-    language-agnostic interface to REST APIs which
-
-
-    allows both humans and computers to discover and understand the capabilities
-
-    of the service without access to source
+    This API specification also differs from EWP APIs by adopting the
+    [JSON:API](https://jsonapi.org/) format following industry trends.
 
 
-    code, documentation, or through network traffic inspection. When properly
-
-    defined via OpenAPI, a consumer can
-
-
-    understand and interact with the remote service with a minimal amount of
-
-    implementation logic. Similar to what
-
-
-    interfaces have done for lower-level programming, OpenAPI removes the
-
-    guesswork in calling the service.
-externalDocs:
-  description: Find out how to create a GitHub repo for your OpenAPI definition.
-  url: https://github.com/Rebilly/generator-openapi-repo
+    Another example of modern practices in the education space is the [Open
+    Education
+    API](https://open-education-api.github.io/specification/v3/docs.html) which
+    covers a wider array of use cases.
 tags:
-  - name: Echo
-    description: Example echo operations.
-  - name: User
-    description: Operations about users.
-  - name: Tag
-    description: This is a tag description.
+  - name: API provider
+    description: Information about the provider.
+  - name: Institutions
+    description: Information about the institutions covered by the API.
+  - name: Organisational Units
+    description: Information about organisational units in each institution.
+  - name: Programmes
+    description: Information about degree programmes in each institution.
+  - name: Courses
+    description: Information about courses in each institution.
 servers:
-  - url: http://example.com/api/v1
-  - url: https://example.com/api/v1
+  - url: https://occapi.uni-foundation.eu/occapi/v1
+    description: Sandbox server (example data)
 paths:
-  /users/{username}:
-    parameters:
-      - name: pretty_print
-        in: query
-        description: Pretty print response
-        schema:
-          type: boolean
+  /:
     get:
       tags:
-        - User
-      summary: Get user by user name
-      description: |
-        Some description of the operation.
-        You can use `Markdown` here.
-      operationId: getUserByName
-      parameters:
-        - name: username
-          in: path
-          description: The name that needs to be fetched
-          required: true
-          schema:
-            type: string
-        - name: with_email
-          in: query
-          description: Filter users without email
-          schema:
-            type: boolean
-      security:
-        - main_auth:
-            - read:users
-        - api_key: []
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-              example:
-                username: user1
-                email: user@example.com
-        '403':
-          description: Forbidden
-          $ref: '#/components/responses/Problem'
-        '404':
-          description: User not found
-          $ref: '#/components/responses/Problem'
-    put:
-      tags:
-        - User
-      summary: Updated user
-      description: This can only be done by the logged in user.
-      operationId: updateUser
-      parameters:
-        - name: username
-          in: path
-          description: The name that needs to be updated
-          required: true
-          schema:
-            type: string
-      security:
-        - main_auth:
-            - write:users
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/User'
-        description: Updated user object
-        required: true
+        - API provider
+      summary: <root>
+      description: Get primary Hypermedia links and optional metadata about the provider.
+      operationId: getRoot
       responses:
         '200':
           description: OK
-        '400':
-          description: Invalid user supplied
-          $ref: '#/components/responses/Problem'
-        '404':
-          description: User not found
-          $ref: '#/components/responses/Problem'
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user.
+              schema:
+                type: integer
+                format: int32
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Root'
+              examples:
+                response:
+                  value: RootResponse
+  /hei:
+    get:
+      tags:
+        - Institutions
+      summary: Get all Institutions
+      description: Institutions covered by this provider.
+      operationId: getInstitutions
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user.
+              schema:
+                type: integer
+                format: int32
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/InstitutionCollection'
+              examples:
+                response:
+                  value: InstitutionCollectionResponse
   /echo:
     post:
       tags:
@@ -241,328 +176,195 @@ paths:
             } catch (UnprocessableEntityException $e) {
                 var_dump($e->getErrors());
             }
-  /pathItem:
-    post:
-      tags:
-        - Tag
-      summary: Operation summary
-      description: |
-        Operation description **Markdown**.
-      operationId: operationId
-      security:
-        - api_key: []
-        - basic_auth: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Schema'
-        description: requestBody description
-        required: true
-      responses:
-        '200':
-          description: OK
-          headers:
-            X-Rate-Limit:
-              description: Calls per hour allowed by the user.
-              schema:
-                type: integer
-                format: int32
-            X-Expires-After:
-              $ref: '#/components/headers/ExpiresAfter'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Schema'
-        '400':
-          $ref: '#/components/responses/Problem'
-  /pathItemWithExamples:
-    post:
-      tags:
-        - Tag
-      summary: Operation summary with examples
-      description: |
-        Operation description **markdown**.
-      operationId: postPathItemWithExamples
-      security:
-        - api_key: []
-        - basic_auth: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Schema'
-            examples:
-              mapName:
-                summary: My first example
-                description: My first example's description.
-                value:
-                  stringProperty: tada
-              mapNameDoesNotShowInDocsUnlessSummaryIsNotProvided:
-                value:
-                  stringProperty: checkmark
-        description: requestBody description
-        required: true
-      responses:
-        '200':
-          description: OK
-          headers:
-            X-Rate-Limit:
-              description: calls per hour allowed by the user
-              schema:
-                type: integer
-                format: int32
-            X-Expires-After:
-              $ref: '#/components/headers/ExpiresAfter'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Schema'
-        '400':
-          $ref: '#/components/responses/Problem'
 components:
-  securitySchemes:
-    main_auth:
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: http://example.com/api/oauth/dialog
-          scopes:
-            read:users: read users info
-            write:users: modify or remove users
-    api_key:
-      type: apiKey
-      in: header
-      name: api_key
-    basic_auth:
-      type: http
-      scheme: basic
   schemas:
-    Email:
-      description: User email address
-      type: string
-      format: test
-      example: john.smith@example.com
-    User:
+    LinksSelf:
       type: object
+      description: Hypermedia link to the current path.
+      required:
+        - href
       properties:
-        username:
-          description: User supplied username
-          type: string
-          minLength: 4
-          example: John78
-        firstName:
-          description: User first name
-          type: string
-          minLength: 1
-          example: John
-        lastName:
-          description: User last name
-          type: string
-          minLength: 1
-          example: Smith
-        email:
-          $ref: '#/components/schemas/Email'
-    Problem:
+        href:
+          type: stringUri
+    Jsonapi:
       type: object
-      additionalProperties: true
-      minProperties: 1
-      description: >-
-        The Problem Details JSON Object
-        [[RFC7807](https://tools.ietf.org/html/rfc7807)].
+      description: JSON:API header.
+      required:
+        - version
+        - meta
       properties:
-        type:
+        version:
           type: string
-          description: >-
-            A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)]
-            that identifies the problem type. It should provide human-readable
-            documentation for the problem type. When this member is not present,
-            its value is assumed to be "about:blank".
-          format: uri
-        title:
-          type: string
-          description: >-
-            A short, human-readable summary of the problem type. It SHOULD NOT
-            change from occurrence to occurrence of the problem, except for
-            purposes of localization.
-        status:
-          type: integer
-          description: The HTTP status code.
-          minimum: 400
-          maximum: 599
-        detail:
-          type: string
-          description: >-
-            A human-readable explanation specific to this occurrence of the
-            problem.
-        instance:
-          type: string
-          description: >-
-            A URI reference that identifies the specific occurrence of the
-            problem.  It may or may not yield further information if
-            dereferenced.
-    Schema:
+          description: JSON:API schema version.
+        meta:
+          type: object
+          description: JSON:API meta object.
+          required:
+            - links
+          properties:
+            links:
+              type: object
+              description: JSON:API _links_ object.
+              required:
+                - self
+              properties:
+                self:
+                  $ref: '#/components/schemas/LinksSelf'
+    Root:
       type: object
-      title: Scalars
+      description: Available endpoints and metadata.
+      required:
+        - jsonapi
+        - links
       properties:
-        stringProperty:
-          description: Property name's description (type is string)
-          type: string
-          examples:
-            - example
-            - sample
-        readOnlyStringProperty:
-          description: Notice this only appears in the response.
-          type: string
-          readOnly: true
-          examples:
-            - example
-        writeOnlyStringProperty:
-          description: Notice this only appears in the request.
-          type: string
-          writeOnly: true
-          examples:
-            - example
-        minLengthString:
-          description: Property name's description (type is string)
-          type: string
-          minLength: 4
-          examples:
-            - example
-        maxLengthString:
-          description: Property name's description (type is string)
-          type: string
-          maxLength: 140
-          examples:
-            - example
-        minAndMaxLengthString:
-          description: Property name's description (type is string)
-          type: string
-          minLength: 4
-          maxLength: 140
-          examples:
-            - example
-        nullableOrStringProperty:
-          description: Property name's description (type is string or null)
-          type:
-            - string
-            - null
-          examples:
-            - example
-        stringEnumValues:
-          description: Property name's description (type is string)
-          type: string
-          enum:
-            - sample
-            - example
-            - specimen
-            - case
-            - instance
-            - illustration
-        stringDateTime:
-          description: Property name's description (type is string, format is date-time)
-          type: string
-          format: date-time
-        stringDate:
-          description: Property name's description (type is string, format is date-time)
-          type: string
-          format: date
-        stringEmail:
-          description: Property name's description (type is string, format is email)
-          type: string
-          format: email
-        stringIpAddressV4:
-          description: Property name's description (type is string, format is ipv4 address)
-          type: string
-          format: ipv4
-        stringIpAddressV6:
-          description: Property name's description (type is string, format is ipv6 address)
-          type: string
-          format: ipv6
-        stringPassword:
-          description: Property name's description (type is string, format is password)
-          type: string
-          format: password
-        stringHostname:
-          description: Property name's description (type is string, format is hostname)
-          type: string
-          format: hostname
-        stringUri:
-          description: Property name's description (type is string, format is uri)
-          type: string
-          format: uri
-        stringUuid:
-          description: Property name's description (type is string, format is uuid)
-          type: string
-          format: uuid
-        numberProperty:
-          description: Property name's description (type is number)
-          type: number
-          example: 8
-        numberFloat:
-          description: Property name's description (type is number, format is float)
-          type: number
-          format: float
-        numberDouble:
-          description: Property name's description (type is number, format is double)
-          type: number
-          format: double
-        numberGreaterThanOrEquals:
-          description: Property name's description (type is number)
-          type: number
-          minimum: 5
-        numberGreaterThan:
-          description: Property name's description (type is number)
-          type: number
-          exclusiveMinimum: 5
-        numberLessThan:
-          description: Property name's description (type is number)
-          type: number
-          exclusiveMaximum: 8
-        numberLessThanOrEquals:
-          description: Property name's description (type is number)
-          type: number
-          maximum: 8
-        numberRange:
-          description: Property name's description (type is number)
-          type: number
-          minimum: 5
-          maximum: 8
-        numberRangeExclusiveMaximum:
-          description: Property name's description (type is number)
-          type: number
-          minimum: 5
-          exclusiveMaximum: 8
-        numberRangeExclusiveMinimumAndMaximum:
-          description: Property name's description (type is number)
-          type: number
-          exclusiveMinimum: 5
-          exclusiveMaximum: 8
-        numberMultipleOf:
-          description: Property name's description (type is number)
-          type: number
-          multipleOf: 2
-        integerType:
-          description: Property name's description (type is integer)
-          type: integer
-        integer32bit:
-          description: Property name's description (type is integer, format is int32)
-          type: integer
-          format: int32
-        integer64bit:
-          description: Property name's description (type is integer, format is int64)
-          type: integer
-          format: int64
-        booleanProperty:
-          description: Property name's description (type is boolean)
-          type: boolean
-  responses:
-    Problem:
-      description: Problem
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/Problem'
+        jsonapi:
+          $ref: '#/components/schemas/Jsonapi'
+        meta:
+          type: object
+          description: Optional metadata.
+        links:
+          type: object
+          description: JSON:API _links_ object.
+          required:
+            - self
+            - hei
+          properties:
+            self:
+              $ref: '#/components/schemas/LinksSelf'
+            hei:
+              type: object
+              description: >-
+                Hypermedia link to the [Institution
+                collection](#tag/Institutions).
+              required:
+                - href
+              properties:
+                href:
+                  type: stringUri
+    Lang:
+      type: nullableOrStringProperty
+      description: >
+        Language code in [ISO
+        639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format.
+
+
+        Optionally the script can be indicated in [ISO
+        15924](https://en.wikipedia.org/wiki/ISO_15924#List_of_codes) format.
+
+
+        e.g. `el` for Greek, `el-Latn` for Greek in Latin script.
+    TitleLang:
+      type: array
+      description: |
+        Title with optional language code.
+
+        This allows to provide the title in multiple languages.
+
+        If it exists, the item with `en` should be listed first.
+      items:
+        type: object
+        required:
+          - string
+        properties:
+          string:
+            type: string
+            description: Value
+          lang:
+            $ref: '#/components/schemas/Lang'
+    UrlLang:
+      type: array
+      description: |
+        External URL with information related to this resource.
+
+        This allows to provide URLs to pages in multiple languages.
+
+        If it exists, the item with `en` should be listed first.
+      items:
+        type: object
+        required:
+          - uri
+        properties:
+          uri:
+            type: stringUri
+            description: Value
+          lang:
+            $ref: '#/components/schemas/Lang'
+    LinksResource:
+      type: object
+      description: Hypermedia link to the canonical path of this resource.
+      required:
+        - href
+      properties:
+        href:
+          type: stringUri
+    LinksCollection:
+      type: object
+      description: Hypermedia link to this resource collection.
+      required:
+        - href
+      properties:
+        href:
+          type: stringUri
+    InstitutionCollection:
+      type: object
+      description: JSON:API collection of Institution resources.
+      required:
+        - jsonapi
+        - data
+        - links
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/Jsonapi'
+        data:
+          type: array
+          description: List of JSON:API resources.
+          items:
+            type: object
+            required:
+              - type
+              - id
+              - links
+              - attributes
+            properties:
+              type:
+                type: string
+                description: JSON:API resource type.
+              id:
+                type: stringUuid
+                description: JSON:API resource ID, typically a UUID v4.
+              attributes:
+                type: object
+                description: JSON:API _attributes_ object.
+                required:
+                  - title
+                  - heiId
+                properties:
+                  heiId:
+                    type: stringHostname
+                    description: The SCHAC code of the Institution.
+                  title:
+                    $ref: '#/components/schemas/TitleLang'
+                  abbreviation:
+                    type: string
+                    description: Most widely recognized abbreviation.
+                  url:
+                    $ref: '#/components/schemas/UrlLang'
+              links:
+                type: object
+                description: JSON:API _links_ object.
+                required:
+                  - self
+                properties:
+                  self:
+                    $ref: '#/components/schemas/LinksResource'
+        links:
+          type: object
+          description: JSON:API _links_ object.
+          required:
+            - self
+          properties:
+            self:
+              $ref: '#/components/schemas/LinksCollection'
   headers:
     ExpiresAfter:
       description: date in UTC when token expires

@@ -1,0 +1,7 @@
+type: nullableOrStringProperty
+description: |
+  Language code in [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format.
+
+  Optionally the script can be indicated in [ISO 15924](https://en.wikipedia.org/wiki/ISO_15924#List_of_codes) format.
+
+  e.g. `el` for Greek, `el-Latn` for Greek in Latin script.

@@ -17,6 +17,8 @@ info:
 #   description: Find out how to create a GitHub repo for your OpenAPI definition.
 #   url: 'https://github.com/Rebilly/generator-openapi-repo'
 tags:
+  - name: API provider
+    description: Information about the provider.
   - name: Institutions
     description: Information about the institutions covered by the API.
   - name: Organisational Units
@@ -29,6 +31,8 @@ servers:
   - url: 'https://occapi.uni-foundation.eu/occapi/v1'
     description: Sandbox server (example data)
 paths:
+  /:
+    $ref: paths/root.yaml
   /hei:
     $ref: paths/hei.yaml
   # '/users/{username}':

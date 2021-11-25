@@ -1,0 +1,7 @@
+type: object
+description: Hypermedia link to the canonical path of this resource.
+required:
+  - href
+properties:
+  href:
+    type: stringUri
