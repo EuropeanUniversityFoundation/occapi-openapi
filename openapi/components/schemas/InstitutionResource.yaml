@@ -1,5 +1,5 @@
 type: object
-description: JSON:API Institution resource.
+description: JSON:API _Institution_ resource.
 required:
   - jsonapi
   - data
@@ -9,7 +9,7 @@ properties:
     $ref: ./Jsonapi.yaml
   data:
     type: object
-    description: Institution resource data.
+    description: _Institution_ resource data.
     required:
       - type
       - id

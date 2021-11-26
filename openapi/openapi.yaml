@@ -20,43 +20,41 @@ tags:
   - name: API provider
     description: Information about the provider.
   - name: Institutions
-    description: Information about the institutions covered by the API.
+    description: Information about the Institutions covered by the provider.
   - name: Organisational Units
-    description: Information about organisational units in each institution.
+    description: Information about Organisational Units in an Institution.
   - name: Programmes
-    description: Information about degree programmes in each institution.
+    description: Information about Programmes offered by an Institution.
   - name: Courses
-    description: Information about courses in each institution.
+    description: Information about Courses offered by an Institution.
 servers:
   - url: 'https://occapi.uni-foundation.eu/occapi/v1'
     description: Sandbox server (example data)
 paths:
   /:
     $ref: paths/root.yaml
+  # Institution & Organisational Unit endpoints.
   /hei:
     $ref: paths/hei.yaml
   '/hei/{heiId}':
     $ref: 'paths/hei@{heiId}.yaml'
-  /echo:
-    $ref: paths/echo.yaml
-  # /pathItem:
-  #   $ref: paths/path-item.yaml
-  # /pathItemWithExamples:
-  #   $ref: paths/path-item-with-examples.yaml
-# components:
-#   securitySchemes:
-#     main_auth:
-#       type: oauth2
-#       flows:
-#         implicit:
-#           authorizationUrl: 'http://example.com/api/oauth/dialog'
-#           scopes:
-#             'read:users': read users info
-#             'write:users': modify or remove users
-#     api_key:
-#       type: apiKey
-#       in: header
-#       name: api_key
-#     basic_auth:
-#       type: http
-#       scheme: basic
+  '/hei/{heiId}/ounit':
+    $ref: 'paths/ounit.yaml'
+  '/hei/{heiId}/ounit/{id}':
+    $ref: 'paths/ounit@{id}.yaml'
+  # Programme endpoints.
+  # '/hei/{heiId}/programme':
+  #   $ref: 'paths/programme.yaml'
+  # '/hei/{heiId}/ounit/{id}/programme':
+  #   $ref: 'paths/ounit@{id}-programme.yaml'
+  # '/hei/{heiId}/programme/{id}':
+  #   $ref: 'paths/programme@{id}.yaml'
+  # Course endpoints.
+  # '/hei/{heiId}/course':
+  #   $ref: 'paths/course.yaml'
+  # '/hei/{heiId}/ounit/{id}/course':
+  #   $ref: 'paths/ounit@{id}-course.yaml'
+  # '/hei/{heiId}/programme/{id}/course':
+  #   $ref: 'paths/programme@{id}-course.yaml'
+  # '/hei/{heiId}/course/{id}':
+  #   $ref: 'paths/course@{id}.yaml'

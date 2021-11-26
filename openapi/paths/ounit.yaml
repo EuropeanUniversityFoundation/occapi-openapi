@@ -1,0 +1,36 @@
+get:
+  tags:
+    - Organisational Units
+  summary: GET /hei/{heiId}/ounit
+  description: |
+    This endpoint lists all _Organisational Units_ in an _Institution_.
+
+    Implementation is optional but **recommended** since exposing collections by
+     _Organisational Unit_ can help avoid large HTTP responses.
+  operationId: getOunits
+  parameters:
+    - name: heiId
+      in: path
+      description: The SCHAC code of the Institution.
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK
+      headers:
+        X-Rate-Limit:
+          description: calls per hour allowed by the user.
+          schema:
+            type: integer
+            format: int32
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: ../components/schemas/OunitCollection.yaml
+          examples:
+            response:
+              value: OunitCollectionResponse
+    '400':
+      description: Invalid Institution SCHAC code.
+      $ref: ../components/responses/Problem.yaml

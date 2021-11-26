@@ -1,7 +1,7 @@
 get:
   tags:
     - Institutions
-  summary: Get an Institution by SCHAC code.
+  summary: GET /hei/{heiId}
   description: |
     This endpoint exposes some basic information about an Institution covered by
      the provider, which should be sufficient to satisfy basic UX/UI needs of

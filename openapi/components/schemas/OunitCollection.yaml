@@ -1,5 +1,5 @@
 type: object
-description: JSON:API collection of _Institution_ resources.
+description: JSON:API collection of _Organisational Unit_ resources.
 required:
   - jsonapi
   - data
@@ -9,7 +9,7 @@ properties:
     $ref: ./Jsonapi.yaml
   data:
     type: array
-    description: List of _Institution_ resources.
+    description: List of _Organisational Unit_ resources.
     items:
       type: object
       required:
@@ -18,7 +18,7 @@ properties:
         - links
         - attributes
       properties:
-        $ref: ./InstitutionData.yaml
+        $ref: ./OunitData.yaml
   links:
     type: object
     description: JSON:API _links_ object.

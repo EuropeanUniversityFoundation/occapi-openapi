@@ -1,9 +1,9 @@
 get:
   tags:
     - Institutions
-  summary: Get all Institutions
+  summary: GET /hei
   description: |
-    This endpoint lists all Institutions covered by this provider.
+    This endpoint lists all _Institutions_ covered by this provider.
 
     In order to obtain more detailed and up to date information about an
      Institution, it is **recommended** that client implementations use the
