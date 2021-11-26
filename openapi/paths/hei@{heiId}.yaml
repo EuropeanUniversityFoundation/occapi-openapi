@@ -1,15 +1,24 @@
 get:
   tags:
     - Institutions
-  summary: Get all Institutions
+  summary: Get an Institution by SCHAC code.
   description: |
-    This endpoint lists all Institutions covered by this provider.
+    This endpoint exposes some basic information about an Institution covered by
+     the provider, which should be sufficient to satisfy basic UX/UI needs of
+     app developers.
 
     In order to obtain more detailed and up to date information about an
      Institution, it is **recommended** that client implementations use the
      [HEI API](https://hei.api.uni-foundation.eu) service provided by the
      [European University Foundation](https://uni-foundation.eu/).
-  operationId: getInstitutions
+  operationId: getInstitutionById
+  parameters:
+    - name: heiId
+      in: path
+      description: The SCHAC code of the Institution.
+      required: true
+      schema:
+        type: string
   responses:
     '200':
       description: OK
@@ -22,7 +31,10 @@ get:
       content:
         application/vnd.api+json:
           schema:
-            $ref: ../components/schemas/InstitutionCollection.yaml
+            $ref: ../components/schemas/InstitutionResource.yaml
           examples:
             response:
-              value: InstitutionCollectionResponse
+              value: InstitutionResourceResponse
+    '404':
+      description: Institution not found.
+      $ref: ../components/responses/Problem.yaml

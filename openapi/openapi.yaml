@@ -35,8 +35,8 @@ paths:
     $ref: paths/root.yaml
   /hei:
     $ref: paths/hei.yaml
-  # '/users/{username}':
-  #   $ref: 'paths/users@{username}.yaml'
+  '/hei/{heiId}':
+    $ref: 'paths/hei@{heiId}.yaml'
   /echo:
     $ref: paths/echo.yaml
   # /pathItem:

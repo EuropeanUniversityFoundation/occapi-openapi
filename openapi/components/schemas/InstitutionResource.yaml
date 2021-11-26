@@ -1,0 +1,64 @@
+type: object
+description: JSON:API Institution resource.
+required:
+  - jsonapi
+  - data
+  - links
+properties:
+  jsonapi:
+    $ref: ./Jsonapi.yaml
+  data:
+    type: object
+    description: Institution resource data.
+    required:
+      - type
+      - id
+      - links
+      - attributes
+    properties:
+      $ref: ./InstitutionData.yaml
+  links:
+    type: object
+    description: JSON:API _links_ object.
+    required:
+      - self
+    properties:
+      self:
+        $ref: ./LinksResource.yaml
+      ounit:
+        type: object
+        description: |
+          Hypermedia link to the _Organisational Units_ collection associated to this resource.
+
+          **Recommended:** separate any collections by _Organisational Unit_ in order to avoid large HTTP responses.
+
+          The resource collection links for _Programmes_ and _Courses_ shown below can also be implemented at the _Organisational Unit_ level.
+        required:
+          - href
+        properties:
+          href:
+            type: stringUri
+      programme:
+        type: object
+        description: |
+          Hypermedia link to the _Programmes_ collection associated to this resource.
+
+          **Recommended:** separate this collection by _Organisational Unit_ in order to avoid large HTTP responses.
+
+          The resource collection link for _Courses_ shown below can also be implemented at the _Programme_ level.
+        required:
+          - href
+        properties:
+          href:
+            type: stringUri
+      course:
+        type: object
+        description: |
+          _**Discouraged!**_ Hypermedia link to the _Courses_ collection associated to this resource.
+
+          **Recommended:** separate this collection by _Programme_ or by _Organisational Unit_ in order to avoid large HTTP responses.
+        required:
+          - href
+        properties:
+          href:
+            type: stringUri
