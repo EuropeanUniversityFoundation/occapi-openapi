@@ -1,0 +1,33 @@
+get:
+  tags:
+    - Programmes
+  summary: GET /hei/{heiId}/programme
+  description: |
+    This endpoint lists all _Programmes_ offered by an _Institution_.
+  operationId: getProgrammes
+  parameters:
+    - name: heiId
+      in: path
+      description: The SCHAC code of the Institution.
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK
+      headers:
+        X-Rate-Limit:
+          description: calls per hour allowed by the user.
+          schema:
+            type: integer
+            format: int32
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: ../components/schemas/ProgrammeCollection.yaml
+          examples:
+            response:
+              value: ProgrammeCollectionResponse
+    '400':
+      description: Invalid Institution SCHAC code.
+      $ref: ../components/responses/Problem.yaml

@@ -1,0 +1,29 @@
+type: object
+description: JSON:API collection of _Programme_ resources.
+required:
+  - jsonapi
+  - data
+  - links
+properties:
+  jsonapi:
+    $ref: ./Jsonapi.yaml
+  data:
+    type: array
+    description: List of _Programme_ resources.
+    items:
+      type: object
+      required:
+        - type
+        - id
+        - links
+        - attributes
+      properties:
+        $ref: ./ProgrammeData.yaml
+  links:
+    type: object
+    description: JSON:API _links_ object.
+    required:
+      - self
+    properties:
+      self:
+        $ref: ./LinksCollection.yaml

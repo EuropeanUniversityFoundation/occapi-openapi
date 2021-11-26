@@ -2,8 +2,9 @@ type:
   type: string
   description: JSON:API resource type.
 id:
-  type: stringUuid
+  type: string
   description: JSON:API resource ID, typically a UUID v4.
+  format: uuid
 attributes:
   type: object
   description: JSON:API _attributes_ object.

@@ -4,4 +4,5 @@ required:
   - href
 properties:
   href:
-    type: stringUri
+    type: string
+    format: uri

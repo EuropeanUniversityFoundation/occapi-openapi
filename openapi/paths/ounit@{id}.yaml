@@ -15,12 +15,14 @@ get:
       required: true
       schema:
         type: string
+        format: hostname
     - name: id
       in: path
       description: The UUID of the _Organisational Unit_ resource.
       required: true
       schema:
-        type: stringUuid
+        type: string
+        format: uuid
   responses:
     '200':
       description: OK

@@ -43,8 +43,8 @@ paths:
   '/hei/{heiId}/ounit/{id}':
     $ref: 'paths/ounit@{id}.yaml'
   # Programme endpoints.
-  # '/hei/{heiId}/programme':
-  #   $ref: 'paths/programme.yaml'
+  '/hei/{heiId}/programme':
+    $ref: 'paths/programme.yaml'
   # '/hei/{heiId}/ounit/{id}/programme':
   #   $ref: 'paths/ounit@{id}-programme.yaml'
   # '/hei/{heiId}/programme/{id}':

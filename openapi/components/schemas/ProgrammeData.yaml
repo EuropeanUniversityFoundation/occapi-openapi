@@ -1,0 +1,60 @@
+type:
+  type: string
+  description: JSON:API resource type.
+id:
+  type: string
+  description: JSON:API resource ID, typically a UUID v4.
+  format: uuid
+attributes:
+  type: object
+  description: JSON:API _attributes_ object.
+  required:
+    - title
+    - ounitId
+  properties:
+    code:
+      type: string
+      description: Human readable code identifying the Programme.
+    title:
+      $ref: ./TitleLang.yaml
+    description:
+      $ref: ./TitleLang.yaml
+    ects:
+      type: integer
+      description: Number of ECTS credits required to complete the Programme.
+    eqfLevelProvided:
+      type: integer
+      minimum: 5
+      maximum: 8
+      description: |
+        [EQF Level](https://europa.eu/europass/en/description-eight-eqf-levels)
+         provided to the learner upon completing the Programme.
+    iscedCode:
+      type: string
+      description: |
+        [ISCED-F code](https://www.surveycodings.org/fields-education/international-classification-fields-education-and-training)
+         describing the field of education of the Programme.
+    languageOfInstruction:
+      type: string
+      description: |
+        Language code in
+         [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format.
+
+        Optionally the country locale can be indicated in
+         [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+
+        e.g. `pt` for Portuguese, `pt-PT` for European Portuguese.
+    length:
+      type: integer
+      minimum: 1
+      description: Length of the Programme in *years*.
+    url:
+      $ref: ./UrlLang.yaml
+links:
+  type: object
+  description: JSON:API _links_ object.
+  required:
+    - self
+  properties:
+    self:
+      $ref: ./LinksResource.yaml

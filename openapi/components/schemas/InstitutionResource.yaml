@@ -37,7 +37,8 @@ properties:
           - href
         properties:
           href:
-            type: stringUri
+            type: string
+            format: uri
       programme:
         type: object
         description: |
@@ -50,7 +51,8 @@ properties:
           - href
         properties:
           href:
-            type: stringUri
+            type: string
+            format: uri
       course:
         type: object
         description: |
@@ -61,4 +63,5 @@ properties:
           - href
         properties:
           href:
-            type: stringUri
+            type: string
+            format: uri

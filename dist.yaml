@@ -47,13 +47,13 @@ tags:
   - name: API provider
     description: Information about the provider.
   - name: Institutions
-    description: Information about the institutions covered by the API.
+    description: Information about the Institutions covered by the provider.
   - name: Organisational Units
-    description: Information about organisational units in each institution.
+    description: Information about Organisational Units in an Institution.
   - name: Programmes
-    description: Information about degree programmes in each institution.
+    description: Information about Programmes offered by an Institution.
   - name: Courses
-    description: Information about courses in each institution.
+    description: Information about Courses offered by an Institution.
 servers:
   - url: https://occapi.uni-foundation.eu/occapi/v1
     description: Sandbox server (example data)
@@ -62,7 +62,7 @@ paths:
     get:
       tags:
         - API provider
-      summary: <root>
+      summary: GET /
       description: Get primary Hypermedia links and optional metadata about the provider.
       operationId: getRoot
       responses:
@@ -85,8 +85,14 @@ paths:
     get:
       tags:
         - Institutions
-      summary: Get all Institutions
-      description: Institutions covered by this provider.
+      summary: GET /hei
+      description: |
+        This endpoint lists all _Institutions_ covered by this provider.
+
+        In order to obtain more detailed and up to date information about an
+         Institution, it is **recommended** that client implementations use the
+         [HEI API](https://hei.api.uni-foundation.eu) service provided by the
+         [European University Foundation](https://uni-foundation.eu/).
       operationId: getInstitutions
       responses:
         '200':
@@ -104,78 +110,172 @@ paths:
               examples:
                 response:
                   value: InstitutionCollectionResponse
-  /echo:
-    post:
+  /hei/{heiId}:
+    get:
       tags:
-        - Echo
-      summary: Echo test
-      description: Receive the exact message you've sent
-      operationId: echo
-      security:
-        - api_key: []
-        - basic_auth: []
+        - Institutions
+      summary: GET /hei/{heiId}
+      description: >
+        This endpoint exposes some basic information about an Institution
+        covered by
+         the provider, which should be sufficient to satisfy basic UX/UI needs of
+         app developers.
+
+        In order to obtain more detailed and up to date information about an
+         Institution, it is **recommended** that client implementations use the
+         [HEI API](https://hei.api.uni-foundation.eu) service provided by the
+         [European University Foundation](https://uni-foundation.eu/).
+      operationId: getInstitutionById
+      parameters:
+        - name: heiId
+          in: path
+          description: The SCHAC code of the Institution.
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: OK
           headers:
             X-Rate-Limit:
-              description: calls per hour allowed by the user
+              description: calls per hour allowed by the user.
               schema:
                 type: integer
                 format: int32
-            X-Expires-After:
-              $ref: '#/components/headers/ExpiresAfter'
           content:
-            application/json:
+            application/vnd.api+json:
               schema:
-                type: string
+                $ref: '#/components/schemas/InstitutionResource'
               examples:
                 response:
-                  value: Hello world!
-            application/xml:
+                  value: InstitutionResourceResponse
+        '404':
+          description: Institution not found.
+          $ref: '#/components/responses/Problem'
+  /hei/{heiId}/ounit:
+    get:
+      tags:
+        - Organisational Units
+      summary: GET /hei/{heiId}/ounit
+      description: >
+        This endpoint lists all _Organisational Units_ in an _Institution_.
+
+
+        Implementation is optional but **recommended** since exposing
+        collections by
+         _Organisational Unit_ can help avoid large HTTP responses.
+      operationId: getOunits
+      parameters:
+        - name: heiId
+          in: path
+          description: The SCHAC code of the Institution.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user.
               schema:
-                type: string
-            text/csv:
+                type: integer
+                format: int32
+          content:
+            application/vnd.api+json:
               schema:
-                type: string
+                $ref: '#/components/schemas/OunitCollection'
+              examples:
+                response:
+                  value: OunitCollectionResponse
         '400':
-          description: Unauthorized
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: string
-              example: Hello world!
-          application/xml:
-            schema:
-              type: string
-              example: Hello world!
-        description: Echo payload
-        required: true
-      x-codeSamples:
-        - lang: C#
-          source: |
-            API.v1.Echo echo = new API.v1.Echo();
-            echo.message = "Hello World!");
-            EchoResponse response = echo.post();
-            if (response.statusCode == HttpStatusCode.Created)
-            {
-              // Success
-            }
-            else
-            {
-              // Something wrong -- check response for errors
-              Console.WriteLine(response.getRawResponse());
-            }
-        - lang: PHP
-          source: |
-            $form = new \API\Entities\Echo();
-            $form->setMessage("Hello World!");
-            try {
-                $pet = $client->echo()->post($form);
-            } catch (UnprocessableEntityException $e) {
-                var_dump($e->getErrors());
-            }
+          description: Invalid Institution SCHAC code.
+          $ref: '#/components/responses/Problem'
+  /hei/{heiId}/ounit/{id}:
+    get:
+      tags:
+        - Organisational Units
+      summary: GET /hei/{heiId}/ounit/{id}
+      description: >
+        This endpoint exposes some basic information about an _Organisational
+        Unit_.
+
+
+        Implementation is optional but **recommended** since exposing
+        collections by
+         _Organisational Unit_ can help avoid large HTTP responses.
+      operationId: getOunitByUuid
+      parameters:
+        - name: heiId
+          in: path
+          description: The SCHAC code of the Institution.
+          required: true
+          schema:
+            type: string
+            format: hostname
+        - name: id
+          in: path
+          description: The UUID of the _Organisational Unit_ resource.
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user.
+              schema:
+                type: integer
+                format: int32
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/OunitResource'
+              examples:
+                response:
+                  value: OunitResourceResponse
+        '400':
+          description: Invalid Institution SCHAC code.
+          $ref: '#/components/responses/Problem'
+        '404':
+          description: Organisational Unit not found.
+          $ref: '#/components/responses/Problem'
+  /hei/{heiId}/programme:
+    get:
+      tags:
+        - Programmes
+      summary: GET /hei/{heiId}/programme
+      description: |
+        This endpoint lists all _Programmes_ offered by an _Institution_.
+      operationId: getProgrammes
+      parameters:
+        - name: heiId
+          in: path
+          description: The SCHAC code of the Institution.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user.
+              schema:
+                type: integer
+                format: int32
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ProgrammeCollection'
+              examples:
+                response:
+                  value: ProgrammeCollectionResponse
+        '400':
+          description: Invalid Institution SCHAC code.
+          $ref: '#/components/responses/Problem'
 components:
   schemas:
     LinksSelf:
@@ -185,7 +285,8 @@ components:
         - href
       properties:
         href:
-          type: stringUri
+          type: string
+          format: uri
     Jsonapi:
       type: object
       description: JSON:API header.
@@ -240,9 +341,12 @@ components:
                 - href
               properties:
                 href:
-                  type: stringUri
+                  type: string
+                  format: uri
     Lang:
-      type: nullableOrStringProperty
+      type:
+        - string
+        - null
       description: >
         Language code in [ISO
         639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format.
@@ -285,7 +389,8 @@ components:
           - uri
         properties:
           uri:
-            type: stringUri
+            type: string
+            format: uri
             description: Value
           lang:
             $ref: '#/components/schemas/Lang'
@@ -296,7 +401,8 @@ components:
         - href
       properties:
         href:
-          type: stringUri
+          type: string
+          format: uri
     LinksCollection:
       type: object
       description: Hypermedia link to this resource collection.
@@ -304,10 +410,11 @@ components:
         - href
       properties:
         href:
-          type: stringUri
+          type: string
+          format: uri
     InstitutionCollection:
       type: object
-      description: JSON:API collection of Institution resources.
+      description: JSON:API collection of _Institution_ resources.
       required:
         - jsonapi
         - data
@@ -317,7 +424,7 @@ components:
           $ref: '#/components/schemas/Jsonapi'
         data:
           type: array
-          description: List of JSON:API resources.
+          description: List of _Institution_ resources.
           items:
             type: object
             required:
@@ -330,8 +437,9 @@ components:
                 type: string
                 description: JSON:API resource type.
               id:
-                type: stringUuid
+                type: string
                 description: JSON:API resource ID, typically a UUID v4.
+                format: uuid
               attributes:
                 type: object
                 description: JSON:API _attributes_ object.
@@ -340,8 +448,9 @@ components:
                   - heiId
                 properties:
                   heiId:
-                    type: stringHostname
+                    type: string
                     description: The SCHAC code of the Institution.
+                    format: hostname
                   title:
                     $ref: '#/components/schemas/TitleLang'
                   abbreviation:
@@ -365,9 +474,405 @@ components:
           properties:
             self:
               $ref: '#/components/schemas/LinksCollection'
-  headers:
-    ExpiresAfter:
-      description: date in UTC when token expires
-      schema:
-        type: string
-        format: date-time
+    InstitutionResource:
+      type: object
+      description: JSON:API _Institution_ resource.
+      required:
+        - jsonapi
+        - data
+        - links
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/Jsonapi'
+        data:
+          type: object
+          description: _Institution_ resource data.
+          required:
+            - type
+            - id
+            - links
+            - attributes
+          properties:
+            type:
+              type: string
+              description: JSON:API resource type.
+            id:
+              type: string
+              description: JSON:API resource ID, typically a UUID v4.
+              format: uuid
+            attributes:
+              type: object
+              description: JSON:API _attributes_ object.
+              required:
+                - title
+                - heiId
+              properties:
+                heiId:
+                  type: string
+                  description: The SCHAC code of the Institution.
+                  format: hostname
+                title:
+                  $ref: '#/components/schemas/TitleLang'
+                abbreviation:
+                  type: string
+                  description: Most widely recognized abbreviation.
+                url:
+                  $ref: '#/components/schemas/UrlLang'
+            links:
+              type: object
+              description: JSON:API _links_ object.
+              required:
+                - self
+              properties:
+                self:
+                  $ref: '#/components/schemas/LinksResource'
+        links:
+          type: object
+          description: JSON:API _links_ object.
+          required:
+            - self
+          properties:
+            self:
+              $ref: '#/components/schemas/LinksResource'
+            ounit:
+              type: object
+              description: >
+                Hypermedia link to the _Organisational Units_ collection
+                associated to this resource.
+
+
+                **Recommended:** separate any collections by _Organisational
+                Unit_ in order to avoid large HTTP responses.
+
+
+                The resource collection links for _Programmes_ and _Courses_
+                shown below can also be implemented at the _Organisational Unit_
+                level.
+              required:
+                - href
+              properties:
+                href:
+                  type: string
+                  format: uri
+            programme:
+              type: object
+              description: >
+                Hypermedia link to the _Programmes_ collection associated to
+                this resource.
+
+
+                **Recommended:** separate this collection by _Organisational
+                Unit_ in order to avoid large HTTP responses.
+
+
+                The resource collection link for _Courses_ shown below can also
+                be implemented at the _Programme_ level.
+              required:
+                - href
+              properties:
+                href:
+                  type: string
+                  format: uri
+            course:
+              type: object
+              description: >
+                _**Discouraged!**_ Hypermedia link to the _Courses_ collection
+                associated to this resource.
+
+
+                **Recommended:** separate this collection by _Programme_ or by
+                _Organisational Unit_ in order to avoid large HTTP responses.
+              required:
+                - href
+              properties:
+                href:
+                  type: string
+                  format: uri
+    Problem:
+      type: object
+      additionalProperties: true
+      minProperties: 1
+      description: >-
+        The Problem Details JSON Object
+        [[RFC7807](https://tools.ietf.org/html/rfc7807)].
+      properties:
+        type:
+          type: string
+          description: >-
+            A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)]
+            that identifies the problem type. It should provide human-readable
+            documentation for the problem type. When this member is not present,
+            its value is assumed to be "about:blank".
+          format: uri
+        title:
+          type: string
+          description: >-
+            A short, human-readable summary of the problem type. It SHOULD NOT
+            change from occurrence to occurrence of the problem, except for
+            purposes of localization.
+        status:
+          type: integer
+          description: The HTTP status code.
+          minimum: 400
+          maximum: 599
+        detail:
+          type: string
+          description: >-
+            A human-readable explanation specific to this occurrence of the
+            problem.
+        instance:
+          type: string
+          description: >-
+            A URI reference that identifies the specific occurrence of the
+            problem.  It may or may not yield further information if
+            dereferenced.
+    OunitCollection:
+      type: object
+      description: JSON:API collection of _Organisational Unit_ resources.
+      required:
+        - jsonapi
+        - data
+        - links
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/Jsonapi'
+        data:
+          type: array
+          description: List of _Organisational Unit_ resources.
+          items:
+            type: object
+            required:
+              - type
+              - id
+              - links
+              - attributes
+            properties:
+              type:
+                type: string
+                description: JSON:API resource type.
+              id:
+                type: string
+                description: JSON:API resource ID, typically a UUID v4.
+                format: uuid
+              attributes:
+                type: object
+                description: JSON:API _attributes_ object.
+                required:
+                  - title
+                  - ounitId
+                properties:
+                  ounitId:
+                    type: string
+                    description: Unique identifier within the Institution. Can be a UUID.
+                  ounitCode:
+                    type: string
+                    description: Human readable code identifying the Organisational Unit.
+                  title:
+                    $ref: '#/components/schemas/TitleLang'
+                  abbreviation:
+                    type: string
+                    description: Most widely recognized abbreviation.
+                  url:
+                    $ref: '#/components/schemas/UrlLang'
+              links:
+                type: object
+                description: JSON:API _links_ object.
+                required:
+                  - self
+                properties:
+                  self:
+                    $ref: '#/components/schemas/LinksResource'
+        links:
+          type: object
+          description: JSON:API _links_ object.
+          required:
+            - self
+          properties:
+            self:
+              $ref: '#/components/schemas/LinksCollection'
+    OunitResource:
+      type: object
+      description: JSON:API _Organisational Unit_ resource.
+      required:
+        - jsonapi
+        - data
+        - links
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/Jsonapi'
+        data:
+          type: object
+          description: _Organisational Unit_ resource data.
+          required:
+            - type
+            - id
+            - links
+            - attributes
+          properties:
+            type:
+              type: string
+              description: JSON:API resource type.
+            id:
+              type: string
+              description: JSON:API resource ID, typically a UUID v4.
+              format: uuid
+            attributes:
+              type: object
+              description: JSON:API _attributes_ object.
+              required:
+                - title
+                - ounitId
+              properties:
+                ounitId:
+                  type: string
+                  description: Unique identifier within the Institution. Can be a UUID.
+                ounitCode:
+                  type: string
+                  description: Human readable code identifying the Organisational Unit.
+                title:
+                  $ref: '#/components/schemas/TitleLang'
+                abbreviation:
+                  type: string
+                  description: Most widely recognized abbreviation.
+                url:
+                  $ref: '#/components/schemas/UrlLang'
+            links:
+              type: object
+              description: JSON:API _links_ object.
+              required:
+                - self
+              properties:
+                self:
+                  $ref: '#/components/schemas/LinksResource'
+        links:
+          type: object
+          description: JSON:API _links_ object.
+          required:
+            - self
+          properties:
+            self:
+              $ref: '#/components/schemas/LinksResource'
+            programme:
+              type: object
+              description: >
+                Hypermedia link to the _Programmes_ collection associated to
+                this resource.
+
+
+                The resource collection link for _Courses_ shown below can also
+                be implemented at the _Programme_ level.
+              required:
+                - href
+              properties:
+                href:
+                  type: string
+                  format: uri
+            course:
+              type: object
+              description: >
+                Hypermedia link to the _Courses_ collection associated to this
+                resource.
+              required:
+                - href
+              properties:
+                href:
+                  type: string
+                  format: uri
+    ProgrammeCollection:
+      type: object
+      description: JSON:API collection of _Programme_ resources.
+      required:
+        - jsonapi
+        - data
+        - links
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/Jsonapi'
+        data:
+          type: array
+          description: List of _Programme_ resources.
+          items:
+            type: object
+            required:
+              - type
+              - id
+              - links
+              - attributes
+            properties:
+              type:
+                type: string
+                description: JSON:API resource type.
+              id:
+                type: string
+                description: JSON:API resource ID, typically a UUID v4.
+                format: uuid
+              attributes:
+                type: object
+                description: JSON:API _attributes_ object.
+                required:
+                  - title
+                  - ounitId
+                properties:
+                  code:
+                    type: string
+                    description: Human readable code identifying the Programme.
+                  title:
+                    $ref: '#/components/schemas/TitleLang'
+                  description:
+                    $ref: '#/components/schemas/TitleLang'
+                  ects:
+                    type: integer
+                    description: Number of ECTS credits required to complete the Programme.
+                  eqfLevelProvided:
+                    type: integer
+                    minimum: 5
+                    maximum: 8
+                    description: >
+                      [EQF
+                      Level](https://europa.eu/europass/en/description-eight-eqf-levels)
+                       provided to the learner upon completing the Programme.
+                  iscedCode:
+                    type: string
+                    description: >
+                      [ISCED-F
+                      code](https://www.surveycodings.org/fields-education/international-classification-fields-education-and-training)
+                       describing the field of education of the Programme.
+                  languageOfInstruction:
+                    type: string
+                    description: |
+                      Language code in
+                       [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format.
+
+                      Optionally the country locale can be indicated in
+                       [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+
+                      e.g. `pt` for Portuguese, `pt-PT` for European Portuguese.
+                  length:
+                    type: integer
+                    minimum: 1
+                    description: Length of the Programme in *years*.
+                  url:
+                    $ref: '#/components/schemas/UrlLang'
+              links:
+                type: object
+                description: JSON:API _links_ object.
+                required:
+                  - self
+                properties:
+                  self:
+                    $ref: '#/components/schemas/LinksResource'
+        links:
+          type: object
+          description: JSON:API _links_ object.
+          required:
+            - self
+          properties:
+            self:
+              $ref: '#/components/schemas/LinksCollection'
+  responses:
+    Problem:
+      description: Problem
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
