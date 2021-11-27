@@ -25,9 +25,8 @@ get:
         application/vnd.api+json:
           schema:
             $ref: ../components/schemas/ProgrammeCollection.yaml
-          examples:
-            response:
-              value: ProgrammeCollectionResponse
+          example:
+            $ref: ../components/responses/ProgrammeCollection.yaml
     '400':
       description: Invalid Institution SCHAC code.
       $ref: ../components/responses/Problem.yaml

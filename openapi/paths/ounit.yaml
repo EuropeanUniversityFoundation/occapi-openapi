@@ -28,9 +28,8 @@ get:
         application/vnd.api+json:
           schema:
             $ref: ../components/schemas/OunitCollection.yaml
-          examples:
-            response:
-              value: OunitCollectionResponse
+          example:
+            $ref: ../components/responses/OunitCollection.yaml
     '400':
       description: Invalid Institution SCHAC code.
       $ref: ../components/responses/Problem.yaml

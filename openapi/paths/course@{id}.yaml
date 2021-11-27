@@ -3,7 +3,9 @@ get:
     - Course
   summary: GET /hei/{heiId}/course/{id}
   description: |
-    This endpoint exposes information about a _Course_.
+    This endpoint exposes extended information about a _Course_.
+
+    A single resource response can include more fields than would appear in a collection response.
   operationId: getCourseByUuid
   parameters:
     - name: heiId
@@ -33,9 +35,8 @@ get:
         application/vnd.api+json:
           schema:
             $ref: ../components/schemas/CourseResource.yaml
-          examples:
-            response:
-              value: CourseResourceResponse
+          example:
+            $ref: ../components/responses/CourseResource.yaml
     '400':
       description: Invalid Institution SCHAC code.
       $ref: ../components/responses/Problem.yaml

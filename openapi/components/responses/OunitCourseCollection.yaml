@@ -1,0 +1,41 @@
+jsonapi:
+  version: "1.0"
+  meta:
+    links:
+      self:
+        href: "http://jsonapi.org/format/1.0/"
+data:
+  - type: course
+    id: aabbccdd-eeff-1122-3344-556677889900
+    attributes:
+      title:
+        - string: Example Course
+          lang: en
+      code: COUR01
+      description:
+        - multiline: |
+            This is the description of the Course.
+
+            This is a long text field.
+          lang: en
+      learningOutcomes:
+        - multiline: |
+            These are the learning outcomes of the Course.
+
+            This is a long text field.
+          lang: en
+      academicTerm: '1/2'
+      ects: 120
+      languageOfInstruction: en
+      iscedCode: '0000'
+      subjectArea: '00.0'
+      otherCategorization: 'zero'
+      url:
+        - uri: www.domain.tld/example/course
+          lang: en
+    links:
+      self:
+        href: 'http://example.com/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900'
+links:
+  self:
+    href: 'http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/course'
