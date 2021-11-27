@@ -32,9 +32,8 @@ get:
         application/vnd.api+json:
           schema:
             $ref: ../components/schemas/InstitutionResource.yaml
-          examples:
-            response:
-              value: InstitutionResourceResponse
+          example:
+            $ref: ../components/responses/InstitutionResource.yaml
     '404':
       description: Institution not found.
       $ref: ../components/responses/Problem.yaml

@@ -23,6 +23,5 @@ get:
         application/vnd.api+json:
           schema:
             $ref: ../components/schemas/InstitutionCollection.yaml
-          examples:
-            response:
-              value: InstitutionCollectionResponse
+          example:
+            $ref: ../components/responses/InstitutionCollection.yaml

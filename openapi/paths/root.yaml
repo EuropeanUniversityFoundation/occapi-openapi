@@ -17,6 +17,5 @@ get:
         application/vnd.api+json:
           schema:
             $ref: ../components/schemas/Root.yaml
-          examples:
-            response:
-              value: RootResponse
+          example:
+            $ref: ../components/responses/Root.yaml

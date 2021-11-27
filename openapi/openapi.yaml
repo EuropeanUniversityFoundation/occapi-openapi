@@ -27,6 +27,7 @@ tags:
     description: Information about Programmes offered by an Institution.
   - name: Course
     description: Information about Courses offered by an Institution.
+  - name: Tag
 servers:
   - url: 'https://occapi.uni-foundation.eu/occapi/v1'
     description: Sandbox server (example data)
@@ -58,3 +59,8 @@ paths:
     $ref: 'paths/programme@{id}-course.yaml'
   '/hei/{heiId}/course/{id}':
     $ref: 'paths/course@{id}.yaml'
+  # Exanples
+  '/path':
+    $ref: 'paths/path-item.yaml'
+  '/path/example':
+    $ref: 'paths/path-item-with-examples.yaml'

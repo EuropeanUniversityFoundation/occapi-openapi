@@ -20,7 +20,7 @@ properties:
         $ref: ./LinksSelf.yaml
       hei:
         type: object
-        description: Hypermedia link to the [Institution collection](#tag/Institutions).
+        description: Hypermedia link to the [Institution collection](#tag/Institution).
         required:
           - href
         properties:
