@@ -1,6 +1,6 @@
 get:
   tags:
-    - Programmes
+    - Programme
   summary: GET /hei/{heiId}/programme
   description: |
     This endpoint lists all _Programmes_ offered by an _Institution_.

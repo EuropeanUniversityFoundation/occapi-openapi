@@ -1,6 +1,6 @@
 get:
   tags:
-    - Organisational Units
+    - Organisational Unit
   summary: GET /hei/{heiId}/ounit
   description: |
     This endpoint lists all _Organisational Units_ in an _Institution_.

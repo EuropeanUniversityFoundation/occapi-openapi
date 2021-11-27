@@ -1,0 +1,118 @@
+type:
+  type: string
+  description: JSON:API resource type.
+id:
+  type: string
+  description: JSON:API resource ID, typically a UUID v4.
+  format: uuid
+attributes:
+  type: object
+  description: JSON:API _attributes_ object.
+  required:
+    - title
+    - code
+    - description
+    - learningOutcomes
+    - academicTerm
+    - ects
+    - languageOfInstruction
+    - iscedCode
+    - subjectArea
+    - otherCategorization
+  properties:
+    title:
+      type: array
+      description: Title with optional language code.
+      items:
+        $ref: ./StringWithOptionalLang.yaml
+    code:
+      type: string
+      description: Human readable code identifying the Course.
+    description:
+      type: array
+      description: Description with optional language code.
+      items:
+        $ref: ./MultilineStringWithOptionalLang.yaml
+    learningOutcomes:
+      type: array
+      description: Learning outcomes with optional language code.
+      items:
+        $ref: ./MultilineStringWithOptionalLang.yaml
+    academicTerm:
+      type: string
+      description: |
+        Academic term in which the Course is delivered.
+
+        e.g. `1/2` for first semester,
+         `2/2` for second semester,
+         `1/1` for the full academic year.
+      pattern: '[1-9]/[1-9]'
+    ects:
+      type: integer
+      description: Number of ECTS credits provided to the learner upon completing the Course.
+    languageOfInstruction:
+      type: string
+      description: |
+        Language code in
+         [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format.
+
+        Optionally the country locale can be indicated in
+         [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+
+        e.g. `pt` for Portuguese, `pt-PT` for European Portuguese.
+    iscedCode:
+      type: string
+      description: |
+        [ISCED-F code](https://www.surveycodings.org/fields-education/international-classification-fields-education-and-training)
+         describing the field of education of the Course.
+    subjectArea:
+      type: string
+      description: |
+        Erasmus subject area code describing the field of education of the Course.
+    otherCategorization:
+      type: string
+      description: |
+        Any other term used internally to describe the field of education of the Course.
+    url:
+      type: array
+      description: External URL with optional language code.
+      items:
+        $ref: ./HttpWithOptionalLang.yaml
+    bibliography:
+      type: array
+      description: Bibliography with optional language code.
+      items:
+        $ref: ./MultilineStringWithOptionalLang.yaml
+    courseContent:
+      type: array
+      description: Course content with optional language code.
+      items:
+        $ref: ./MultilineStringWithOptionalLang.yaml
+    prerequisites:
+      type: array
+      description: Prerequisites with optional language code.
+      items:
+        $ref: ./MultilineStringWithOptionalLang.yaml
+    courseAvailability:
+      type: array
+      description: Course availability with optional language code.
+      items:
+        $ref: ./MultilineStringWithOptionalLang.yaml
+    teachingMethod:
+      type: array
+      description: Teaching method with optional language code.
+      items:
+        $ref: ./MultilineStringWithOptionalLang.yaml
+    assessmentMethod:
+      type: array
+      description: Assessment method with optional language code.
+      items:
+        $ref: ./MultilineStringWithOptionalLang.yaml
+links:
+  type: object
+  description: JSON:API _links_ object.
+  required:
+    - self
+  properties:
+    self:
+      $ref: ./LinksResource.yaml

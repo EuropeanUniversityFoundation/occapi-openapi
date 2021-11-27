@@ -13,7 +13,10 @@ attributes:
     - ounitId
   properties:
     title:
-      $ref: ./TitleLang.yaml
+      type: array
+      description: Title with optional language code.
+      items:
+        $ref: ./StringWithOptionalLang.yaml
     abbreviation:
       type: string
       description: Most widely recognized abbreviation.
@@ -24,7 +27,10 @@ attributes:
       type: string
       description: Human readable code identifying the Organisational Unit.
     url:
-      $ref: ./UrlLang.yaml
+      type: array
+      description: External URL with optional language code.
+      items:
+        $ref: ./HttpWithOptionalLang.yaml
 links:
   type: object
   description: JSON:API _links_ object.

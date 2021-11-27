@@ -1,6 +1,6 @@
 get:
   tags:
-    - Institutions
+    - Institution
   summary: GET /hei/{heiId}
   description: |
     This endpoint exposes some basic information about an Institution covered by

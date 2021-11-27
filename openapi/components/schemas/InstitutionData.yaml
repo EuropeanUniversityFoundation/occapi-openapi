@@ -13,7 +13,10 @@ attributes:
     - heiId
   properties:
     title:
-      $ref: ./TitleLang.yaml
+      type: array
+      description: Title with optional language code.
+      items:
+        $ref: ./StringWithOptionalLang.yaml
     abbreviation:
       type: string
       description: Most widely recognized abbreviation.
@@ -22,7 +25,10 @@ attributes:
       description: The SCHAC code of the Institution.
       format: hostname
     url:
-      $ref: ./UrlLang.yaml
+      type: array
+      description: External URL with optional language code.
+      items:
+        $ref: ./HttpWithOptionalLang.yaml
 links:
   type: object
   description: JSON:API _links_ object.

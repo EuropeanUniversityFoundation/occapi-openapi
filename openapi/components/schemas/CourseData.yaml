@@ -12,11 +12,13 @@ attributes:
     - title
     - code
     - description
+    - learningOutcomes
+    - academicTerm
     - ects
-    - eqfLevelProvided
-    - iscedCode
     - languageOfInstruction
-    - length
+    - iscedCode
+    - subjectArea
+    - otherCategorization
   properties:
     title:
       type: array
@@ -25,27 +27,29 @@ attributes:
         $ref: ./StringWithOptionalLang.yaml
     code:
       type: string
-      description: Human readable code identifying the Programme.
+      description: Human readable code identifying the Course.
     description:
       type: array
       description: Description with optional language code.
       items:
         $ref: ./MultilineStringWithOptionalLang.yaml
-    ects:
-      type: integer
-      description: Number of ECTS credits required to complete the Programme.
-    eqfLevelProvided:
-      type: integer
-      minimum: 5
-      maximum: 8
-      description: |
-        [EQF Level](https://europa.eu/europass/en/description-eight-eqf-levels)
-         provided to the learner upon completing the Programme.
-    iscedCode:
+    learningOutcomes:
+      type: array
+      description: Learning outcomes with optional language code.
+      items:
+        $ref: ./MultilineStringWithOptionalLang.yaml
+    academicTerm:
       type: string
       description: |
-        [ISCED-F code](https://www.surveycodings.org/fields-education/international-classification-fields-education-and-training)
-         describing the field of education of the Programme.
+        Academic term in which the Course is delivered.
+
+        e.g. `1/2` for first semester,
+         `2/2` for second semester,
+         `1/1` for the full academic year.
+      pattern: '[1-9]/[1-9]'
+    ects:
+      type: integer
+      description: Number of ECTS credits provided to the learner upon completing the Course.
     languageOfInstruction:
       type: string
       description: |
@@ -56,10 +60,19 @@ attributes:
          [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
 
         e.g. `pt` for Portuguese, `pt-PT` for European Portuguese.
-    length:
-      type: integer
-      minimum: 1
-      description: Length of the Programme in **years**.
+    iscedCode:
+      type: string
+      description: |
+        [ISCED-F code](https://www.surveycodings.org/fields-education/international-classification-fields-education-and-training)
+         describing the field of education of the Course.
+    subjectArea:
+      type: string
+      description: |
+        Erasmus subject area code describing the field of education of the Course.
+    otherCategorization:
+      type: string
+      description: |
+        Any other term used internally to describe the field of education of the Course.
     url:
       type: array
       description: External URL with optional language code.

@@ -1,6 +1,6 @@
 get:
   tags:
-    - Institutions
+    - Institution
   summary: GET /hei
   description: |
     This endpoint lists all _Institutions_ covered by this provider.

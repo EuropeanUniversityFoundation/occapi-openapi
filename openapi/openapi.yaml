@@ -19,13 +19,13 @@ info:
 tags:
   - name: API provider
     description: Information about the provider.
-  - name: Institutions
+  - name: Institution
     description: Information about the Institutions covered by the provider.
-  - name: Organisational Units
+  - name: Organisational Unit
     description: Information about Organisational Units in an Institution.
-  - name: Programmes
+  - name: Programme
     description: Information about Programmes offered by an Institution.
-  - name: Courses
+  - name: Course
     description: Information about Courses offered by an Institution.
 servers:
   - url: 'https://occapi.uni-foundation.eu/occapi/v1'
@@ -50,11 +50,11 @@ paths:
   '/hei/{heiId}/programme/{id}':
     $ref: 'paths/programme@{id}.yaml'
   # Course endpoints.
-  # '/hei/{heiId}/course':
-  #   $ref: 'paths/course.yaml'
-  # '/hei/{heiId}/ounit/{id}/course':
-  #   $ref: 'paths/ounit@{id}-course.yaml'
-  # '/hei/{heiId}/programme/{id}/course':
-  #   $ref: 'paths/programme@{id}-course.yaml'
-  # '/hei/{heiId}/course/{id}':
-  #   $ref: 'paths/course@{id}.yaml'
+  '/hei/{heiId}/course':
+    $ref: 'paths/course.yaml'
+  '/hei/{heiId}/ounit/{id}/course':
+    $ref: 'paths/ounit@{id}-course.yaml'
+  '/hei/{heiId}/programme/{id}/course':
+    $ref: 'paths/programme@{id}-course.yaml'
+  '/hei/{heiId}/course/{id}':
+    $ref: 'paths/course@{id}.yaml'

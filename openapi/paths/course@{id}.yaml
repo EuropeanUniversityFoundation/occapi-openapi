@@ -1,13 +1,10 @@
 get:
   tags:
-    - Organisational Unit
-  summary: GET /hei/{heiId}/ounit/{id}
+    - Course
+  summary: GET /hei/{heiId}/course/{id}
   description: |
-    This endpoint exposes some basic information about an _Organisational Unit_.
-
-    Implementation is optional but **recommended** since exposing collections by
-     _Organisational Unit_ can help avoid large HTTP responses.
-  operationId: getOunitByUuid
+    This endpoint exposes information about a _Course_.
+  operationId: getCourseByUuid
   parameters:
     - name: heiId
       in: path
@@ -18,7 +15,7 @@ get:
         format: hostname
     - name: id
       in: path
-      description: The UUID of the _Organisational Unit_ resource.
+      description: The UUID of the _Course_ resource.
       required: true
       schema:
         type: string
@@ -35,13 +32,13 @@ get:
       content:
         application/vnd.api+json:
           schema:
-            $ref: ../components/schemas/OunitResource.yaml
+            $ref: ../components/schemas/CourseResource.yaml
           examples:
             response:
-              value: OunitResourceResponse
+              value: CourseResourceResponse
     '400':
       description: Invalid Institution SCHAC code.
       $ref: ../components/responses/Problem.yaml
     '404':
-      description: Organisational Unit not found.
+      description: Course not found.
       $ref: ../components/responses/Problem.yaml

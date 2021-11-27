@@ -1,0 +1,9 @@
+type: object
+required:
+  - multiline
+properties:
+  multiline:
+    type: string
+    description: Value
+  lang:
+    $ref: ./Lang.yaml

@@ -1,17 +1,4 @@
 type: array
-description: |
-  Description with optional language code.
-
-  This allows to provide the description in multiple languages.
-
-  If it exists, the item with `en` should be listed first.
+description: Description with optional language code.
 items:
-  type: object
-  required:
-    - string
-  properties:
-    string:
-      type: string
-      description: Value
-    lang:
-      $ref: ./Lang.yaml
+  $ref: ./MultilineLang.yaml

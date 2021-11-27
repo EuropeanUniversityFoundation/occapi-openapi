@@ -1,10 +1,10 @@
 get:
   tags:
-    - Programme
-  summary: GET /hei/{heiId}/ounit/{id}/programme
+    - Course
+  summary: GET /hei/{heiId}/course
   description: |
-    This endpoint lists all _Programmes_ offered by an _Institution_ filtered by _Organisational Unit_.
-  operationId: getOunitProgrammes
+    This endpoint lists all _Courses_ offered by an _Institution_.
+  operationId: getCourses
   parameters:
     - name: heiId
       in: path
@@ -12,13 +12,6 @@ get:
       required: true
       schema:
         type: string
-    - name: id
-      in: path
-      description: The UUID of the _Organisational Unit_ resource to filter by.
-      required: true
-      schema:
-        type: string
-        format: uuid
   responses:
     '200':
       description: OK
@@ -31,13 +24,10 @@ get:
       content:
         application/vnd.api+json:
           schema:
-            $ref: ../components/schemas/ProgrammeCollection.yaml
+            $ref: ../components/schemas/CourseCollection.yaml
           examples:
             response:
-              value: ProgrammeCollectionResponse
+              value: CourseCollectionResponse
     '400':
       description: Invalid Institution SCHAC code.
-      $ref: ../components/responses/Problem.yaml
-    '404':
-      description: Organisational Unit not found.
       $ref: ../components/responses/Problem.yaml
