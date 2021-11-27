@@ -1,0 +1,37 @@
+type: object
+description: JSON:API _Programme_ resource.
+required:
+  - jsonapi
+  - data
+  - links
+properties:
+  jsonapi:
+    $ref: ./Jsonapi.yaml
+  data:
+    type: object
+    description: _Programme_ resource data.
+    required:
+      - type
+      - id
+      - links
+      - attributes
+    properties:
+      $ref: ./ProgrammeData.yaml
+  links:
+    type: object
+    description: JSON:API _links_ object.
+    required:
+      - self
+    properties:
+      self:
+        $ref: ./LinksResource.yaml
+      course:
+        type: object
+        description: |
+          Hypermedia link to the _Courses_ collection associated to this resource.
+        required:
+          - href
+        properties:
+          href:
+            type: string
+            format: uri

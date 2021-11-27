@@ -12,17 +12,17 @@ attributes:
     - title
     - ounitId
   properties:
+    title:
+      $ref: ./TitleLang.yaml
+    abbreviation:
+      type: string
+      description: Most widely recognized abbreviation.
     ounitId:
       type: string
       description: Unique identifier within the Institution. Can be a UUID.
     ounitCode:
       type: string
       description: Human readable code identifying the Organisational Unit.
-    title:
-      $ref: ./TitleLang.yaml
-    abbreviation:
-      type: string
-      description: Most widely recognized abbreviation.
     url:
       $ref: ./UrlLang.yaml
 links:

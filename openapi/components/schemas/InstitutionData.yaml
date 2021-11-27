@@ -12,15 +12,15 @@ attributes:
     - title
     - heiId
   properties:
-    heiId:
-      type: string
-      description: The SCHAC code of the Institution.
-      format: hostname
     title:
       $ref: ./TitleLang.yaml
     abbreviation:
       type: string
       description: Most widely recognized abbreviation.
+    heiId:
+      type: string
+      description: The SCHAC code of the Institution.
+      format: hostname
     url:
       $ref: ./UrlLang.yaml
 links:

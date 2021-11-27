@@ -1,0 +1,44 @@
+get:
+  tags:
+    - Programmes
+  summary: GET /hei/{heiId}/programme/{id}
+  description: |
+    This endpoint exposes information about a _Programme_.
+  operationId: getProgrammeByUuid
+  parameters:
+    - name: heiId
+      in: path
+      description: The SCHAC code of the Institution.
+      required: true
+      schema:
+        type: string
+        format: hostname
+    - name: id
+      in: path
+      description: The UUID of the _Programme_ resource.
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    '200':
+      description: OK
+      headers:
+        X-Rate-Limit:
+          description: calls per hour allowed by the user.
+          schema:
+            type: integer
+            format: int32
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: ../components/schemas/ProgrammeResource.yaml
+          examples:
+            response:
+              value: ProgrammeResourceResponse
+    '400':
+      description: Invalid Institution SCHAC code.
+      $ref: ../components/responses/Problem.yaml
+    '404':
+      description: Programme not found.
+      $ref: ../components/responses/Problem.yaml

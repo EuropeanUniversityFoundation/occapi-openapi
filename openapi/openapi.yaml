@@ -45,10 +45,10 @@ paths:
   # Programme endpoints.
   '/hei/{heiId}/programme':
     $ref: 'paths/programme.yaml'
-  # '/hei/{heiId}/ounit/{id}/programme':
-  #   $ref: 'paths/ounit@{id}-programme.yaml'
-  # '/hei/{heiId}/programme/{id}':
-  #   $ref: 'paths/programme@{id}.yaml'
+  '/hei/{heiId}/ounit/{id}/programme':
+    $ref: 'paths/ounit@{id}-programme.yaml'
+  '/hei/{heiId}/programme/{id}':
+    $ref: 'paths/programme@{id}.yaml'
   # Course endpoints.
   # '/hei/{heiId}/course':
   #   $ref: 'paths/course.yaml'

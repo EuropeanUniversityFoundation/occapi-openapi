@@ -1,5 +1,5 @@
 type: object
-description: Hypermedia link to the canonical path of this resource.
+description: Hypermedia link to the **canonical path** of this resource.
 required:
   - href
 properties:

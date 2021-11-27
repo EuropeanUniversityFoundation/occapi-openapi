@@ -10,13 +10,19 @@ attributes:
   description: JSON:API _attributes_ object.
   required:
     - title
-    - ounitId
+    - code
+    - description
+    - ects
+    - eqfLevelProvided
+    - iscedCode
+    - languageOfInstruction
+    - length
   properties:
+    title:
+      $ref: ./TitleLang.yaml
     code:
       type: string
       description: Human readable code identifying the Programme.
-    title:
-      $ref: ./TitleLang.yaml
     description:
       $ref: ./TitleLang.yaml
     ects:
@@ -47,7 +53,7 @@ attributes:
     length:
       type: integer
       minimum: 1
-      description: Length of the Programme in *years*.
+      description: Length of the Programme in **years**.
     url:
       $ref: ./UrlLang.yaml
 links:
