@@ -1,7 +1,15 @@
-# Dir for bundles
-dist
-node_modules
+# Ignore common local files
+.idea/
+.vscode/
+/coverage/
+/node_modules/
+/vendor/
+/logs/*
+!/logs/README.md
+.phpunit.result.cache
 
-# Project specific
-/docker-compose.override.yml
+# Ignore local environment variables
 /.env
+
+# Ignore local Docker overrides
+/docker-compose.override.yml
