@@ -7,8 +7,8 @@
   "private": true,
   "scripts": {
     "start": "openapi preview-docs",
-    "build": "openapi bundle -o dist",
-    "postbuild": "./postbuild.sh",    
+    "build": "openapi bundle -o openapi_occapi_v1",
+    "postbuild": "./postbuild.sh",
     "test": "openapi lint"
   }
 }

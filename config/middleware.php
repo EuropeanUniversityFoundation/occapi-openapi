@@ -4,6 +4,8 @@ use Middlewares\TrailingSlash;
 use Selective\Validation\Middleware\ValidationExceptionMiddleware;
 use Slim\App;
 use Slim\Middleware\ErrorMiddleware;
+use Slim\Views\Twig;
+use Slim\Views\TwigMiddleware;
 
 return function (App $app) {
     // Parse json, form data and xml
@@ -17,6 +19,12 @@ return function (App $app) {
 
     // Strip trailing slash
     $app->add(new TrailingSlash(false));
+
+    // Create Twig
+    $twig = Twig::create('../templates', ['cache' => false]);
+
+    // Add Twig-View Middleware
+    $app->add(TwigMiddleware::create($app, $twig));
 
     // Add Validation
     $app->add(ValidationExceptionMiddleware::class);

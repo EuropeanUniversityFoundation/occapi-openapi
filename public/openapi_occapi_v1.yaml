@@ -1,0 +1,2071 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Open Course Catalogue API
+  termsOfService: ''
+  contact:
+    email: contact@uni-foundation.eu
+    url: https://uni-foundation.eu
+  x-logo:
+    url: https://uni-foundation.eu/wp-content/uploads/2019/04/EUF-1.png
+  description: >
+    This is an **example** API to demonstrate features of the Open Course
+    Catalogue API specification.
+
+
+    # Introduction
+
+
+    The **Open Course Catalogue API** specification aims to standardize the way
+    in which Higher Education Institutions expose their course catalogues in a
+    machine-readable format.
+
+
+    By facilitating access to their course catalogues, Institutions can allow
+    consumer applications to implement user friendly ways to explore course
+    offers for prospective students.
+
+
+    ## Comparison with other standards and specifications
+
+
+    The Open Course Catalogue specification is heavily inspired by the [Erasmus
+    Without Paper](https://www.erasmuswithoutpaper.eu/) API specifications and
+    attempts to follow most of its conventions. However, it takes a different
+    approach to exposing curricular structure as its main focus.
+
+
+    This API specification also differs from EWP APIs by adopting the
+    [JSON:API](https://jsonapi.org/) format following industry trends.
+
+
+    Another example of modern practices in the education space is the [Open
+    Education
+    API](https://open-education-api.github.io/specification/v3/docs.html) which
+    covers a wider array of use cases.
+tags:
+  - name: API provider
+    description: Information about the provider.
+  - name: Institution
+    description: Information about the Institutions covered by the provider.
+  - name: Organisational Unit
+    description: Information about Organisational Units in an Institution.
+  - name: Programme
+    description: Information about Programmes offered by an Institution.
+  - name: Course
+    description: |
+      Information about Courses offered by an Institution.
+
+      _Course_ resources include a JSON:API _meta_ object containing information
+       about the relation between each Course and all or specific Programmes.
+servers:
+  - url: https://occapi.uni-foundation.eu/occapi/v1
+    description: Sandbox server (example data)
+paths:
+  /:
+    get:
+      tags:
+        - API provider
+      summary: GET /
+      description: Get primary Hypermedia links and optional metadata about the provider.
+      operationId: getRoot
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user.
+              schema:
+                type: integer
+                format: int32
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Root'
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                meta: {}
+                links:
+                  self:
+                    href: http://example.com/occapi/v1
+                  hei:
+                    href: http://example.com/occapi/v1/hei
+  /hei:
+    get:
+      tags:
+        - Institution
+      summary: GET /hei
+      description: |
+        This endpoint lists all _Institutions_ covered by this provider.
+
+        In order to obtain more detailed and up to date information about an
+         Institution, it is **recommended** that client implementations use the
+         [HEI API](https://hei.api.uni-foundation.eu) service provided by the
+         [European University Foundation](https://uni-foundation.eu/).
+      operationId: getInstitutions
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user.
+              schema:
+                type: integer
+                format: int32
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/InstitutionCollection'
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                data:
+                  - type: hei
+                    id: 12345678-90ab-cdef-1234-567890abcdef
+                    attributes:
+                      title:
+                        - string: Example Institution
+                          lang: en
+                      abbreviation: EI
+                      heiId: domain.tld
+                      url:
+                        - uri: www.domain.tld
+                          lang: en
+                    links:
+                      self:
+                        href: http://example.com/occapi/v1/hei/domain.tld
+                links:
+                  self:
+                    href: http://example.com/occapi/v1/hei
+  /hei/{heiId}:
+    get:
+      tags:
+        - Institution
+      summary: GET /hei/{heiId}
+      description: >
+        This endpoint exposes some basic information about an Institution
+        covered by
+         the provider, which should be sufficient to satisfy basic UX/UI needs of
+         app developers.
+
+        In order to obtain more detailed and up to date information about an
+         Institution, it is **recommended** that client implementations use the
+         [HEI API](https://hei.api.uni-foundation.eu) service provided by the
+         [European University Foundation](https://uni-foundation.eu/).
+      operationId: getInstitutionById
+      parameters:
+        - name: heiId
+          in: path
+          description: The SCHAC code of the Institution.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user.
+              schema:
+                type: integer
+                format: int32
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/InstitutionResource'
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                data:
+                  type: hei
+                  id: 12345678-90ab-cdef-1234-567890abcdef
+                  attributes:
+                    title:
+                      - string: Example Institution
+                        lang: en
+                    abbreviation: EI
+                    heiId: domain.tld
+                    url:
+                      - uri: www.domain.tld
+                        lang: en
+                  links:
+                    self:
+                      href: http://example.com/occapi/v1/hei/domain.tld
+                links:
+                  self:
+                    href: http://example.com/occapi/v1/hei/domain.tld
+                  ounit:
+                    href: http://example.com/occapi/v1/hei/domain.tld/ounit
+                  programme:
+                    href: http://example.com/occapi/v1/hei/domain.tld/programme
+                  course:
+                    href: http://example.com/occapi/v1/hei/domain.tld/course
+        '404':
+          description: Institution not found.
+          $ref: '#/components/responses/Problem'
+  /hei/{heiId}/ounit:
+    get:
+      tags:
+        - Organisational Unit
+      summary: GET /hei/{heiId}/ounit
+      description: >
+        This endpoint lists all _Organisational Units_ in an _Institution_.
+
+
+        Implementation is optional but **recommended** since exposing
+        collections by
+         _Organisational Unit_ can help avoid large HTTP responses.
+      operationId: getOunits
+      parameters:
+        - name: heiId
+          in: path
+          description: The SCHAC code of the Institution.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user.
+              schema:
+                type: integer
+                format: int32
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/OunitCollection'
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                data:
+                  - type: ounit
+                    id: 11223344-5566-7788-9900-aabbccddeeff
+                    attributes:
+                      title:
+                        - string: Example Organisational Unit
+                          lang: en
+                      abbreviation: EOU
+                      ounitId: 11223344-5566-7788-9900-aabbccddeeff
+                      ounitCode: EI-EOU
+                      url:
+                        - uri: www.domain.tld/eou
+                          lang: en
+                    links:
+                      self:
+                        href: >-
+                          http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff
+                links:
+                  self:
+                    href: http://example.com/occapi/v1/hei/domain.tld/ounit
+        '400':
+          description: Invalid Institution SCHAC code.
+          $ref: '#/components/responses/Problem'
+  /hei/{heiId}/ounit/{id}:
+    get:
+      tags:
+        - Organisational Unit
+      summary: GET /hei/{heiId}/ounit/{id}
+      description: >
+        This endpoint exposes some basic information about an _Organisational
+        Unit_.
+
+
+        Implementation is optional but **recommended** since exposing
+        collections by
+         _Organisational Unit_ can help avoid large HTTP responses.
+      operationId: getOunitByUuid
+      parameters:
+        - name: heiId
+          in: path
+          description: The SCHAC code of the Institution.
+          required: true
+          schema:
+            type: string
+            format: hostname
+        - name: id
+          in: path
+          description: The UUID of the _Organisational Unit_ resource.
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user.
+              schema:
+                type: integer
+                format: int32
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/OunitResource'
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                data:
+                  type: ounit
+                  id: 11223344-5566-7788-9900-aabbccddeeff
+                  attributes:
+                    title:
+                      - string: Example Organisational Unit
+                        lang: en
+                    abbreviation: EOU
+                    ounitId: 11223344-5566-7788-9900-aabbccddeeff
+                    ounitCode: EI-EOU
+                    url:
+                      - uri: www.domain.tld/eou
+                        lang: en
+                  links:
+                    self:
+                      href: >-
+                        http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff
+                links:
+                  self:
+                    href: >-
+                      http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff
+                  programme:
+                    href: >-
+                      http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/programme
+                  course:
+                    href: >-
+                      http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/course
+        '400':
+          description: Invalid Institution SCHAC code.
+          $ref: '#/components/responses/Problem'
+        '404':
+          description: Organisational Unit not found.
+          $ref: '#/components/responses/Problem'
+  /hei/{heiId}/programme:
+    get:
+      tags:
+        - Programme
+      summary: GET /hei/{heiId}/programme
+      description: |
+        This endpoint lists all _Programmes_ offered by an _Institution_.
+      operationId: getProgrammes
+      parameters:
+        - name: heiId
+          in: path
+          description: The SCHAC code of the Institution.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user.
+              schema:
+                type: integer
+                format: int32
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ProgrammeCollection'
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                data:
+                  - type: programme
+                    id: abcdef12-3456-7890-abcd-ef1234567890
+                    attributes:
+                      title:
+                        - string: Example Programme
+                          lang: en
+                      code: PROG01
+                      description:
+                        - multiline: |
+                            This is the description of the Programme.
+
+                            This is a long text field.
+                          lang: en
+                      ects: 120
+                      eqfLevelProvided: 5
+                      iscedCode: 0
+                      languageOfInstruction: en
+                      length: 2
+                      url:
+                        - uri: www.domain.tld/example/programme
+                          lang: en
+                    links:
+                      self:
+                        href: >-
+                          http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
+                links:
+                  self:
+                    href: http://example.com/occapi/v1/hei/domain.tld/programme
+        '400':
+          description: Invalid Institution SCHAC code.
+          $ref: '#/components/responses/Problem'
+  /hei/{heiId}/ounit/{id}/programme:
+    get:
+      tags:
+        - Programme
+      summary: GET /hei/{heiId}/ounit/{id}/programme
+      description: >
+        This endpoint lists all _Programmes_ offered by an _Institution_
+        filtered by _Organisational Unit_.
+      operationId: getOunitProgrammes
+      parameters:
+        - name: heiId
+          in: path
+          description: The SCHAC code of the Institution.
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: The UUID of the _Organisational Unit_ resource to filter by.
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user.
+              schema:
+                type: integer
+                format: int32
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ProgrammeCollection'
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                data:
+                  - type: programme
+                    id: abcdef12-3456-7890-abcd-ef1234567890
+                    attributes:
+                      title:
+                        - string: Example Programme
+                          lang: en
+                      code: PROG01
+                      description:
+                        - multiline: |
+                            This is the description of the Programme.
+
+                            This is a long text field.
+                          lang: en
+                      ects: 120
+                      eqfLevelProvided: 5
+                      iscedCode: 0
+                      languageOfInstruction: en
+                      length: 2
+                      url:
+                        - uri: www.domain.tld/example/programme
+                          lang: en
+                    links:
+                      self:
+                        href: >-
+                          http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
+                links:
+                  self:
+                    href: >-
+                      http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/programme
+        '400':
+          description: Invalid Institution SCHAC code.
+          $ref: '#/components/responses/Problem'
+        '404':
+          description: Organisational Unit not found.
+          $ref: '#/components/responses/Problem'
+  /hei/{heiId}/programme/{id}:
+    get:
+      tags:
+        - Programme
+      summary: GET /hei/{heiId}/programme/{id}
+      description: |
+        This endpoint exposes information about a _Programme_.
+      operationId: getProgrammeByUuid
+      parameters:
+        - name: heiId
+          in: path
+          description: The SCHAC code of the Institution.
+          required: true
+          schema:
+            type: string
+            format: hostname
+        - name: id
+          in: path
+          description: The UUID of the _Programme_ resource.
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user.
+              schema:
+                type: integer
+                format: int32
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ProgrammeResource'
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                data:
+                  type: programme
+                  id: abcdef12-3456-7890-abcd-ef1234567890
+                  attributes:
+                    title:
+                      - string: Example Programme
+                        lang: en
+                    code: PROG01
+                    description:
+                      - multiline: |
+                          This is the description of the Programme.
+
+                          This is a long text field.
+                        lang: en
+                    ects: 120
+                    eqfLevelProvided: 5
+                    iscedCode: '0000'
+                    languageOfInstruction: en
+                    length: 2
+                    url:
+                      - uri: www.domain.tld/example/programme
+                        lang: en
+                  links:
+                    self:
+                      href: >-
+                        http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
+                links:
+                  self:
+                    href: >-
+                      http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
+                  course:
+                    href: >-
+                      http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890/course
+        '400':
+          description: Invalid Institution SCHAC code.
+          $ref: '#/components/responses/Problem'
+        '404':
+          description: Programme not found.
+          $ref: '#/components/responses/Problem'
+  /hei/{heiId}/course:
+    get:
+      tags:
+        - Course
+      summary: GET /hei/{heiId}/course
+      description: |
+        This endpoint lists all _Courses_ offered by an _Institution_.
+      operationId: getCourses
+      parameters:
+        - name: heiId
+          in: path
+          description: The SCHAC code of the Institution.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user.
+              schema:
+                type: integer
+                format: int32
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CourseCollection'
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                data:
+                  - type: course
+                    id: aabbccdd-eeff-1122-3344-556677889900
+                    attributes:
+                      title:
+                        - string: Example Course
+                          lang: en
+                      code: COUR01
+                      description:
+                        - multiline: |
+                            This is the description of the Course.
+
+                            This is a long text field.
+                          lang: en
+                      learningOutcomes:
+                        - multiline: |
+                            These are the learning outcomes of the Course.
+
+                            This is a long text field.
+                          lang: en
+                      academicTerm: 1/2
+                      ects: 120
+                      languageOfInstruction: en
+                      iscedCode: '0000'
+                      subjectArea: '00.0'
+                      otherCategorization: zero
+                      url:
+                        - uri: www.domain.tld/example/course
+                          lang: en
+                    meta:
+                      global:
+                        eqfLevel: 6
+                        year: 1/3
+                      programme:
+                        - programmeId: abcdef12-3456-7890-abcd-ef1234567890
+                          mandatoryCourse: true
+                          year: 1/2
+                    links:
+                      self:
+                        href: >-
+                          http://example.com/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                links:
+                  self:
+                    href: http://example.com/occapi/v1/hei/domain.tld/course
+        '400':
+          description: Invalid Institution SCHAC code.
+          $ref: '#/components/responses/Problem'
+  /hei/{heiId}/ounit/{id}/course:
+    get:
+      tags:
+        - Course
+      summary: GET /hei/{heiId}/ounit/{id}/course
+      description: >
+        This endpoint lists all _Courses_ offered by an _Institution_ filtered
+        by _Organisational Unit_.
+      operationId: getOunitCourses
+      parameters:
+        - name: heiId
+          in: path
+          description: The SCHAC code of the Institution.
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: The UUID of the _Organisational Unit_ resource to filter by.
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user.
+              schema:
+                type: integer
+                format: int32
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CourseCollection'
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                data:
+                  - type: course
+                    id: aabbccdd-eeff-1122-3344-556677889900
+                    attributes:
+                      title:
+                        - string: Example Course
+                          lang: en
+                      code: COUR01
+                      description:
+                        - multiline: |
+                            This is the description of the Course.
+
+                            This is a long text field.
+                          lang: en
+                      learningOutcomes:
+                        - multiline: |
+                            These are the learning outcomes of the Course.
+
+                            This is a long text field.
+                          lang: en
+                      academicTerm: 1/2
+                      ects: 120
+                      languageOfInstruction: en
+                      iscedCode: '0000'
+                      subjectArea: '00.0'
+                      otherCategorization: zero
+                      url:
+                        - uri: www.domain.tld/example/course
+                          lang: en
+                    meta:
+                      global:
+                        eqfLevel: 6
+                        year: 1/3
+                      programme:
+                        - programmeId: abcdef12-3456-7890-abcd-ef1234567890
+                          mandatoryCourse: true
+                          year: 1/2
+                    links:
+                      self:
+                        href: >-
+                          http://example.com/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                links:
+                  self:
+                    href: >-
+                      http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/course
+        '400':
+          description: Invalid Institution SCHAC code.
+          $ref: '#/components/responses/Problem'
+        '404':
+          description: Organisational Unit not found.
+          $ref: '#/components/responses/Problem'
+  /hei/{heiId}/programme/{id}/course:
+    get:
+      tags:
+        - Course
+      summary: GET /hei/{heiId}/programme/{id}/course
+      description: >
+        This endpoint lists all _Courses_ offered by an _Institution_ filtered
+        by _Programme_.
+      operationId: getProgrammeCourses
+      parameters:
+        - name: heiId
+          in: path
+          description: The SCHAC code of the Institution.
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: The UUID of the _Programme_ resource to filter by.
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user.
+              schema:
+                type: integer
+                format: int32
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CourseCollection'
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                data:
+                  - type: course
+                    id: aabbccdd-eeff-1122-3344-556677889900
+                    attributes:
+                      title:
+                        - string: Example Course
+                          lang: en
+                      code: COUR01
+                      description:
+                        - multiline: |
+                            This is the description of the Course.
+
+                            This is a long text field.
+                          lang: en
+                      learningOutcomes:
+                        - multiline: |
+                            These are the learning outcomes of the Course.
+
+                            This is a long text field.
+                          lang: en
+                      academicTerm: 1/2
+                      ects: 120
+                      languageOfInstruction: en
+                      iscedCode: '0000'
+                      subjectArea: '00.0'
+                      otherCategorization: zero
+                      url:
+                        - uri: www.domain.tld/example/course
+                          lang: en
+                    meta:
+                      global:
+                        eqfLevel: 6
+                        year: 1/3
+                      programme:
+                        - programmeId: abcdef12-3456-7890-abcd-ef1234567890
+                          mandatoryCourse: true
+                          year: 1/2
+                    links:
+                      self:
+                        href: >-
+                          http://example.com/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                links:
+                  self:
+                    href: >-
+                      http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890/course
+        '400':
+          description: Invalid Institution SCHAC code.
+          $ref: '#/components/responses/Problem'
+        '404':
+          description: Programme not found.
+          $ref: '#/components/responses/Problem'
+  /hei/{heiId}/course/{id}:
+    get:
+      tags:
+        - Course
+      summary: GET /hei/{heiId}/course/{id}
+      description: >
+        This endpoint exposes extended information about a _Course_.
+
+
+        A single resource response can include more fields than would appear in
+        a collection response.
+      operationId: getCourseByUuid
+      parameters:
+        - name: heiId
+          in: path
+          description: The SCHAC code of the Institution.
+          required: true
+          schema:
+            type: string
+            format: hostname
+        - name: id
+          in: path
+          description: The UUID of the _Course_ resource.
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user.
+              schema:
+                type: integer
+                format: int32
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CourseResource'
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                data:
+                  type: course
+                  id: aabbccdd-eeff-1122-3344-556677889900
+                  attributes:
+                    title:
+                      - string: Example Course
+                        lang: en
+                    code: COUR01
+                    description:
+                      - multiline: |
+                          This is the description of the Course.
+
+                          This is a long text field.
+                        lang: en
+                    learningOutcomes:
+                      - multiline: |
+                          These are the learning outcomes of the Course.
+
+                          This is a long text field.
+                        lang: en
+                    academicTerm: 1/2
+                    ects: 120
+                    languageOfInstruction: en
+                    iscedCode: '0000'
+                    subjectArea: '00.0'
+                    otherCategorization: zero
+                    url:
+                      - uri: www.domain.tld/example/course
+                        lang: en
+                    bibliography:
+                      - multiline: |
+                          This is the bibliography of the Course.
+
+                          This is a long text field.
+                        lang: en
+                    courseContent:
+                      - multiline: |
+                          this is the content outline of the Course.
+
+                          This is a long text field.
+                        lang: en
+                    prerequisites:
+                      - multiline: |
+                          These are the prerequisites of the Course.
+
+                          This is a long text field.
+                        lang: en
+                    courseAvailability:
+                      - multiline: >
+                          These are other factors impacting enrollment in the
+                          Course.
+
+
+                          This is a long text field.
+                        lang: en
+                    teachingMethod:
+                      - multiline: |
+                          This is the teaching method for the Course.
+
+                          This is a long text field.
+                        lang: en
+                    assessmentMethod:
+                      - multiline: |
+                          This is the assessment method for the Course.
+
+                          This is a long text field.
+                        lang: en
+                  meta:
+                    global:
+                      eqfLevel: 6
+                      year: 1/3
+                    programme:
+                      - programmeId: abcdef12-3456-7890-abcd-ef1234567890
+                        mandatoryCourse: true
+                        year: 1/2
+                  links:
+                    self:
+                      href: >-
+                        http://example.com/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                links:
+                  self:
+                    href: >-
+                      http://example.com/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+        '400':
+          description: Invalid Institution SCHAC code.
+          $ref: '#/components/responses/Problem'
+        '404':
+          description: Course not found.
+          $ref: '#/components/responses/Problem'
+components:
+  schemas:
+    LinksSelf:
+      type: object
+      description: Hypermedia link to the current path.
+      required:
+        - href
+      properties:
+        href:
+          type: string
+          format: uri
+    Jsonapi:
+      type: object
+      description: JSON:API header.
+      required:
+        - version
+        - meta
+      properties:
+        version:
+          type: string
+          description: JSON:API schema version.
+        meta:
+          type: object
+          description: JSON:API meta object.
+          required:
+            - links
+          properties:
+            links:
+              type: object
+              description: JSON:API _links_ object.
+              required:
+                - self
+              properties:
+                self:
+                  $ref: '#/components/schemas/LinksSelf'
+    Root:
+      type: object
+      description: Available endpoints and metadata.
+      required:
+        - jsonapi
+        - links
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/Jsonapi'
+        meta:
+          type: object
+          description: Optional metadata.
+        links:
+          type: object
+          description: JSON:API _links_ object.
+          required:
+            - self
+            - hei
+          properties:
+            self:
+              $ref: '#/components/schemas/LinksSelf'
+            hei:
+              type: object
+              description: >-
+                Hypermedia link to the [Institution
+                collection](#tag/Institution).
+              required:
+                - href
+              properties:
+                href:
+                  type: string
+                  format: uri
+    Lang:
+      type:
+        - string
+        - null
+      description: >
+        Language code in [ISO
+        639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format.
+
+
+        Optionally the script can be indicated in [ISO
+        15924](https://en.wikipedia.org/wiki/ISO_15924#List_of_codes) format.
+
+
+        e.g. `el` for Greek, `el-Latn` for Greek in Latin script.
+    StringWithOptionalLang:
+      type: object
+      required:
+        - string
+      properties:
+        string:
+          type: string
+          description: Value
+        lang:
+          $ref: '#/components/schemas/Lang'
+    HttpWithOptionalLang:
+      type: object
+      required:
+        - uri
+      properties:
+        uri:
+          type: string
+          format: uri
+          description: Value
+        lang:
+          $ref: '#/components/schemas/Lang'
+    LinksResource:
+      type: object
+      description: Hypermedia link to the **canonical path** of this resource.
+      required:
+        - href
+      properties:
+        href:
+          type: string
+          format: uri
+    LinksCollection:
+      type: object
+      description: Hypermedia link to this resource collection.
+      required:
+        - href
+      properties:
+        href:
+          type: string
+          format: uri
+    InstitutionCollection:
+      type: object
+      description: JSON:API collection of _Institution_ resources.
+      required:
+        - jsonapi
+        - data
+        - links
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/Jsonapi'
+        data:
+          type: array
+          description: List of _Institution_ resources.
+          items:
+            type: object
+            required:
+              - type
+              - id
+              - links
+              - attributes
+            properties:
+              type:
+                type: string
+                description: JSON:API resource type.
+              id:
+                type: string
+                description: JSON:API resource ID, typically a UUID v4.
+                format: uuid
+              attributes:
+                type: object
+                description: JSON:API _attributes_ object.
+                required:
+                  - title
+                  - heiId
+                properties:
+                  title:
+                    type: array
+                    description: Title with optional language code.
+                    items:
+                      $ref: '#/components/schemas/StringWithOptionalLang'
+                  abbreviation:
+                    type: string
+                    description: Most widely recognized abbreviation.
+                  heiId:
+                    type: string
+                    description: The SCHAC code of the Institution.
+                    format: hostname
+                  url:
+                    type: array
+                    description: External URL with optional language code.
+                    items:
+                      $ref: '#/components/schemas/HttpWithOptionalLang'
+              links:
+                type: object
+                description: JSON:API _links_ object.
+                required:
+                  - self
+                properties:
+                  self:
+                    $ref: '#/components/schemas/LinksResource'
+        links:
+          type: object
+          description: JSON:API _links_ object.
+          required:
+            - self
+          properties:
+            self:
+              $ref: '#/components/schemas/LinksCollection'
+    InstitutionResource:
+      type: object
+      description: JSON:API _Institution_ resource.
+      required:
+        - jsonapi
+        - data
+        - links
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/Jsonapi'
+        data:
+          type: object
+          description: _Institution_ resource data.
+          required:
+            - type
+            - id
+            - links
+            - attributes
+          properties:
+            type:
+              type: string
+              description: JSON:API resource type.
+            id:
+              type: string
+              description: JSON:API resource ID, typically a UUID v4.
+              format: uuid
+            attributes:
+              type: object
+              description: JSON:API _attributes_ object.
+              required:
+                - title
+                - heiId
+              properties:
+                title:
+                  type: array
+                  description: Title with optional language code.
+                  items:
+                    $ref: '#/components/schemas/StringWithOptionalLang'
+                abbreviation:
+                  type: string
+                  description: Most widely recognized abbreviation.
+                heiId:
+                  type: string
+                  description: The SCHAC code of the Institution.
+                  format: hostname
+                url:
+                  type: array
+                  description: External URL with optional language code.
+                  items:
+                    $ref: '#/components/schemas/HttpWithOptionalLang'
+            links:
+              type: object
+              description: JSON:API _links_ object.
+              required:
+                - self
+              properties:
+                self:
+                  $ref: '#/components/schemas/LinksResource'
+        links:
+          type: object
+          description: JSON:API _links_ object.
+          required:
+            - self
+          properties:
+            self:
+              $ref: '#/components/schemas/LinksResource'
+            ounit:
+              type: object
+              description: >
+                Hypermedia link to the _Organisational Units_ collection
+                associated to this resource.
+
+
+                **Recommended:** separate any collections by _Organisational
+                Unit_ in order to avoid large HTTP responses.
+
+
+                The resource collection links for _Programmes_ and _Courses_
+                shown below can also be implemented at the _Organisational Unit_
+                level.
+              required:
+                - href
+              properties:
+                href:
+                  type: string
+                  format: uri
+            programme:
+              type: object
+              description: >
+                Hypermedia link to the _Programmes_ collection associated to
+                this resource.
+
+
+                **Recommended:** separate this collection by _Organisational
+                Unit_ in order to avoid large HTTP responses.
+
+
+                The resource collection link for _Courses_ shown below can also
+                be implemented at the _Programme_ level.
+              required:
+                - href
+              properties:
+                href:
+                  type: string
+                  format: uri
+            course:
+              type: object
+              description: >
+                _**Discouraged!**_ Hypermedia link to the _Courses_ collection
+                associated to this resource.
+
+
+                **Recommended:** separate this collection by _Programme_ or by
+                _Organisational Unit_ in order to avoid large HTTP responses.
+              required:
+                - href
+              properties:
+                href:
+                  type: string
+                  format: uri
+    Problem:
+      type: object
+      additionalProperties: true
+      minProperties: 1
+      description: >-
+        The Problem Details JSON Object
+        [[RFC7807](https://tools.ietf.org/html/rfc7807)].
+      properties:
+        type:
+          type: string
+          description: >-
+            A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)]
+            that identifies the problem type. It should provide human-readable
+            documentation for the problem type. When this member is not present,
+            its value is assumed to be "about:blank".
+          format: uri
+        title:
+          type: string
+          description: >-
+            A short, human-readable summary of the problem type. It SHOULD NOT
+            change from occurrence to occurrence of the problem, except for
+            purposes of localization.
+        status:
+          type: integer
+          description: The HTTP status code.
+          minimum: 400
+          maximum: 599
+        detail:
+          type: string
+          description: >-
+            A human-readable explanation specific to this occurrence of the
+            problem.
+        instance:
+          type: string
+          description: >-
+            A URI reference that identifies the specific occurrence of the
+            problem.  It may or may not yield further information if
+            dereferenced.
+    OunitCollection:
+      type: object
+      description: JSON:API collection of _Organisational Unit_ resources.
+      required:
+        - jsonapi
+        - data
+        - links
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/Jsonapi'
+        data:
+          type: array
+          description: List of _Organisational Unit_ resources.
+          items:
+            type: object
+            required:
+              - type
+              - id
+              - links
+              - attributes
+            properties:
+              type:
+                type: string
+                description: JSON:API resource type.
+              id:
+                type: string
+                description: JSON:API resource ID, typically a UUID v4.
+                format: uuid
+              attributes:
+                type: object
+                description: JSON:API _attributes_ object.
+                required:
+                  - title
+                  - ounitId
+                properties:
+                  title:
+                    type: array
+                    description: Title with optional language code.
+                    items:
+                      $ref: '#/components/schemas/StringWithOptionalLang'
+                  abbreviation:
+                    type: string
+                    description: Most widely recognized abbreviation.
+                  ounitId:
+                    type: string
+                    description: Unique identifier within the Institution. Can be a UUID.
+                  ounitCode:
+                    type: string
+                    description: Human readable code identifying the Organisational Unit.
+                  url:
+                    type: array
+                    description: External URL with optional language code.
+                    items:
+                      $ref: '#/components/schemas/HttpWithOptionalLang'
+              links:
+                type: object
+                description: JSON:API _links_ object.
+                required:
+                  - self
+                properties:
+                  self:
+                    $ref: '#/components/schemas/LinksResource'
+        links:
+          type: object
+          description: JSON:API _links_ object.
+          required:
+            - self
+          properties:
+            self:
+              $ref: '#/components/schemas/LinksCollection'
+    OunitResource:
+      type: object
+      description: JSON:API _Organisational Unit_ resource.
+      required:
+        - jsonapi
+        - data
+        - links
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/Jsonapi'
+        data:
+          type: object
+          description: _Organisational Unit_ resource data.
+          required:
+            - type
+            - id
+            - links
+            - attributes
+          properties:
+            type:
+              type: string
+              description: JSON:API resource type.
+            id:
+              type: string
+              description: JSON:API resource ID, typically a UUID v4.
+              format: uuid
+            attributes:
+              type: object
+              description: JSON:API _attributes_ object.
+              required:
+                - title
+                - ounitId
+              properties:
+                title:
+                  type: array
+                  description: Title with optional language code.
+                  items:
+                    $ref: '#/components/schemas/StringWithOptionalLang'
+                abbreviation:
+                  type: string
+                  description: Most widely recognized abbreviation.
+                ounitId:
+                  type: string
+                  description: Unique identifier within the Institution. Can be a UUID.
+                ounitCode:
+                  type: string
+                  description: Human readable code identifying the Organisational Unit.
+                url:
+                  type: array
+                  description: External URL with optional language code.
+                  items:
+                    $ref: '#/components/schemas/HttpWithOptionalLang'
+            links:
+              type: object
+              description: JSON:API _links_ object.
+              required:
+                - self
+              properties:
+                self:
+                  $ref: '#/components/schemas/LinksResource'
+        links:
+          type: object
+          description: JSON:API _links_ object.
+          required:
+            - self
+          properties:
+            self:
+              $ref: '#/components/schemas/LinksResource'
+            programme:
+              type: object
+              description: >
+                Hypermedia link to the _Programmes_ collection associated to
+                this resource.
+
+
+                The resource collection link for _Courses_ shown below can also
+                be implemented at the _Programme_ level.
+              required:
+                - href
+              properties:
+                href:
+                  type: string
+                  format: uri
+            course:
+              type: object
+              description: >
+                Hypermedia link to the _Courses_ collection associated to this
+                resource.
+              required:
+                - href
+              properties:
+                href:
+                  type: string
+                  format: uri
+    MultilineStringWithOptionalLang:
+      type: object
+      required:
+        - multiline
+      properties:
+        multiline:
+          type: string
+          description: Value
+        lang:
+          $ref: '#/components/schemas/Lang'
+    ProgrammeCollection:
+      type: object
+      description: JSON:API collection of _Programme_ resources.
+      required:
+        - jsonapi
+        - data
+        - links
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/Jsonapi'
+        data:
+          type: array
+          description: List of _Programme_ resources.
+          items:
+            type: object
+            required:
+              - type
+              - id
+              - links
+              - attributes
+            properties:
+              type:
+                type: string
+                description: JSON:API resource type.
+              id:
+                type: string
+                description: JSON:API resource ID, typically a UUID v4.
+                format: uuid
+              attributes:
+                type: object
+                description: JSON:API _attributes_ object.
+                required:
+                  - title
+                  - code
+                  - description
+                  - ects
+                  - eqfLevelProvided
+                  - iscedCode
+                  - languageOfInstruction
+                  - length
+                properties:
+                  title:
+                    type: array
+                    description: Title with optional language code.
+                    items:
+                      $ref: '#/components/schemas/StringWithOptionalLang'
+                  code:
+                    type: string
+                    description: Human readable code identifying the Programme.
+                  description:
+                    type: array
+                    description: Description with optional language code.
+                    items:
+                      $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                  ects:
+                    type: integer
+                    description: Number of ECTS credits required to complete the Programme.
+                  eqfLevelProvided:
+                    type: integer
+                    minimum: 5
+                    maximum: 8
+                    description: >
+                      [EQF
+                      Level](https://europa.eu/europass/en/description-eight-eqf-levels)
+                       provided to the learner upon completing the Programme.
+                  iscedCode:
+                    type: string
+                    description: >
+                      [ISCED-F
+                      code](https://www.surveycodings.org/fields-education/international-classification-fields-education-and-training)
+                       describing the field of education of the Programme.
+                  languageOfInstruction:
+                    type: string
+                    description: |
+                      Language code in
+                       [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format.
+
+                      Optionally the country locale can be indicated in
+                       [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+
+                      e.g. `pt` for Portuguese, `pt-PT` for European Portuguese.
+                  length:
+                    type: integer
+                    minimum: 1
+                    description: Length of the Programme in **years**.
+                  url:
+                    type: array
+                    description: External URL with optional language code.
+                    items:
+                      $ref: '#/components/schemas/HttpWithOptionalLang'
+              links:
+                type: object
+                description: JSON:API _links_ object.
+                required:
+                  - self
+                properties:
+                  self:
+                    $ref: '#/components/schemas/LinksResource'
+        links:
+          type: object
+          description: JSON:API _links_ object.
+          required:
+            - self
+          properties:
+            self:
+              $ref: '#/components/schemas/LinksCollection'
+    ProgrammeResource:
+      type: object
+      description: JSON:API _Programme_ resource.
+      required:
+        - jsonapi
+        - data
+        - links
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/Jsonapi'
+        data:
+          type: object
+          description: _Programme_ resource data.
+          required:
+            - type
+            - id
+            - links
+            - attributes
+          properties:
+            type:
+              type: string
+              description: JSON:API resource type.
+            id:
+              type: string
+              description: JSON:API resource ID, typically a UUID v4.
+              format: uuid
+            attributes:
+              type: object
+              description: JSON:API _attributes_ object.
+              required:
+                - title
+                - code
+                - description
+                - ects
+                - eqfLevelProvided
+                - iscedCode
+                - languageOfInstruction
+                - length
+              properties:
+                title:
+                  type: array
+                  description: Title with optional language code.
+                  items:
+                    $ref: '#/components/schemas/StringWithOptionalLang'
+                code:
+                  type: string
+                  description: Human readable code identifying the Programme.
+                description:
+                  type: array
+                  description: Description with optional language code.
+                  items:
+                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                ects:
+                  type: integer
+                  description: Number of ECTS credits required to complete the Programme.
+                eqfLevelProvided:
+                  type: integer
+                  minimum: 5
+                  maximum: 8
+                  description: >
+                    [EQF
+                    Level](https://europa.eu/europass/en/description-eight-eqf-levels)
+                     provided to the learner upon completing the Programme.
+                iscedCode:
+                  type: string
+                  description: >
+                    [ISCED-F
+                    code](https://www.surveycodings.org/fields-education/international-classification-fields-education-and-training)
+                     describing the field of education of the Programme.
+                languageOfInstruction:
+                  type: string
+                  description: |
+                    Language code in
+                     [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format.
+
+                    Optionally the country locale can be indicated in
+                     [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+
+                    e.g. `pt` for Portuguese, `pt-PT` for European Portuguese.
+                length:
+                  type: integer
+                  minimum: 1
+                  description: Length of the Programme in **years**.
+                url:
+                  type: array
+                  description: External URL with optional language code.
+                  items:
+                    $ref: '#/components/schemas/HttpWithOptionalLang'
+            links:
+              type: object
+              description: JSON:API _links_ object.
+              required:
+                - self
+              properties:
+                self:
+                  $ref: '#/components/schemas/LinksResource'
+        links:
+          type: object
+          description: JSON:API _links_ object.
+          required:
+            - self
+          properties:
+            self:
+              $ref: '#/components/schemas/LinksResource'
+            course:
+              type: object
+              description: >
+                Hypermedia link to the _Courses_ collection associated to this
+                resource.
+              required:
+                - href
+              properties:
+                href:
+                  type: string
+                  format: uri
+    CourseMeta:
+      type: object
+      description: |
+        JSON:API _meta_ object containing information about the relation between
+         a Course and all or specific Programmes.
+      properties:
+        global:
+          type: object
+          description: Global rules that apply to all Programmes by default.
+          required:
+            - eqfLevel
+            - year
+          properties:
+            eqfLevel:
+              type: integer
+              minimum: 5
+              maximum: 8
+              description: >
+                [EQF
+                Level](https://europa.eu/europass/en/description-eight-eqf-levels)
+                 of the Programmes to which the global rule applies.
+            year:
+              type: string
+              description: |
+                Year of the Programme in which the Course is delivered.
+
+                e.g. `2/3` for the second of three years.
+              pattern: '[1-9]/[1-9]'
+        programme:
+          type: array
+          description: Rules that apply to specific Programmes.
+          items:
+            type: object
+            required:
+              - programmeId
+              - mandatoryCourse
+              - year
+            properties:
+              programmeId:
+                type: string
+                description: ID of the _Programme_ resource.
+                format: uuid
+              mandatoryCourse:
+                type: boolean
+                description: Whether the Course is mandatory within the Programme.
+              year:
+                type: string
+                description: |
+                  Year of the Programme in which the Course is delivered.
+
+                  e.g. `2/3` for the second of three years.
+                pattern: '[1-9]/[1-9]'
+    CourseCollection:
+      type: object
+      description: JSON:API collection of _Course_ resources.
+      required:
+        - jsonapi
+        - data
+        - links
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/Jsonapi'
+        data:
+          type: array
+          description: List of _Course_ resources.
+          items:
+            type: object
+            required:
+              - type
+              - id
+              - links
+              - attributes
+            properties:
+              type:
+                type: string
+                description: JSON:API resource type.
+              id:
+                type: string
+                description: JSON:API resource ID, typically a UUID v4.
+                format: uuid
+              attributes:
+                type: object
+                description: JSON:API _attributes_ object.
+                required:
+                  - title
+                  - code
+                  - description
+                  - learningOutcomes
+                  - academicTerm
+                  - ects
+                  - languageOfInstruction
+                  - iscedCode
+                  - subjectArea
+                  - otherCategorization
+                properties:
+                  title:
+                    type: array
+                    description: Title with optional language code.
+                    items:
+                      $ref: '#/components/schemas/StringWithOptionalLang'
+                  code:
+                    type: string
+                    description: Human readable code identifying the Course.
+                  description:
+                    type: array
+                    description: Description with optional language code.
+                    items:
+                      $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                  learningOutcomes:
+                    type: array
+                    description: Learning outcomes with optional language code.
+                    items:
+                      $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                  academicTerm:
+                    type: string
+                    description: |
+                      Academic term in which the Course is delivered.
+
+                      e.g. `1/2` for first semester,
+                       `2/2` for second semester,
+                       `1/1` for the full academic year.
+                    pattern: '[1-9]/[1-9]'
+                  ects:
+                    type: integer
+                    description: >-
+                      Number of ECTS credits provided to the learner upon
+                      completing the Course.
+                  languageOfInstruction:
+                    type: string
+                    description: |
+                      Language code in
+                       [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format.
+
+                      Optionally the country locale can be indicated in
+                       [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+
+                      e.g. `pt` for Portuguese, `pt-PT` for European Portuguese.
+                  iscedCode:
+                    type: string
+                    description: >
+                      [ISCED-F
+                      code](https://www.surveycodings.org/fields-education/international-classification-fields-education-and-training)
+                       describing the field of education of the Course.
+                  subjectArea:
+                    type: string
+                    description: >
+                      Erasmus subject area code describing the field of
+                      education of the Course.
+                  otherCategorization:
+                    type: string
+                    description: >
+                      Any other term used internally to describe the field of
+                      education of the Course.
+                  url:
+                    type: array
+                    description: External URL with optional language code.
+                    items:
+                      $ref: '#/components/schemas/HttpWithOptionalLang'
+              meta:
+                $ref: '#/components/schemas/CourseMeta'
+              links:
+                type: object
+                description: JSON:API _links_ object.
+                required:
+                  - self
+                properties:
+                  self:
+                    $ref: '#/components/schemas/LinksResource'
+        links:
+          type: object
+          description: JSON:API _links_ object.
+          required:
+            - self
+          properties:
+            self:
+              $ref: '#/components/schemas/LinksCollection'
+    CourseResource:
+      type: object
+      description: JSON:API _Course_ resource.
+      required:
+        - jsonapi
+        - data
+        - links
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/Jsonapi'
+        data:
+          type: object
+          description: _Course_ resource data.
+          required:
+            - type
+            - id
+            - links
+            - attributes
+          properties:
+            type:
+              type: string
+              description: JSON:API resource type.
+            id:
+              type: string
+              description: JSON:API resource ID, typically a UUID v4.
+              format: uuid
+            attributes:
+              type: object
+              description: JSON:API _attributes_ object.
+              required:
+                - title
+                - code
+                - description
+                - learningOutcomes
+                - academicTerm
+                - ects
+                - languageOfInstruction
+                - iscedCode
+                - subjectArea
+                - otherCategorization
+              properties:
+                title:
+                  type: array
+                  description: Title with optional language code.
+                  items:
+                    $ref: '#/components/schemas/StringWithOptionalLang'
+                code:
+                  type: string
+                  description: Human readable code identifying the Course.
+                description:
+                  type: array
+                  description: Description with optional language code.
+                  items:
+                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                learningOutcomes:
+                  type: array
+                  description: Learning outcomes with optional language code.
+                  items:
+                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                academicTerm:
+                  type: string
+                  description: |
+                    Academic term in which the Course is delivered.
+
+                    e.g. `1/2` for first semester,
+                     `2/2` for second semester,
+                     `1/1` for the full academic year.
+                  pattern: '[1-9]/[1-9]'
+                ects:
+                  type: integer
+                  description: >-
+                    Number of ECTS credits provided to the learner upon
+                    completing the Course.
+                languageOfInstruction:
+                  type: string
+                  description: |
+                    Language code in
+                     [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format.
+
+                    Optionally the country locale can be indicated in
+                     [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+
+                    e.g. `pt` for Portuguese, `pt-PT` for European Portuguese.
+                iscedCode:
+                  type: string
+                  description: >
+                    [ISCED-F
+                    code](https://www.surveycodings.org/fields-education/international-classification-fields-education-and-training)
+                     describing the field of education of the Course.
+                subjectArea:
+                  type: string
+                  description: >
+                    Erasmus subject area code describing the field of education
+                    of the Course.
+                otherCategorization:
+                  type: string
+                  description: >
+                    Any other term used internally to describe the field of
+                    education of the Course.
+                url:
+                  type: array
+                  description: External URL with optional language code.
+                  items:
+                    $ref: '#/components/schemas/HttpWithOptionalLang'
+                bibliography:
+                  type: array
+                  description: Bibliography with optional language code.
+                  items:
+                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                courseContent:
+                  type: array
+                  description: Course content with optional language code.
+                  items:
+                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                prerequisites:
+                  type: array
+                  description: Prerequisites with optional language code.
+                  items:
+                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                courseAvailability:
+                  type: array
+                  description: Course availability with optional language code.
+                  items:
+                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                teachingMethod:
+                  type: array
+                  description: Teaching method with optional language code.
+                  items:
+                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                assessmentMethod:
+                  type: array
+                  description: Assessment method with optional language code.
+                  items:
+                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+            links:
+              type: object
+              description: JSON:API _links_ object.
+              required:
+                - self
+              properties:
+                self:
+                  $ref: '#/components/schemas/LinksResource'
+        links:
+          type: object
+          description: JSON:API _links_ object.
+          required:
+            - self
+          properties:
+            self:
+              $ref: '#/components/schemas/LinksResource'
+  responses:
+    Problem:
+      description: Problem
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
