@@ -1,0 +1,55 @@
+{
+  "jsonapi": {
+    "version": "1.0",
+    "meta": {
+      "links": {
+        "self": {
+          "href": "http://jsonapi.org/format/1.0/"
+        }
+      }
+    }
+  },
+  "data": {
+    "type": "programme",
+    "id": "abcdef12-3456-7890-abcd-ef1234567890",
+    "attributes": {
+      "title": [
+        {
+          "string": "Example Programme",
+          "lang": "en"
+        }
+      ],
+      "code": "PROG01",
+      "description": [
+        {
+          "multiline": "This is the description of the Programme.\n\nThis is a long text field.\n",
+          "lang": "en"
+        }
+      ],
+      "ects": 120,
+      "eqfLevelProvided": 5,
+      "iscedCode": "0000",
+      "languageOfInstruction": "en",
+      "length": 2,
+      "url": [
+        {
+          "uri": "www.domain.tld/example/programme",
+          "lang": "en"
+        }
+      ]
+    },
+    "links": {
+      "self": {
+        "href": "http://occapi.docker.localhost:8050/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890"
+      }
+    }
+  },
+  "links": {
+    "self": {
+      "href": "http://occapi.docker.localhost:8050/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890"
+    },
+    "course": {
+      "href": "http://occapi.docker.localhost:8050/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890/course"
+    }
+  }
+}
