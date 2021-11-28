@@ -1,0 +1,50 @@
+type: object
+description: |
+  JSON:API _meta_ object containing information about the relation between
+   a Course and all or specific Programmes.
+properties:
+  global:
+    type: object
+    description: Global rules that apply to all Programmes by default.
+    required:
+      - eqfLevel
+      - year
+    properties:
+      eqfLevel:
+        type: integer
+        minimum: 5
+        maximum: 8
+        description: |
+          [EQF Level](https://europa.eu/europass/en/description-eight-eqf-levels)
+           of the Programmes to which the global rule applies.
+      year:
+        type: string
+        description: |
+          Year of the Programme in which the Course is delivered.
+
+          e.g. `2/3` for the second of three years.
+        pattern: '[1-9]/[1-9]'
+  programme:
+    type: array
+    description: Rules that apply to specific Programmes.
+    items:
+      type: object
+      required:
+        - programmeId
+        - mandatoryCourse
+        - year
+      properties:
+        programmeId:
+          type: string
+          description: ID of the _Programme_ resource.
+          format: uuid
+        mandatoryCourse:
+          type: boolean
+          description: Whether the Course is mandatory within the Programme.
+        year:
+          type: string
+          description: |
+            Year of the Programme in which the Course is delivered.
+
+            e.g. `2/3` for the second of three years.
+          pattern: '[1-9]/[1-9]'

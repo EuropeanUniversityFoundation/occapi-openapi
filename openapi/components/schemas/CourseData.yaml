@@ -78,6 +78,8 @@ attributes:
       description: External URL with optional language code.
       items:
         $ref: ./HttpWithOptionalLang.yaml
+meta:
+  $ref: ./CourseMeta.yaml
 links:
   type: object
   description: JSON:API _links_ object.

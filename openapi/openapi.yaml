@@ -26,7 +26,11 @@ tags:
   - name: Programme
     description: Information about Programmes offered by an Institution.
   - name: Course
-    description: Information about Courses offered by an Institution.
+    description: |
+      Information about Courses offered by an Institution.
+
+      _Course_ resources include a JSON:API _meta_ object containing information
+       about the relation between each Course and all or specific Programmes.
   # - name: Tag
 servers:
   - url: 'https://occapi.uni-foundation.eu/occapi/v1'

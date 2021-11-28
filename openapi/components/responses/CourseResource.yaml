@@ -69,6 +69,14 @@ data:
 
           This is a long text field.
         lang: en
+  meta:
+    global:
+      eqfLevel: 6
+      year: '1/3'
+    programme:
+      - programmeId: abcdef12-3456-7890-abcd-ef1234567890
+        mandatoryCourse: true
+        year: '1/2'
   links:
     self:
       href: 'http://example.com/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900'
