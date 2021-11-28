@@ -53,7 +53,11 @@ tags:
   - name: Programme
     description: Information about Programmes offered by an Institution.
   - name: Course
-    description: Information about Courses offered by an Institution.
+    description: |
+      Information about Courses offered by an Institution.
+
+      _Course_ resources include a JSON:API _meta_ object containing information
+       about the relation between each Course and all or specific Programmes.
 servers:
   - url: https://occapi.uni-foundation.eu/occapi/v1
     description: Sandbox server (example data)
@@ -78,9 +82,19 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Root'
-              examples:
-                response:
-                  value: RootResponse
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                meta: {}
+                links:
+                  self:
+                    href: http://example.com/occapi/v1
+                  hei:
+                    href: http://example.com/occapi/v1/hei
   /hei:
     get:
       tags:
@@ -107,9 +121,31 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/InstitutionCollection'
-              examples:
-                response:
-                  value: InstitutionCollectionResponse
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                data:
+                  - type: hei
+                    id: 12345678-90ab-cdef-1234-567890abcdef
+                    attributes:
+                      title:
+                        - string: Example Institution
+                          lang: en
+                      abbreviation: EI
+                      heiId: domain.tld
+                      url:
+                        - uri: www.domain.tld
+                          lang: en
+                    links:
+                      self:
+                        href: http://example.com/occapi/v1/hei/domain.tld
+                links:
+                  self:
+                    href: http://example.com/occapi/v1/hei
   /hei/{heiId}:
     get:
       tags:
@@ -146,9 +182,37 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/InstitutionResource'
-              examples:
-                response:
-                  value: InstitutionResourceResponse
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                data:
+                  type: hei
+                  id: 12345678-90ab-cdef-1234-567890abcdef
+                  attributes:
+                    title:
+                      - string: Example Institution
+                        lang: en
+                    abbreviation: EI
+                    heiId: domain.tld
+                    url:
+                      - uri: www.domain.tld
+                        lang: en
+                  links:
+                    self:
+                      href: http://example.com/occapi/v1/hei/domain.tld
+                links:
+                  self:
+                    href: http://example.com/occapi/v1/hei/domain.tld
+                  ounit:
+                    href: http://example.com/occapi/v1/hei/domain.tld/ounit
+                  programme:
+                    href: http://example.com/occapi/v1/hei/domain.tld/programme
+                  course:
+                    href: http://example.com/occapi/v1/hei/domain.tld/course
         '404':
           description: Institution not found.
           $ref: '#/components/responses/Problem'
@@ -185,9 +249,33 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/OunitCollection'
-              examples:
-                response:
-                  value: OunitCollectionResponse
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                data:
+                  - type: ounit
+                    id: 11223344-5566-7788-9900-aabbccddeeff
+                    attributes:
+                      title:
+                        - string: Example Organisational Unit
+                          lang: en
+                      abbreviation: EOU
+                      ounitId: 11223344-5566-7788-9900-aabbccddeeff
+                      ounitCode: EI-EOU
+                      url:
+                        - uri: www.domain.tld/eou
+                          lang: en
+                    links:
+                      self:
+                        href: >-
+                          http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff
+                links:
+                  self:
+                    href: http://example.com/occapi/v1/hei/domain.tld/ounit
         '400':
           description: Invalid Institution SCHAC code.
           $ref: '#/components/responses/Problem'
@@ -233,9 +321,40 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/OunitResource'
-              examples:
-                response:
-                  value: OunitResourceResponse
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                data:
+                  type: ounit
+                  id: 11223344-5566-7788-9900-aabbccddeeff
+                  attributes:
+                    title:
+                      - string: Example Organisational Unit
+                        lang: en
+                    abbreviation: EOU
+                    ounitId: 11223344-5566-7788-9900-aabbccddeeff
+                    ounitCode: EI-EOU
+                    url:
+                      - uri: www.domain.tld/eou
+                        lang: en
+                  links:
+                    self:
+                      href: >-
+                        http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff
+                links:
+                  self:
+                    href: >-
+                      http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff
+                  programme:
+                    href: >-
+                      http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/programme
+                  course:
+                    href: >-
+                      http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/course
         '400':
           description: Invalid Institution SCHAC code.
           $ref: '#/components/responses/Problem'
@@ -270,9 +389,42 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/ProgrammeCollection'
-              examples:
-                response:
-                  value: ProgrammeCollectionResponse
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                data:
+                  - type: programme
+                    id: abcdef12-3456-7890-abcd-ef1234567890
+                    attributes:
+                      title:
+                        - string: Example Programme
+                          lang: en
+                      code: PROG01
+                      description:
+                        - multiline: |
+                            This is the description of the Programme.
+
+                            This is a long text field.
+                          lang: en
+                      ects: 120
+                      eqfLevelProvided: 5
+                      iscedCode: 0
+                      languageOfInstruction: en
+                      length: 2
+                      url:
+                        - uri: www.domain.tld/example/programme
+                          lang: en
+                    links:
+                      self:
+                        href: >-
+                          http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
+                links:
+                  self:
+                    href: http://example.com/occapi/v1/hei/domain.tld/programme
         '400':
           description: Invalid Institution SCHAC code.
           $ref: '#/components/responses/Problem'
@@ -312,9 +464,43 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/ProgrammeCollection'
-              examples:
-                response:
-                  value: ProgrammeCollectionResponse
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                data:
+                  - type: programme
+                    id: abcdef12-3456-7890-abcd-ef1234567890
+                    attributes:
+                      title:
+                        - string: Example Programme
+                          lang: en
+                      code: PROG01
+                      description:
+                        - multiline: |
+                            This is the description of the Programme.
+
+                            This is a long text field.
+                          lang: en
+                      ects: 120
+                      eqfLevelProvided: 5
+                      iscedCode: 0
+                      languageOfInstruction: en
+                      length: 2
+                      url:
+                        - uri: www.domain.tld/example/programme
+                          lang: en
+                    links:
+                      self:
+                        href: >-
+                          http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
+                links:
+                  self:
+                    href: >-
+                      http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/programme
         '400':
           description: Invalid Institution SCHAC code.
           $ref: '#/components/responses/Problem'
@@ -357,9 +543,46 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/ProgrammeResource'
-              examples:
-                response:
-                  value: ProgrammeResourceResponse
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                data:
+                  type: programme
+                  id: abcdef12-3456-7890-abcd-ef1234567890
+                  attributes:
+                    title:
+                      - string: Example Programme
+                        lang: en
+                    code: PROG01
+                    description:
+                      - multiline: |
+                          This is the description of the Programme.
+
+                          This is a long text field.
+                        lang: en
+                    ects: 120
+                    eqfLevelProvided: 5
+                    iscedCode: '0000'
+                    languageOfInstruction: en
+                    length: 2
+                    url:
+                      - uri: www.domain.tld/example/programme
+                        lang: en
+                  links:
+                    self:
+                      href: >-
+                        http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
+                links:
+                  self:
+                    href: >-
+                      http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
+                  course:
+                    href: >-
+                      http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890/course
         '400':
           description: Invalid Institution SCHAC code.
           $ref: '#/components/responses/Problem'
@@ -394,9 +617,57 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/CourseCollection'
-              examples:
-                response:
-                  value: CourseCollectionResponse
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                data:
+                  - type: course
+                    id: aabbccdd-eeff-1122-3344-556677889900
+                    attributes:
+                      title:
+                        - string: Example Course
+                          lang: en
+                      code: COUR01
+                      description:
+                        - multiline: |
+                            This is the description of the Course.
+
+                            This is a long text field.
+                          lang: en
+                      learningOutcomes:
+                        - multiline: |
+                            These are the learning outcomes of the Course.
+
+                            This is a long text field.
+                          lang: en
+                      academicTerm: 1/2
+                      ects: 120
+                      languageOfInstruction: en
+                      iscedCode: '0000'
+                      subjectArea: '00.0'
+                      otherCategorization: zero
+                      url:
+                        - uri: www.domain.tld/example/course
+                          lang: en
+                    meta:
+                      global:
+                        eqfLevel: 6
+                        year: 1/3
+                      programme:
+                        - programmeId: abcdef12-3456-7890-abcd-ef1234567890
+                          mandatoryCourse: true
+                          year: 1/2
+                    links:
+                      self:
+                        href: >-
+                          http://example.com/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                links:
+                  self:
+                    href: http://example.com/occapi/v1/hei/domain.tld/course
         '400':
           description: Invalid Institution SCHAC code.
           $ref: '#/components/responses/Problem'
@@ -436,9 +707,58 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/CourseCollection'
-              examples:
-                response:
-                  value: CourseCollectionResponse
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                data:
+                  - type: course
+                    id: aabbccdd-eeff-1122-3344-556677889900
+                    attributes:
+                      title:
+                        - string: Example Course
+                          lang: en
+                      code: COUR01
+                      description:
+                        - multiline: |
+                            This is the description of the Course.
+
+                            This is a long text field.
+                          lang: en
+                      learningOutcomes:
+                        - multiline: |
+                            These are the learning outcomes of the Course.
+
+                            This is a long text field.
+                          lang: en
+                      academicTerm: 1/2
+                      ects: 120
+                      languageOfInstruction: en
+                      iscedCode: '0000'
+                      subjectArea: '00.0'
+                      otherCategorization: zero
+                      url:
+                        - uri: www.domain.tld/example/course
+                          lang: en
+                    meta:
+                      global:
+                        eqfLevel: 6
+                        year: 1/3
+                      programme:
+                        - programmeId: abcdef12-3456-7890-abcd-ef1234567890
+                          mandatoryCourse: true
+                          year: 1/2
+                    links:
+                      self:
+                        href: >-
+                          http://example.com/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                links:
+                  self:
+                    href: >-
+                      http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/course
         '400':
           description: Invalid Institution SCHAC code.
           $ref: '#/components/responses/Problem'
@@ -481,9 +801,58 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/CourseCollection'
-              examples:
-                response:
-                  value: CourseCollectionResponse
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                data:
+                  - type: course
+                    id: aabbccdd-eeff-1122-3344-556677889900
+                    attributes:
+                      title:
+                        - string: Example Course
+                          lang: en
+                      code: COUR01
+                      description:
+                        - multiline: |
+                            This is the description of the Course.
+
+                            This is a long text field.
+                          lang: en
+                      learningOutcomes:
+                        - multiline: |
+                            These are the learning outcomes of the Course.
+
+                            This is a long text field.
+                          lang: en
+                      academicTerm: 1/2
+                      ects: 120
+                      languageOfInstruction: en
+                      iscedCode: '0000'
+                      subjectArea: '00.0'
+                      otherCategorization: zero
+                      url:
+                        - uri: www.domain.tld/example/course
+                          lang: en
+                    meta:
+                      global:
+                        eqfLevel: 6
+                        year: 1/3
+                      programme:
+                        - programmeId: abcdef12-3456-7890-abcd-ef1234567890
+                          mandatoryCourse: true
+                          year: 1/2
+                    links:
+                      self:
+                        href: >-
+                          http://example.com/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                links:
+                  self:
+                    href: >-
+                      http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890/course
         '400':
           description: Invalid Institution SCHAC code.
           $ref: '#/components/responses/Problem'
@@ -495,8 +864,12 @@ paths:
       tags:
         - Course
       summary: GET /hei/{heiId}/course/{id}
-      description: |
-        This endpoint exposes information about a _Course_.
+      description: >
+        This endpoint exposes extended information about a _Course_.
+
+
+        A single resource response can include more fields than would appear in
+        a collection response.
       operationId: getCourseByUuid
       parameters:
         - name: heiId
@@ -526,9 +899,96 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/CourseResource'
-              examples:
-                response:
-                  value: CourseResourceResponse
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                data:
+                  type: course
+                  id: aabbccdd-eeff-1122-3344-556677889900
+                  attributes:
+                    title:
+                      - string: Example Course
+                        lang: en
+                    code: COUR01
+                    description:
+                      - multiline: |
+                          This is the description of the Course.
+
+                          This is a long text field.
+                        lang: en
+                    learningOutcomes:
+                      - multiline: |
+                          These are the learning outcomes of the Course.
+
+                          This is a long text field.
+                        lang: en
+                    academicTerm: 1/2
+                    ects: 120
+                    languageOfInstruction: en
+                    iscedCode: '0000'
+                    subjectArea: '00.0'
+                    otherCategorization: zero
+                    url:
+                      - uri: www.domain.tld/example/course
+                        lang: en
+                    bibliography:
+                      - multiline: |
+                          This is the bibliography of the Course.
+
+                          This is a long text field.
+                        lang: en
+                    courseContent:
+                      - multiline: |
+                          this is the content outline of the Course.
+
+                          This is a long text field.
+                        lang: en
+                    prerequisites:
+                      - multiline: |
+                          These are the prerequisites of the Course.
+
+                          This is a long text field.
+                        lang: en
+                    courseAvailability:
+                      - multiline: >
+                          These are other factors impacting enrollment in the
+                          Course.
+
+
+                          This is a long text field.
+                        lang: en
+                    teachingMethod:
+                      - multiline: |
+                          This is the teaching method for the Course.
+
+                          This is a long text field.
+                        lang: en
+                    assessmentMethod:
+                      - multiline: |
+                          This is the assessment method for the Course.
+
+                          This is a long text field.
+                        lang: en
+                  meta:
+                    global:
+                      eqfLevel: 6
+                      year: 1/3
+                    programme:
+                      - programmeId: abcdef12-3456-7890-abcd-ef1234567890
+                        mandatoryCourse: true
+                        year: 1/2
+                  links:
+                    self:
+                      href: >-
+                        http://example.com/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                links:
+                  self:
+                    href: >-
+                      http://example.com/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
         '400':
           description: Invalid Institution SCHAC code.
           $ref: '#/components/responses/Problem'
@@ -595,7 +1055,7 @@ components:
               type: object
               description: >-
                 Hypermedia link to the [Institution
-                collection](#tag/Institutions).
+                collection](#tag/Institution).
               required:
                 - href
               properties:
@@ -1276,6 +1736,58 @@ components:
                 href:
                   type: string
                   format: uri
+    CourseMeta:
+      type: object
+      description: |
+        JSON:API _meta_ object containing information about the relation between
+         a Course and all or specific Programmes.
+      properties:
+        global:
+          type: object
+          description: Global rules that apply to all Programmes by default.
+          required:
+            - eqfLevel
+            - year
+          properties:
+            eqfLevel:
+              type: integer
+              minimum: 5
+              maximum: 8
+              description: >
+                [EQF
+                Level](https://europa.eu/europass/en/description-eight-eqf-levels)
+                 of the Programmes to which the global rule applies.
+            year:
+              type: string
+              description: |
+                Year of the Programme in which the Course is delivered.
+
+                e.g. `2/3` for the second of three years.
+              pattern: '[1-9]/[1-9]'
+        programme:
+          type: array
+          description: Rules that apply to specific Programmes.
+          items:
+            type: object
+            required:
+              - programmeId
+              - mandatoryCourse
+              - year
+            properties:
+              programmeId:
+                type: string
+                description: ID of the _Programme_ resource.
+                format: uuid
+              mandatoryCourse:
+                type: boolean
+                description: Whether the Course is mandatory within the Programme.
+              year:
+                type: string
+                description: |
+                  Year of the Programme in which the Course is delivered.
+
+                  e.g. `2/3` for the second of three years.
+                pattern: '[1-9]/[1-9]'
     CourseCollection:
       type: object
       description: JSON:API collection of _Course_ resources.
@@ -1382,6 +1894,8 @@ components:
                     description: External URL with optional language code.
                     items:
                       $ref: '#/components/schemas/HttpWithOptionalLang'
+              meta:
+                $ref: '#/components/schemas/CourseMeta'
               links:
                 type: object
                 description: JSON:API _links_ object.
