@@ -59,7 +59,7 @@ tags:
       _Course_ resources include a JSON:API _meta_ object containing information
        about the relation between each Course and all or specific Programmes.
 servers:
-  - url: https://occapi.uni-foundation.eu/occapi/v1
+  - url: /occapi/v1
     description: Sandbox server (example data)
 paths:
   /:
@@ -92,9 +92,9 @@ paths:
                 meta: {}
                 links:
                   self:
-                    href: http://example.com/occapi/v1
+                    href: https://occapi.uni-foundation.eu/occapi/v1
                   hei:
-                    href: http://example.com/occapi/v1/hei
+                    href: https://occapi.uni-foundation.eu/occapi/v1/hei
   /hei:
     get:
       tags:
@@ -142,10 +142,10 @@ paths:
                           lang: en
                     links:
                       self:
-                        href: http://example.com/occapi/v1/hei/domain.tld
+                        href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld
                 links:
                   self:
-                    href: http://example.com/occapi/v1/hei
+                    href: https://occapi.uni-foundation.eu/occapi/v1/hei
   /hei/{heiId}:
     get:
       tags:
@@ -203,16 +203,16 @@ paths:
                         lang: en
                   links:
                     self:
-                      href: http://example.com/occapi/v1/hei/domain.tld
+                      href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld
                 links:
                   self:
-                    href: http://example.com/occapi/v1/hei/domain.tld
+                    href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld
                   ounit:
-                    href: http://example.com/occapi/v1/hei/domain.tld/ounit
+                    href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/ounit
                   programme:
-                    href: http://example.com/occapi/v1/hei/domain.tld/programme
+                    href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/programme
                   course:
-                    href: http://example.com/occapi/v1/hei/domain.tld/course
+                    href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/course
         '404':
           description: Institution not found.
           $ref: '#/components/responses/Problem'
@@ -272,10 +272,10 @@ paths:
                     links:
                       self:
                         href: >-
-                          http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff
+                          https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff
                 links:
                   self:
-                    href: http://example.com/occapi/v1/hei/domain.tld/ounit
+                    href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/ounit
         '400':
           description: Invalid Institution SCHAC code.
           $ref: '#/components/responses/Problem'
@@ -344,17 +344,17 @@ paths:
                   links:
                     self:
                       href: >-
-                        http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff
+                        https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff
                 links:
                   self:
                     href: >-
-                      http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff
+                      https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff
                   programme:
                     href: >-
-                      http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/programme
+                      https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/programme
                   course:
                     href: >-
-                      http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/course
+                      https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/course
         '400':
           description: Invalid Institution SCHAC code.
           $ref: '#/components/responses/Problem'
@@ -421,10 +421,10 @@ paths:
                     links:
                       self:
                         href: >-
-                          http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
+                          https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
                 links:
                   self:
-                    href: http://example.com/occapi/v1/hei/domain.tld/programme
+                    href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/programme
         '400':
           description: Invalid Institution SCHAC code.
           $ref: '#/components/responses/Problem'
@@ -496,11 +496,11 @@ paths:
                     links:
                       self:
                         href: >-
-                          http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
+                          https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
                 links:
                   self:
                     href: >-
-                      http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/programme
+                      https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/programme
         '400':
           description: Invalid Institution SCHAC code.
           $ref: '#/components/responses/Problem'
@@ -575,14 +575,14 @@ paths:
                   links:
                     self:
                       href: >-
-                        http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
+                        https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
                 links:
                   self:
                     href: >-
-                      http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
+                      https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
                   course:
                     href: >-
-                      http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890/course
+                      https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890/course
         '400':
           description: Invalid Institution SCHAC code.
           $ref: '#/components/responses/Problem'
@@ -664,10 +664,10 @@ paths:
                     links:
                       self:
                         href: >-
-                          http://example.com/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                          https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
                 links:
                   self:
-                    href: http://example.com/occapi/v1/hei/domain.tld/course
+                    href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/course
         '400':
           description: Invalid Institution SCHAC code.
           $ref: '#/components/responses/Problem'
@@ -754,11 +754,11 @@ paths:
                     links:
                       self:
                         href: >-
-                          http://example.com/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                          https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
                 links:
                   self:
                     href: >-
-                      http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/course
+                      https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/course
         '400':
           description: Invalid Institution SCHAC code.
           $ref: '#/components/responses/Problem'
@@ -848,11 +848,11 @@ paths:
                     links:
                       self:
                         href: >-
-                          http://example.com/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                          https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
                 links:
                   self:
                     href: >-
-                      http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890/course
+                      https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890/course
         '400':
           description: Invalid Institution SCHAC code.
           $ref: '#/components/responses/Problem'
@@ -984,11 +984,11 @@ paths:
                   links:
                     self:
                       href: >-
-                        http://example.com/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                        https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
                 links:
                   self:
                     href: >-
-                      http://example.com/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                      https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
         '400':
           description: Invalid Institution SCHAC code.
           $ref: '#/components/responses/Problem'

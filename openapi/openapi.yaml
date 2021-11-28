@@ -33,7 +33,7 @@ tags:
        about the relation between each Course and all or specific Programmes.
   # - name: Tag
 servers:
-  - url: 'https://occapi.uni-foundation.eu/occapi/v1'
+  - url: '/occapi/v1'
     description: Sandbox server (example data)
 paths:
   /:

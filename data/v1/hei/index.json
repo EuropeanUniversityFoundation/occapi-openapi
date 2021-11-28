@@ -31,14 +31,14 @@
       },
       "links": {
         "self": {
-          "href": "http://occapi.docker.localhost:8050/occapi/v1/hei/domain.tld"
+          "href": "https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld"
         }
       }
     }
   ],
   "links": {
     "self": {
-      "href": "http://occapi.docker.localhost:8050/occapi/v1/hei"
+      "href": "https://occapi.uni-foundation.eu/occapi/v1/hei"
     }
   }
 }

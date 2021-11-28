@@ -30,22 +30,22 @@
     },
     "links": {
       "self": {
-        "href": "http://occapi.docker.localhost:8050/occapi/v1/hei/domain.tld"
+        "href": "https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld"
       }
     }
   },
   "links": {
     "self": {
-      "href": "http://occapi.docker.localhost:8050/occapi/v1/hei/domain.tld"
+      "href": "https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld"
     },
     "ounit": {
-      "href": "http://occapi.docker.localhost:8050/occapi/v1/hei/domain.tld/ounit"
+      "href": "https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/ounit"
     },
     "programme": {
-      "href": "http://occapi.docker.localhost:8050/occapi/v1/hei/domain.tld/programme"
+      "href": "https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/programme"
     },
     "course": {
-      "href": "http://occapi.docker.localhost:8050/occapi/v1/hei/domain.tld/course"
+      "href": "https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/course"
     }
   }
 }

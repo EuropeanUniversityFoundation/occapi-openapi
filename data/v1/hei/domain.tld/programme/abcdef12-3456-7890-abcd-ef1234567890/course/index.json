@@ -61,14 +61,14 @@
       },
       "links": {
         "self": {
-          "href": "http://occapi.docker.localhost:8050/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900"
+          "href": "https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900"
         }
       }
     }
   ],
   "links": {
     "self": {
-      "href": "http://occapi.docker.localhost:8050/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890/course"
+      "href": "https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890/course"
     }
   }
 }
