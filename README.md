@@ -1,6 +1,6 @@
-# OCCAPI OpenAPI definition
+# OCCAPI OpenAPI definition & demo
 
-_Clone of [OpenAPI Definition Starter](https://github.com/Redocly/openapi-starter)._
+This repository contains the OpenAPI specification for the **Open Course Catalogue API** along with a working demo for development reference.
 
 ## Quickstart
 
@@ -8,22 +8,40 @@ _Clone of [OpenAPI Definition Starter](https://github.com/Redocly/openapi-starte
     git clone git@github.com:EuropeanUniversityFoundation/occapi-openapi.git
     # Create an environment file
     cp .env.example .env
-    # Review parameters: NODEHTTP_PORT and LIGHTTPD_PORT
+    # Review parameters: HTTP_PORT, NODE_PORT and BUILD_PROD
     nano .env
     # Start the containers
     make up
     # Access the NodeJS
-    make shell
+    make shell node
     # Start watching for changes to the OpenAPI specs
     npm start
-    # Build into dist.yaml
+    # Build into openapi_occapi_v1.yaml
     npm run build
 
-## Preview DEV vs Preview PROD
+### Preview DEV vs Preview PROD
 
-When `npm start` is executed, a web server serves the DEV version of ReDoc, available at `http://localhost:3000` (or whatever NODEHTTP_PORT is defined).
+When `npm start` is executed, a web server serves the DEV version of ReDoc, available at `http://PROJECT_BASE_URL:3000` (or whatever `NODE_PORT` is defined).
 
-When `npm run build` is executed, a copy of the `dist.yaml` is placed inside the `web` and included in the PROD version, which is always available at `http://localhost:8080` (or whatever LIGHTTPD_PORT is defined).
+When `npm run build` is executed, a copy of the `openapi_occapi_v1.yaml` is placed inside the `public` and included in the PROD version, which is always available at `http://PROJECT_BASE_URL:8000` (or whatever `HTTP_PORT` is defined).
+
+### Build DEV vs Build PROD
+
+The `postbuild.sh` is responsible for processing the demo files located in the `data` directory and the specification located in the `public` directory. It reads the `BUILD_PROD` environment variable, which if set to `true` will trigger a URL substitution to overwrite all relevant entries with the production URL; otherwise it falls back to the `PROJECT_BASE_URL`.
+
+These changes are only visible when previewing the ReDoc via nginx (on `HTTP_PORT`).
+
+## Stack
+
+### Build
+
+_Clone of [OpenAPI Definition Starter](https://github.com/Redocly/openapi-starter)._
+
+### Preview
+
+Built with [Slim - a micro framework for PHP](https://www.slimframework.com/).
+
+Based on [this tutorial](https://odan.github.io/2019/11/05/slim4-tutorial.html).
 
 ---
 
