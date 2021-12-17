@@ -932,6 +932,7 @@ paths:
                     iscedCode: '0000'
                     subjectArea: '00.0'
                     otherCategorization: zero
+                    unavailableForIncomingMobility: false
                     url:
                       - uri: www.domain.tld/example/course
                         lang: en
@@ -1889,6 +1890,15 @@ components:
                     description: >
                       Any other term used internally to describe the field of
                       education of the Course.
+                  unavailableForIncomingMobility:
+                    type: boolean
+                    description: >
+                      Return `true` when the Course is not available for
+                      incoming exchange students to enroll.
+
+
+                      Unless explicitly stated, client implementations should
+                      assume this as `false`.
                   url:
                     type: array
                     description: External URL with optional language code.
@@ -2011,6 +2021,15 @@ components:
                   description: >
                     Any other term used internally to describe the field of
                     education of the Course.
+                unavailableForIncomingMobility:
+                  type: boolean
+                  description: >
+                    Return `true` when the Course is not available for incoming
+                    exchange students to enroll.
+
+
+                    Unless explicitly stated, client implementations should
+                    assume this as `false`.
                 url:
                   type: array
                   description: External URL with optional language code.
