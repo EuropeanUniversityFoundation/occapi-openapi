@@ -20,4 +20,15 @@ properties:
           - self
         properties:
           self:
-            $ref: ./LinksSelf.yaml
+            type: object
+            description: Hypermedia link to the current path.
+            required:
+              - href
+            properties:
+              href:
+                type: string
+                format: uri
+                description: |
+                  JSON:API version supported by the server.
+
+                  http://jsonapi.org/format/1.0/
