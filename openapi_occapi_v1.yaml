@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  version: 1.0.0
+  version: 1.0.0-beta
   title: Open Course Catalogue API
   termsOfService: ''
   contact:
@@ -95,6 +95,22 @@ paths:
                     href: http://example.com/occapi/v1
                   hei:
                     href: http://example.com/occapi/v1/hei
+        '404':
+          description: Endpoint not available.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                errors:
+                  - status: '404'
+                    title: Endpoint not available.
   /hei:
     get:
       tags:
@@ -146,6 +162,22 @@ paths:
                 links:
                   self:
                     href: http://example.com/occapi/v1/hei
+        '404':
+          description: Endpoint not available.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                errors:
+                  - status: '404'
+                    title: Endpoint not available.
   /hei/{heiId}:
     get:
       tags:
@@ -214,8 +246,21 @@ paths:
                   course:
                     href: http://example.com/occapi/v1/hei/domain.tld/course
         '404':
-          description: Institution not found.
-          $ref: '#/components/responses/Problem'
+          description: Resource not found.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                errors:
+                  - status: '404'
+                    title: Resource not found.
   /hei/{heiId}/ounit:
     get:
       tags:
@@ -276,9 +321,22 @@ paths:
                 links:
                   self:
                     href: http://example.com/occapi/v1/hei/domain.tld/ounit
-        '400':
-          description: Invalid Institution SCHAC code.
-          $ref: '#/components/responses/Problem'
+        '404':
+          description: Endpoint not available.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                errors:
+                  - status: '404'
+                    title: Endpoint not available.
   /hei/{heiId}/ounit/{id}:
     get:
       tags:
@@ -355,12 +413,22 @@ paths:
                   course:
                     href: >-
                       http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/course
-        '400':
-          description: Invalid Institution SCHAC code.
-          $ref: '#/components/responses/Problem'
         '404':
-          description: Organisational Unit not found.
-          $ref: '#/components/responses/Problem'
+          description: Resource not found.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                errors:
+                  - status: '404'
+                    title: Resource not found.
   /hei/{heiId}/programme:
     get:
       tags:
@@ -425,9 +493,22 @@ paths:
                 links:
                   self:
                     href: http://example.com/occapi/v1/hei/domain.tld/programme
-        '400':
-          description: Invalid Institution SCHAC code.
-          $ref: '#/components/responses/Problem'
+        '404':
+          description: Endpoint not available.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                errors:
+                  - status: '404'
+                    title: Endpoint not available.
   /hei/{heiId}/ounit/{id}/programme:
     get:
       tags:
@@ -501,12 +582,22 @@ paths:
                   self:
                     href: >-
                       http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/programme
-        '400':
-          description: Invalid Institution SCHAC code.
-          $ref: '#/components/responses/Problem'
         '404':
-          description: Organisational Unit not found.
-          $ref: '#/components/responses/Problem'
+          description: Endpoint not available.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                errors:
+                  - status: '404'
+                    title: Endpoint not available.
   /hei/{heiId}/programme/{id}:
     get:
       tags:
@@ -583,12 +674,22 @@ paths:
                   course:
                     href: >-
                       http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890/course
-        '400':
-          description: Invalid Institution SCHAC code.
-          $ref: '#/components/responses/Problem'
         '404':
-          description: Programme not found.
-          $ref: '#/components/responses/Problem'
+          description: Resource not found.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                errors:
+                  - status: '404'
+                    title: Resource not found.
   /hei/{heiId}/course:
     get:
       tags:
@@ -668,9 +769,22 @@ paths:
                 links:
                   self:
                     href: http://example.com/occapi/v1/hei/domain.tld/course
-        '400':
-          description: Invalid Institution SCHAC code.
-          $ref: '#/components/responses/Problem'
+        '404':
+          description: Endpoint not available.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                errors:
+                  - status: '404'
+                    title: Endpoint not available.
   /hei/{heiId}/ounit/{id}/course:
     get:
       tags:
@@ -759,12 +873,22 @@ paths:
                   self:
                     href: >-
                       http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/course
-        '400':
-          description: Invalid Institution SCHAC code.
-          $ref: '#/components/responses/Problem'
         '404':
-          description: Organisational Unit not found.
-          $ref: '#/components/responses/Problem'
+          description: Endpoint not available.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                errors:
+                  - status: '404'
+                    title: Endpoint not available.
   /hei/{heiId}/programme/{id}/course:
     get:
       tags:
@@ -853,12 +977,22 @@ paths:
                   self:
                     href: >-
                       http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890/course
-        '400':
-          description: Invalid Institution SCHAC code.
-          $ref: '#/components/responses/Problem'
         '404':
-          description: Programme not found.
-          $ref: '#/components/responses/Problem'
+          description: Endpoint not available.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                errors:
+                  - status: '404'
+                    title: Endpoint not available.
   /hei/{heiId}/course/{id}:
     get:
       tags:
@@ -990,23 +1124,24 @@ paths:
                   self:
                     href: >-
                       http://example.com/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
-        '400':
-          description: Invalid Institution SCHAC code.
-          $ref: '#/components/responses/Problem'
         '404':
-          description: Course not found.
-          $ref: '#/components/responses/Problem'
+          description: Resource not found.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                jsonapi:
+                  version: '1.0'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.0/
+                errors:
+                  - status: '404'
+                    title: Resource not found.
 components:
   schemas:
-    LinksSelf:
-      type: object
-      description: Hypermedia link to the current path.
-      required:
-        - href
-      properties:
-        href:
-          type: string
-          format: uri
     Jsonapi:
       type: object
       description: JSON:API header.
@@ -1030,7 +1165,27 @@ components:
                 - self
               properties:
                 self:
-                  $ref: '#/components/schemas/LinksSelf'
+                  type: object
+                  description: Hypermedia link to the current path.
+                  required:
+                    - href
+                  properties:
+                    href:
+                      type: string
+                      format: uri
+                      description: |
+                        JSON:API version supported by the server.
+
+                        http://jsonapi.org/format/1.0/
+    LinksSelf:
+      type: object
+      description: Hypermedia link to the current path.
+      required:
+        - href
+      properties:
+        href:
+          type: string
+          format: uri
     Root:
       type: object
       description: Available endpoints and metadata.
@@ -1063,6 +1218,41 @@ components:
                 href:
                   type: string
                   format: uri
+    Error:
+      type: object
+      description: JSON:API `errors` object.
+      required:
+        - jsonapi
+        - errors
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/Jsonapi'
+        errors:
+          type: array
+          description: List of errors.
+          items:
+            type: object
+            description: JSON:API `error` object.
+            properties:
+              status:
+                type: string
+                description: The HTTP status code applicable to this problem.
+              title:
+                type: string
+                description: Human-readable summary of the problem.
+              source:
+                type: object
+                description: |
+                  An object containing references to the source of the error.
+                properties:
+                  pointer:
+                    type: string
+                    description: >
+                      A JSON Pointer to the associated entity in the request
+                      document.
+                  parameter:
+                    type: string
+                    description: Which URI query parameter caused the error.
     Lang:
       type:
         - string
@@ -1304,44 +1494,6 @@ components:
                 href:
                   type: string
                   format: uri
-    Problem:
-      type: object
-      additionalProperties: true
-      minProperties: 1
-      description: >-
-        The Problem Details JSON Object
-        [[RFC7807](https://tools.ietf.org/html/rfc7807)].
-      properties:
-        type:
-          type: string
-          description: >-
-            A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)]
-            that identifies the problem type. It should provide human-readable
-            documentation for the problem type. When this member is not present,
-            its value is assumed to be "about:blank".
-          format: uri
-        title:
-          type: string
-          description: >-
-            A short, human-readable summary of the problem type. It SHOULD NOT
-            change from occurrence to occurrence of the problem, except for
-            purposes of localization.
-        status:
-          type: integer
-          description: The HTTP status code.
-          minimum: 400
-          maximum: 599
-        detail:
-          type: string
-          description: >-
-            A human-readable explanation specific to this occurrence of the
-            problem.
-        instance:
-          type: string
-          description: >-
-            A URI reference that identifies the specific occurrence of the
-            problem.  It may or may not yield further information if
-            dereferenced.
     OunitCollection:
       type: object
       description: JSON:API collection of _Organisational Unit_ resources.
@@ -2081,10 +2233,3 @@ components:
           properties:
             self:
               $ref: '#/components/schemas/LinksResource'
-  responses:
-    Problem:
-      description: Problem
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/Problem'
