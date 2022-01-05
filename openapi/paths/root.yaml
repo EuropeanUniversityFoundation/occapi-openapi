@@ -19,3 +19,11 @@ get:
             $ref: ../components/schemas/Root.yaml
           example:
             $ref: ../components/responses/Root.yaml
+    '404':
+      description: Endpoint not available.
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: ../components/schemas/Error.yaml
+          example:
+            $ref: ../components/responses/EndpointNotAvailable.yaml

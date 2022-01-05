@@ -38,9 +38,11 @@ get:
             $ref: ../components/schemas/OunitResource.yaml
           example:
             $ref: ../components/responses/OunitResource.yaml
-    '400':
-      description: Invalid Institution SCHAC code.
-      $ref: ../components/responses/Problem.yaml
     '404':
-      description: Organisational Unit not found.
-      $ref: ../components/responses/Problem.yaml
+      description: Resource not found.
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: ../components/schemas/Error.yaml
+          example:
+            $ref: ../components/responses/ResourceNotFound.yaml

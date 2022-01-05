@@ -27,6 +27,11 @@ get:
             $ref: ../components/schemas/CourseCollection.yaml
           example:
             $ref: ../components/responses/CourseCollection.yaml
-    '400':
-      description: Invalid Institution SCHAC code.
-      $ref: ../components/responses/Problem.yaml
+    '404':
+      description: Endpoint not available.
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: ../components/schemas/Error.yaml
+          example:
+            $ref: ../components/responses/EndpointNotAvailable.yaml

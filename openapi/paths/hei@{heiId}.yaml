@@ -35,5 +35,10 @@ get:
           example:
             $ref: ../components/responses/InstitutionResource.yaml
     '404':
-      description: Institution not found.
-      $ref: ../components/responses/Problem.yaml
+      description: Resource not found.
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: ../components/schemas/Error.yaml
+          example:
+            $ref: ../components/responses/ResourceNotFound.yaml

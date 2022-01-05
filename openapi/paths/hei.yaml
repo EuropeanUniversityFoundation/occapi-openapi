@@ -25,3 +25,11 @@ get:
             $ref: ../components/schemas/InstitutionCollection.yaml
           example:
             $ref: ../components/responses/InstitutionCollection.yaml
+    '404':
+      description: Endpoint not available.
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: ../components/schemas/Error.yaml
+          example:
+            $ref: ../components/responses/EndpointNotAvailable.yaml
