@@ -1,0 +1,33 @@
+type: object
+description: JSON:API `errors` object.
+required:
+  - jsonapi
+  - errors
+properties:
+  jsonapi:
+    $ref: ./Jsonapi.yaml
+  errors:
+    type: array
+    description: List of errors.
+    items:
+      type: object
+      description: JSON:API `error` object.
+      properties:
+        status:
+          type: string
+          description: The HTTP status code applicable to this problem.
+        title:
+          type: string
+          description: Human-readable summary of the problem.
+        source:
+          type: object
+          description: |
+            An object containing references to the source of the error.
+          properties:
+            pointer:
+              type: string
+              description: |
+                A JSON Pointer to the associated entity in the request document.
+            parameter:
+              type: string
+              description: Which URI query parameter caused the error.
