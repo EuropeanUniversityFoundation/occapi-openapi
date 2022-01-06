@@ -17,7 +17,8 @@ final class OccapiRootAction
         $data_path = self::DATA_DIR;
         $json_data = \file_get_contents($data_path . self::FILENAME);
         $response->getBody()->write($json_data);
-        $response = $response->withHeader('Content-Type', 'application/json');
+        $response = $response
+          ->withHeader('Content-Type', 'application/vnd.api+json');
         return $response;
     }
 }
