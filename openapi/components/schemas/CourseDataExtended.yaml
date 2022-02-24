@@ -18,8 +18,8 @@ attributes:
     - ects
     - languageOfInstruction
     - iscedCode
-    - subjectArea
-    - otherCategorization
+    # - subjectArea
+    # - otherCategorization
   properties:
     title:
       type: array
@@ -66,6 +66,8 @@ attributes:
       description: |
         [ISCED-F code](https://www.surveycodings.org/fields-education/international-classification-fields-education-and-training)
          describing the field of education of the Course.
+
+        This may be left empty **if** a value for `subjectArea` or `otherCategorization` is provided.
     subjectArea:
       type: string
       description: |
