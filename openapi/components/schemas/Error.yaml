@@ -1,7 +1,6 @@
 type: object
 description: JSON:API `errors` object.
 required:
-  - jsonapi
   - errors
 properties:
   jsonapi:

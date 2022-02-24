@@ -1,9 +1,7 @@
 type: object
 description: JSON:API collection of _Institution_ resources.
 required:
-  - jsonapi
   - data
-  - links
 properties:
   jsonapi:
     $ref: ./Jsonapi.yaml
@@ -22,8 +20,8 @@ properties:
   links:
     type: object
     description: JSON:API _links_ object.
-    required:
-      - self
+    # required:
+    #   - self
     properties:
       self:
         $ref: ./LinksCollection.yaml

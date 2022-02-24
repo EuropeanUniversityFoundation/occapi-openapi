@@ -1190,7 +1190,6 @@ components:
       type: object
       description: Available endpoints and metadata.
       required:
-        - jsonapi
         - links
       properties:
         jsonapi:
@@ -1202,7 +1201,6 @@ components:
           type: object
           description: JSON:API _links_ object.
           required:
-            - self
             - hei
           properties:
             self:
@@ -1222,7 +1220,6 @@ components:
       type: object
       description: JSON:API `errors` object.
       required:
-        - jsonapi
         - errors
       properties:
         jsonapi:
@@ -1310,9 +1307,7 @@ components:
       type: object
       description: JSON:API collection of _Institution_ resources.
       required:
-        - jsonapi
         - data
-        - links
       properties:
         jsonapi:
           $ref: '#/components/schemas/Jsonapi'
@@ -1369,8 +1364,6 @@ components:
         links:
           type: object
           description: JSON:API _links_ object.
-          required:
-            - self
           properties:
             self:
               $ref: '#/components/schemas/LinksCollection'
@@ -1378,7 +1371,6 @@ components:
       type: object
       description: JSON:API _Institution_ resource.
       required:
-        - jsonapi
         - data
         - links
       properties:
@@ -1435,8 +1427,6 @@ components:
         links:
           type: object
           description: JSON:API _links_ object.
-          required:
-            - self
           properties:
             self:
               $ref: '#/components/schemas/LinksResource'
@@ -1498,9 +1488,7 @@ components:
       type: object
       description: JSON:API collection of _Organisational Unit_ resources.
       required:
-        - jsonapi
         - data
-        - links
       properties:
         jsonapi:
           $ref: '#/components/schemas/Jsonapi'
@@ -1559,8 +1547,6 @@ components:
         links:
           type: object
           description: JSON:API _links_ object.
-          required:
-            - self
           properties:
             self:
               $ref: '#/components/schemas/LinksCollection'
@@ -1568,7 +1554,6 @@ components:
       type: object
       description: JSON:API _Organisational Unit_ resource.
       required:
-        - jsonapi
         - data
         - links
       properties:
@@ -1627,8 +1612,6 @@ components:
         links:
           type: object
           description: JSON:API _links_ object.
-          required:
-            - self
           properties:
             self:
               $ref: '#/components/schemas/LinksResource'
@@ -1672,9 +1655,7 @@ components:
       type: object
       description: JSON:API collection of _Programme_ resources.
       required:
-        - jsonapi
         - data
-        - links
       properties:
         jsonapi:
           $ref: '#/components/schemas/Jsonapi'
@@ -1769,8 +1750,6 @@ components:
         links:
           type: object
           description: JSON:API _links_ object.
-          required:
-            - self
           properties:
             self:
               $ref: '#/components/schemas/LinksCollection'
@@ -1778,7 +1757,6 @@ components:
       type: object
       description: JSON:API _Programme_ resource.
       required:
-        - jsonapi
         - data
         - links
       properties:
@@ -1873,8 +1851,6 @@ components:
         links:
           type: object
           description: JSON:API _links_ object.
-          required:
-            - self
           properties:
             self:
               $ref: '#/components/schemas/LinksResource'
@@ -1945,9 +1921,7 @@ components:
       type: object
       description: JSON:API collection of _Course_ resources.
       required:
-        - jsonapi
         - data
-        - links
       properties:
         jsonapi:
           $ref: '#/components/schemas/Jsonapi'
@@ -2069,8 +2043,6 @@ components:
         links:
           type: object
           description: JSON:API _links_ object.
-          required:
-            - self
           properties:
             self:
               $ref: '#/components/schemas/LinksCollection'
@@ -2078,9 +2050,7 @@ components:
       type: object
       description: JSON:API _Course_ resource.
       required:
-        - jsonapi
         - data
-        - links
       properties:
         jsonapi:
           $ref: '#/components/schemas/Jsonapi'
@@ -2228,8 +2198,6 @@ components:
         links:
           type: object
           description: JSON:API _links_ object.
-          required:
-            - self
           properties:
             self:
               $ref: '#/components/schemas/LinksResource'

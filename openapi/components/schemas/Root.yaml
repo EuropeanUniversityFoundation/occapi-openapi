@@ -1,7 +1,6 @@
 type: object
 description: Available endpoints and metadata.
 required:
-  - jsonapi
   - links
 properties:
   jsonapi:
@@ -13,7 +12,6 @@ properties:
     type: object
     description: JSON:API _links_ object.
     required:
-      - self
       - hei
     properties:
       self:
