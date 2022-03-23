@@ -30,6 +30,7 @@ data:
       iscedCode: '0000'
       subjectArea: '00.0'
       otherCategorization: 'zero'
+      unavailableForIncomingMobility: false
       url:
         - uri: www.domain.tld/example/course
           lang: en
