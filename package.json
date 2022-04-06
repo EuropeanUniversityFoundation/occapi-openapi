@@ -6,7 +6,7 @@
   },
   "private": true,
   "scripts": {
-    "start": "openapi preview-docs",
+    "start": "openapi preview-docs --host=0.0.0.0",
     "build": "openapi bundle -o openapi_occapi_v1",
     "postbuild": "./postbuild.sh",
     "test": "openapi lint"
