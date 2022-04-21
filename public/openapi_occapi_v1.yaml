@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  version: 1.0.0-beta4
+  version: 1.0.0-beta5
   title: Open Course Catalogue API
   termsOfService: ''
   contact:
@@ -2210,6 +2210,8 @@ components:
                   description: Assessment method with optional language code.
                   items:
                     $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+            meta:
+              $ref: '#/components/schemas/CourseMeta'
             links:
               type: object
               description: JSON:API _links_ object.
