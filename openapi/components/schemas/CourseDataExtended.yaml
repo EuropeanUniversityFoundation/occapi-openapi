@@ -117,6 +117,8 @@ attributes:
       description: Assessment method with optional language code.
       items:
         $ref: ./MultilineStringWithOptionalLang.yaml
+meta:
+  $ref: ./CourseMeta.yaml
 links:
   type: object
   description: JSON:API _links_ object.
