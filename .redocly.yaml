@@ -1,12 +1,13 @@
 # See https://redoc.ly/docs/cli/configuration/ for more information.
-apiDefinitions:
-  main: openapi/openapi.yaml
+apis:
+  main@v1:
+    root: ./openapi/openapi.yaml
 lint:
   extends:
     - recommended
   rules:
     no-unused-components: warning
-referenceDocs:
+features.openapi:
   htmlTemplate: ./docs/index.html
   theme:
     colors:
@@ -17,4 +18,3 @@ referenceDocs:
       - lang: curl # Can be one of the following supported languages: "curl", "Node.js", "JavaScript".
       - lang: "Node.js"
       - lang: "JavaScript"
-      
