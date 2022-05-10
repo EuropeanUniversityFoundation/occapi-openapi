@@ -2,6 +2,12 @@
 
 This repository contains the OpenAPI specification for the **Open Course Catalogue API** along with a working demo for development reference.
 
+## Issues
+
+Use the [issue queue](https://github.com/EuropeanUniversityFoundation/occapi-openapi/issues) to report any issues or questions related to the specification. _Pull requests are generally **not** accepted!_
+
+---
+
 ## Quickstart
 
     # Clone the repository
@@ -12,7 +18,7 @@ This repository contains the OpenAPI specification for the **Open Course Catalog
     nano .env
     # Start the containers
     make up
-    # Access the NodeJS
+    # Access the NodeJS container
     make shell node
     # Start watching for changes to the OpenAPI specs
     npm start
