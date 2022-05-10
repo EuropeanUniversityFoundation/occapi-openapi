@@ -4,7 +4,11 @@ This repository contains the OpenAPI specification for the **Open Course Catalog
 
 ## Issues
 
-Use the [issue queue](https://github.com/EuropeanUniversityFoundation/occapi-openapi/issues) to report any issues or questions related to the specification. _Pull requests are generally **not** accepted!_
+Use the [issue queue](https://github.com/EuropeanUniversityFoundation/occapi-openapi/issues) to report any issues or questions related to the specification.
+
+Pull requests will be considered when concerning the contents of the `openapi/components` directory.
+
+_Pull requests concerning the build tools are discouraged._
 
 ---
 
