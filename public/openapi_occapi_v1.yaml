@@ -5,7 +5,7 @@ info:
   termsOfService: ''
   contact:
     email: api.support@uni-foundation.eu
-    url: https://uni-foundation.eu
+    url: https://github.com/EuropeanUniversityFoundation/occapi-openapi
   x-logo:
     url: https://uni-foundation.eu/wp-content/uploads/2019/04/EUF-1.png
   description: >

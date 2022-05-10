@@ -5,7 +5,7 @@ info:
   termsOfService: ''
   contact:
     email: api.support@uni-foundation.eu
-    url: 'https://uni-foundation.eu'
+    url: 'https://github.com/EuropeanUniversityFoundation/occapi-openapi'
   # license:
   #   name: Apache 2.0
   #   url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
