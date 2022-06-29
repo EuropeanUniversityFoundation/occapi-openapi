@@ -64,7 +64,7 @@ attributes:
     iscedCode:
       type: string
       description: |
-        [ISCED-F code](https://www.surveycodings.org/fields-education/international-classification-fields-education-and-training)
+        [ISCED-F code](http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-fields-of-education-and-training-2013-detailed-field-descriptions-2015-en.pdf)
          describing the field of education of the Course.
 
         This may be left empty **if** a value for `subjectArea` or `otherCategorization` is provided.
