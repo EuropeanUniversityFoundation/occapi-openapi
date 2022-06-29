@@ -43,10 +43,13 @@ attributes:
         [EQF Level](https://europa.eu/europass/en/description-eight-eqf-levels)
          provided to the learner upon completing the Programme.
     iscedCode:
-      type: string
+      type: array
+      pattern: ^\d{2,4}$
       description: |
-        [ISCED-F code](http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-fields-of-education-and-training-2013-detailed-field-descriptions-2015-en.pdf)
-         describing the field of education of the Programme.
+        [ISCED-F code(s)](http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-fields-of-education-and-training-2013-detailed-field-descriptions-2015-en.pdf)
+         describing the field(s) of education of the Programme.
+      items:
+        type: string
     languageOfInstruction:
       type: string
       description: |
