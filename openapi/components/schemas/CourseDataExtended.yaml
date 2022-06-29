@@ -62,20 +62,27 @@ attributes:
 
         e.g. `pt` for Portuguese, `pt-PT` for European Portuguese.
     iscedCode:
-      type: string
+      type: array
+      pattern: ^\d{2,4}$
       description: |
-        [ISCED-F code](http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-fields-of-education-and-training-2013-detailed-field-descriptions-2015-en.pdf)
-         describing the field of education of the Course.
+        [ISCED-F code(s)](http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-fields-of-education-and-training-2013-detailed-field-descriptions-2015-en.pdf)
+         describing the field(s) of education of the Course.
 
         This may be left empty **if** a value for `subjectArea` or `otherCategorization` is provided.
+      items:
+        type: string
     subjectArea:
-      type: string
+      type: array
       description: |
-        Erasmus subject area code describing the field of education of the Course.
+        Erasmus subject area code(s) describing the field(s) of education of the Course.
+      items:
+        type: string
     otherCategorization:
-      type: string
+      type: array
       description: |
-        Any other term used internally to describe the field of education of the Course.
+        Any other term(s) used internally to describe the field(s) of education of the Course.
+      items:
+        type: string
     unavailableForIncomingMobility:
       type: boolean
       description: |

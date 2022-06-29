@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  version: 1.0.0-beta5
+  version: 1.0.0-beta6
   title: Open Course Catalogue API
   termsOfService: ''
   contact:
@@ -480,7 +480,8 @@ paths:
                           lang: en
                       ects: 120
                       eqfLevelProvided: 5
-                      iscedCode: 0
+                      iscedCode:
+                        - '0000'
                       languageOfInstruction: en
                       length: 2
                       url:
@@ -568,7 +569,8 @@ paths:
                           lang: en
                       ects: 120
                       eqfLevelProvided: 5
-                      iscedCode: 0
+                      iscedCode:
+                        - '0000'
                       languageOfInstruction: en
                       length: 2
                       url:
@@ -657,7 +659,8 @@ paths:
                         lang: en
                     ects: 120
                     eqfLevelProvided: 5
-                    iscedCode: '0000'
+                    iscedCode:
+                      - '0000'
                     languageOfInstruction: en
                     length: 2
                     url:
@@ -748,9 +751,12 @@ paths:
                       academicTerm: 1/2
                       ects: 6
                       languageOfInstruction: en
-                      iscedCode: '0000'
-                      subjectArea: '00.0'
-                      otherCategorization: zero
+                      iscedCode:
+                        - '0000'
+                      subjectArea:
+                        - '00.0'
+                      otherCategorization:
+                        - zero
                       unavailableForIncomingMobility: false
                       url:
                         - uri: www.domain.tld/example/course
@@ -852,9 +858,12 @@ paths:
                       academicTerm: 1/2
                       ects: 6
                       languageOfInstruction: en
-                      iscedCode: '0000'
-                      subjectArea: '00.0'
-                      otherCategorization: zero
+                      iscedCode:
+                        - '0000'
+                      subjectArea:
+                        - '00.0'
+                      otherCategorization:
+                        - zero
                       url:
                         - uri: www.domain.tld/example/course
                           lang: en
@@ -956,9 +965,12 @@ paths:
                       academicTerm: 1/2
                       ects: 6
                       languageOfInstruction: en
-                      iscedCode: '0000'
-                      subjectArea: '00.0'
-                      otherCategorization: zero
+                      iscedCode:
+                        - '0000'
+                      subjectArea:
+                        - '00.0'
+                      otherCategorization:
+                        - zero
                       url:
                         - uri: www.domain.tld/example/course
                           lang: en
@@ -1064,9 +1076,12 @@ paths:
                     academicTerm: 1/2
                     ects: 6
                     languageOfInstruction: en
-                    iscedCode: '0000'
-                    subjectArea: '00.0'
-                    otherCategorization: zero
+                    iscedCode:
+                      - '0000'
+                    subjectArea:
+                      - '00.0'
+                    otherCategorization:
+                      - zero
                     unavailableForIncomingMobility: false
                     url:
                       - uri: www.domain.tld/example/course
@@ -1729,11 +1744,14 @@ components:
                       Level](https://europa.eu/europass/en/description-eight-eqf-levels)
                        provided to the learner upon completing the Programme.
                   iscedCode:
-                    type: string
+                    type: array
+                    pattern: ^\d{2,4}$
                     description: >
                       [ISCED-F
-                      code](http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-fields-of-education-and-training-2013-detailed-field-descriptions-2015-en.pdf)
-                       describing the field of education of the Programme.
+                      code(s)](http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-fields-of-education-and-training-2013-detailed-field-descriptions-2015-en.pdf)
+                       describing the field(s) of education of the Programme.
+                    items:
+                      type: string
                   languageOfInstruction:
                     type: string
                     description: |
@@ -1832,11 +1850,14 @@ components:
                     Level](https://europa.eu/europass/en/description-eight-eqf-levels)
                      provided to the learner upon completing the Programme.
                 iscedCode:
-                  type: string
+                  type: array
+                  pattern: ^\d{2,4}$
                   description: >
                     [ISCED-F
-                    code](http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-fields-of-education-and-training-2013-detailed-field-descriptions-2015-en.pdf)
-                     describing the field of education of the Programme.
+                    code(s)](http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-fields-of-education-and-training-2013-detailed-field-descriptions-2015-en.pdf)
+                     describing the field(s) of education of the Programme.
+                  items:
+                    type: string
                 languageOfInstruction:
                   type: string
                   description: |
@@ -2018,24 +2039,31 @@ components:
 
                       e.g. `pt` for Portuguese, `pt-PT` for European Portuguese.
                   iscedCode:
-                    type: string
+                    type: array
+                    pattern: ^\d{2,4}$
                     description: >
                       [ISCED-F
                       code](http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-fields-of-education-and-training-2013-detailed-field-descriptions-2015-en.pdf)
-                       describing the field of education of the Course.
+                       describing the field(s) of education of the Course.
 
                       This may be left empty **if** a value for `subjectArea` or
                       `otherCategorization` is provided.
+                    items:
+                      type: string
                   subjectArea:
-                    type: string
+                    type: array
                     description: >
-                      Erasmus subject area code describing the field of
+                      Erasmus subject area code(s) describing the field(s) of
                       education of the Course.
+                    items:
+                      type: string
                   otherCategorization:
-                    type: string
+                    type: array
                     description: >
-                      Any other term used internally to describe the field of
-                      education of the Course.
+                      Any other term(s) used internally to describe the field(s)
+                      of education of the Course.
+                    items:
+                      type: string
                   unavailableForIncomingMobility:
                     type: boolean
                     description: >
@@ -2148,24 +2176,31 @@ components:
 
                     e.g. `pt` for Portuguese, `pt-PT` for European Portuguese.
                 iscedCode:
-                  type: string
+                  type: array
+                  pattern: ^\d{2,4}$
                   description: >
                     [ISCED-F
-                    code](http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-fields-of-education-and-training-2013-detailed-field-descriptions-2015-en.pdf)
-                     describing the field of education of the Course.
+                    code(s)](http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-fields-of-education-and-training-2013-detailed-field-descriptions-2015-en.pdf)
+                     describing the field(s) of education of the Course.
 
                     This may be left empty **if** a value for `subjectArea` or
                     `otherCategorization` is provided.
+                  items:
+                    type: string
                 subjectArea:
-                  type: string
+                  type: array
                   description: >
-                    Erasmus subject area code describing the field of education
-                    of the Course.
-                otherCategorization:
-                  type: string
-                  description: >
-                    Any other term used internally to describe the field of
+                    Erasmus subject area code(s) describing the field(s) of
                     education of the Course.
+                  items:
+                    type: string
+                otherCategorization:
+                  type: array
+                  description: >
+                    Any other term(s) used internally to describe the field(s)
+                    of education of the Course.
+                  items:
+                    type: string
                 unavailableForIncomingMobility:
                   type: boolean
                   description: >

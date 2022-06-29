@@ -35,9 +35,9 @@
       "academicTerm": "1/2",
       "ects": 6,
       "languageOfInstruction": "en",
-      "iscedCode": "0000",
-      "subjectArea": "00.0",
-      "otherCategorization": "zero",
+      "iscedCode": ["0000"],
+      "subjectArea": ["00.0"],
+      "otherCategorization": ["zero"],
       "unavailableForIncomingMobility": false,
       "url": [
         {
