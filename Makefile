@@ -16,8 +16,7 @@ up:
 	@echo "Find the site at http://$(PROJECT_BASE_URL):$(HTTP_PORT)"
 
 mutagen:
-	docker-compose up -d mutagen
-	mutagen project start -f mutagen/config.yml
+	mutagen-compose up
 
 ## down	:	Stop containers.
 down: stop

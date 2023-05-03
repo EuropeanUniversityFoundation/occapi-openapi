@@ -30,7 +30,9 @@ services:
     image: wodby/php:$PHP_TAG
     container_name: "${PROJECT_NAME}_php"
     environment:
-      PHP_SENDMAIL_PATH: /usr/sbin/sendmail -t -i -S mailhog:1025
+      SSMTP_MAILHUB: mailhog:1025
+#      SSMTP_MAILHUB: opensmtpd:25
+      PHP_SENDMAIL_PATH: '"/usr/bin/dos2unix -u | /usr/sbin/ssmtp -t -f"'
       # DB_HOST: $DB_HOST
       # DB_USER: $DB_USER
       # DB_PASSWORD: $DB_PASSWORD
@@ -40,6 +42,8 @@ services:
 ## Read instructions at https://wodby.com/docs/stacks/php/local/#xdebug
 #      PHP_XDEBUG: 1
 #      PHP_XDEBUG_MODE: debug
+#      PHP_XDEBUG_MODE: profile
+#      PHP_XDEBUG_USE_COMPRESSION: false
 #      PHP_IDE_CONFIG: serverName=my-ide
 #      PHP_XDEBUG_IDEKEY: "my-ide"
 #      PHP_XDEBUG_CLIENT_HOST: 172.17.0.1 # Linux
@@ -48,7 +52,7 @@ services:
     volumes:
     - ./:/var/www/html:cached
 ## Alternative for macOS users: Mutagen https://wodby.com/docs/stacks/php/local#docker-for-mac
-#    - mutagen:/var/www/html
+#    - backend:/var/www/html
 ## For XHProf and Xdebug profiler traces
 #    - files:/mnt/files
 
@@ -66,7 +70,7 @@ services:
     volumes:
     - ./:/var/www/html:cached
 ## Alternative for macOS users: Mutagen https://wodby.com/docs/stacks/php/local#docker-for-mac
-#    - mutagen:/var/www/html
+#    - backend:/var/www/html
     labels:
     - "traefik.http.routers.${PROJECT_NAME}_nginx.rule=Host(`${PROJECT_BASE_URL}`)"
 
@@ -83,23 +87,23 @@ services:
 #    volumes:
 #    - ./:/var/www/html:cached
 ### Alternative for macOS users: Mutagen https://wodby.com/docs/stacks/php/local#docker-for-mac
-##    - mutagen:/var/www/html
+##    - backend:/var/www/html
 #    labels:
 #    - "traefik.http.routers.${PROJECT_NAME}_apache.rule=Host(`${PROJECT_BASE_URL}`)"
 
-  # mailhog:
-  #   image: mailhog/mailhog
-  #   container_name: "${PROJECT_NAME}_mailhog"
-  #   labels:
-  #   - "traefik.http.services.${PROJECT_NAME}_mailhog.loadbalancer.server.port=8025"
-  #   - "traefik.http.routers.${PROJECT_NAME}_mailhog.rule=Host(`mailhog.${PROJECT_BASE_URL}`)"
+  mailhog:
+    image: mailhog/mailhog
+    container_name: "${PROJECT_NAME}_mailhog"
+    labels:
+    - "traefik.http.services.${PROJECT_NAME}_mailhog.loadbalancer.server.port=8025"
+    - "traefik.http.routers.${PROJECT_NAME}_mailhog.rule=Host(`mailhog.${PROJECT_BASE_URL}`)"
 
 #  crond:
 #    image: wodby/php:$PHP_TAG
 #    container_name: "${PROJECT_NAME}_crond"
 #    environment:
 #      CRONTAB: "0 * * * * echo 'cron test'"
-#    command: sudo -E LD_PRELOAD=/usr/lib/preloadable_libiconv.so crond -f -d 0
+#    command: sudo crond -f -d 0
 #    volumes:
 #    - ./:/var/www/html:cached
 
@@ -204,12 +208,6 @@ services:
       - "${NODE_PORT}:8080"
     command: sh -c "tail -f /dev/null"
 
-#  blackfire:
-#    image: blackfire/blackfire
-#    environment:
-#      BLACKFIRE_SERVER_ID: XXXXX
-#      BLACKFIRE_SERVER_TOKEN: YYYYY
-
 #  webgrind:
 #    image: wodby/webgrind:$WEBGRIND_TAG
 #    environment:
@@ -218,6 +216,7 @@ services:
 #    - "traefik.http.routers.${PROJECT_NAME}_webgrind.rule=Host(`webgrind.${PROJECT_BASE_URL}`)"
 #    volumes:
 #    - files:/mnt/files
+#    - ./:/mnt/codebase:cached
 
 #  opensmtpd:
 #    container_name: "${PROJECT_NAME}_opensmtpd"
@@ -241,17 +240,27 @@ services:
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
 
-#  mutagen:
-#    build:
-#      context: .
-#      dockerfile: mutagen/Dockerfile
-#    init: true
-#    container_name: "mutagen"
-#    volumes:
-#    - mutagen:/var/www/html
+#x-mutagen:
+#  sync:
+#    defaults:
+#      ignore:
+#        vcs: true
+#        paths:
+#        - .DS_Store
+#        - .history
+#        - .idea
+#    backend:
+#      alpha: "."
+#      beta: "volume://backend"
+#      configurationBeta:
+#        permissions:
+#          defaultFileMode: 0644
+#          defaultDirectoryMode: 0755
+#          defaultOwner: "id:501"
+#          defaultGroup: "id:20"
 
 #volumes:
 ## Mutagen for macOS users
-#  mutagen:
+#  backend:
 ## For Xdebug profiler
 #  files:
