@@ -8,41 +8,25 @@ info:
     url: https://github.com/EuropeanUniversityFoundation/occapi-openapi
   x-logo:
     url: https://uni-foundation.eu/wp-content/uploads/2019/04/EUF-1.png
-  description: >
-    This is an **example** API to demonstrate features of the Open Course
-    Catalogue API specification.
-
+  description: |
+    This is an **example** API to demonstrate features of the Open Course Catalogue API specification.
 
     # Introduction
 
+    The **Open Course Catalogue API** specification aims to standardize the way in which Higher Education Institutions expose their course catalogues in a machine-readable format.
 
-    The **Open Course Catalogue API** specification aims to standardize the way
-    in which Higher Education Institutions expose their course catalogues in a
-    machine-readable format.
-
-
-    By facilitating access to their course catalogues, Institutions can allow
-    consumer applications to implement user friendly ways to explore course
-    offers for prospective students.
-
+    By facilitating access to their course catalogues, Institutions can allow consumer applications to implement user friendly ways to explore course offers for prospective students.
 
     ## Comparison with other standards and specifications
 
+    The Open Course Catalogue specification is heavily inspired by the [Erasmus Without Paper](https://www.erasmuswithoutpaper.eu/) API specifications and attempts to follow most of its conventions. However, it takes a different approach to exposing curricular structure as its main focus.
 
-    The Open Course Catalogue specification is heavily inspired by the [Erasmus
-    Without Paper](https://www.erasmuswithoutpaper.eu/) API specifications and
-    attempts to follow most of its conventions. However, it takes a different
-    approach to exposing curricular structure as its main focus.
+    This API specification also differs from EWP APIs by adopting the [JSON:API](https://jsonapi.org/) format following industry trends.
 
-
-    This API specification also differs from EWP APIs by adopting the
-    [JSON:API](https://jsonapi.org/) format following industry trends.
-
-
-    Another example of modern practices in the education space is the [Open
-    Education
-    API](https://open-education-api.github.io/specification/v3/docs.html) which
-    covers a wider array of use cases.
+    Another example of modern practices in the education space is the [Open Education API](https://open-education-api.github.io/specification/v3/docs.html) which covers a wider array of use cases.
+servers:
+  - url: /occapi/v1
+    description: Sandbox server (example data)
 tags:
   - name: API provider
     description: Information about the provider.
@@ -58,9 +42,6 @@ tags:
 
       _Course_ resources include a JSON:API _meta_ object containing information
        about the relation between each Course and all or specific Programmes.
-servers:
-  - url: /occapi/v1
-    description: Sandbox server (example data)
 paths:
   /:
     get:
@@ -183,9 +164,8 @@ paths:
       tags:
         - Institution
       summary: GET /hei/{heiId}
-      description: >
-        This endpoint exposes some basic information about an Institution
-        covered by
+      description: |
+        This endpoint exposes some basic information about an Institution covered by
          the provider, which should be sufficient to satisfy basic UX/UI needs of
          app developers.
 
@@ -266,12 +246,10 @@ paths:
       tags:
         - Organisational Unit
       summary: GET /hei/{heiId}/ounit
-      description: >
+      description: |
         This endpoint lists all _Organisational Units_ in an _Institution_.
 
-
-        Implementation is optional but **recommended** since exposing
-        collections by
+        Implementation is optional but **recommended** since exposing collections by
          _Organisational Unit_ can help avoid large HTTP responses.
       operationId: getOunits
       parameters:
@@ -316,8 +294,7 @@ paths:
                           lang: en
                     links:
                       self:
-                        href: >-
-                          https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff
+                        href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff
                 links:
                   self:
                     href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/ounit
@@ -342,13 +319,10 @@ paths:
       tags:
         - Organisational Unit
       summary: GET /hei/{heiId}/ounit/{id}
-      description: >
-        This endpoint exposes some basic information about an _Organisational
-        Unit_.
+      description: |
+        This endpoint exposes some basic information about an _Organisational Unit_.
 
-
-        Implementation is optional but **recommended** since exposing
-        collections by
+        Implementation is optional but **recommended** since exposing collections by
          _Organisational Unit_ can help avoid large HTTP responses.
       operationId: getOunitByUuid
       parameters:
@@ -401,18 +375,14 @@ paths:
                         lang: en
                   links:
                     self:
-                      href: >-
-                        https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff
+                      href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff
                 links:
                   self:
-                    href: >-
-                      https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff
+                    href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff
                   programme:
-                    href: >-
-                      https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/programme
+                    href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/programme
                   course:
-                    href: >-
-                      https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/course
+                    href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/course
         '404':
           description: Resource not found.
           content:
@@ -488,8 +458,7 @@ paths:
                           lang: en
                     links:
                       self:
-                        href: >-
-                          https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
+                        href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
                 links:
                   self:
                     href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/programme
@@ -514,9 +483,8 @@ paths:
       tags:
         - Programme
       summary: GET /hei/{heiId}/ounit/{id}/programme
-      description: >
-        This endpoint lists all _Programmes_ offered by an _Institution_
-        filtered by _Organisational Unit_.
+      description: |
+        This endpoint lists all _Programmes_ offered by an _Institution_ filtered by _Organisational Unit_.
       operationId: getOunitProgrammes
       parameters:
         - name: heiId
@@ -576,12 +544,10 @@ paths:
                           lang: en
                     links:
                       self:
-                        href: >-
-                          https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
+                        href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
                 links:
                   self:
-                    href: >-
-                      https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/programme
+                    href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/programme
         '404':
           description: Endpoint not available.
           content:
@@ -665,15 +631,12 @@ paths:
                         lang: en
                   links:
                     self:
-                      href: >-
-                        https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
+                      href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
                 links:
                   self:
-                    href: >-
-                      https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
+                    href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
                   course:
-                    href: >-
-                      https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890/course
+                    href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890/course
         '404':
           description: Resource not found.
           content:
@@ -765,8 +728,7 @@ paths:
                           year: 1/2
                     links:
                       self:
-                        href: >-
-                          https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                        href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
                 links:
                   self:
                     href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/course
@@ -791,9 +753,8 @@ paths:
       tags:
         - Course
       summary: GET /hei/{heiId}/ounit/{id}/course
-      description: >
-        This endpoint lists all _Courses_ offered by an _Institution_ filtered
-        by _Organisational Unit_.
+      description: |
+        This endpoint lists all _Courses_ offered by an _Institution_ filtered by _Organisational Unit_.
       operationId: getOunitCourses
       parameters:
         - name: heiId
@@ -868,12 +829,10 @@ paths:
                           year: 1/2
                     links:
                       self:
-                        href: >-
-                          https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                        href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
                 links:
                   self:
-                    href: >-
-                      https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/course
+                    href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/course
         '404':
           description: Endpoint not available.
           content:
@@ -895,9 +854,8 @@ paths:
       tags:
         - Course
       summary: GET /hei/{heiId}/programme/{id}/course
-      description: >
-        This endpoint lists all _Courses_ offered by an _Institution_ filtered
-        by _Programme_.
+      description: |
+        This endpoint lists all _Courses_ offered by an _Institution_ filtered by _Programme_.
       operationId: getProgrammeCourses
       parameters:
         - name: heiId
@@ -972,12 +930,10 @@ paths:
                           year: 1/2
                     links:
                       self:
-                        href: >-
-                          https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                        href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
                 links:
                   self:
-                    href: >-
-                      https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890/course
+                    href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890/course
         '404':
           description: Endpoint not available.
           content:
@@ -999,12 +955,10 @@ paths:
       tags:
         - Course
       summary: GET /hei/{heiId}/course/{id}
-      description: >
+      description: |
         This endpoint exposes extended information about a _Course_.
 
-
-        A single resource response can include more fields than would appear in
-        a collection response.
+        A single resource response can include more fields than would appear in a collection response.
       operationId: getCourseByUuid
       parameters:
         - name: heiId
@@ -1090,10 +1044,8 @@ paths:
                           This is a long text field.
                         lang: en
                     courseAvailability:
-                      - multiline: >
-                          These are other factors impacting enrollment in the
-                          Course.
-
+                      - multiline: |
+                          These are other factors impacting enrollment in the Course.
 
                           This is a long text field.
                         lang: en
@@ -1119,12 +1071,10 @@ paths:
                         year: 1/2
                   links:
                     self:
-                      href: >-
-                        https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                      href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
                 links:
                   self:
-                    href: >-
-                      https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                    href: https://occapi.uni-foundation.eu/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
         '404':
           description: Resource not found.
           content:
@@ -1208,9 +1158,7 @@ components:
               $ref: '#/components/schemas/LinksSelf'
             hei:
               type: object
-              description: >-
-                Hypermedia link to the [Institution
-                collection](#tag/Institution).
+              description: Hypermedia link to the [Institution collection](#tag/Institution).
               required:
                 - href
               properties:
@@ -1245,9 +1193,8 @@ components:
                 properties:
                   pointer:
                     type: string
-                    description: >
-                      A JSON Pointer to the associated entity in the request
-                      document.
+                    description: |
+                      A JSON Pointer to the associated entity in the request document.
                   parameter:
                     type: string
                     description: Which URI query parameter caused the error.
@@ -1255,14 +1202,10 @@ components:
       type:
         - string
         - null
-      description: >
-        Language code in [ISO
-        639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format.
+      description: |
+        Language code in [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format.
 
-
-        Optionally the script can be indicated in [ISO
-        15924](https://en.wikipedia.org/wiki/ISO_15924#List_of_codes) format.
-
+        Optionally the script can be indicated in [ISO 15924](https://en.wikipedia.org/wiki/ISO_15924#List_of_codes) format.
 
         e.g. `el` for Greek, `el-Latn` for Greek in Latin script.
     StringWithOptionalLang:
@@ -1328,10 +1271,7 @@ components:
                 description: JSON:API resource type.
               id:
                 type: string
-                description: >-
-                  JSON:API resource ID; UUID v4 is **recommended**, but any
-                  string that is unique within the realm of the Institution may
-                  be used.
+                description: JSON:API resource ID; UUID v4 is **recommended**, but any string that is unique within the realm of the Institution may be used.
                 format: uuid
               attributes:
                 type: object
@@ -1394,9 +1334,7 @@ components:
               description: JSON:API resource type.
             id:
               type: string
-              description: >-
-                JSON:API resource ID; UUID v4 is **recommended**, but any string
-                that is unique within the realm of the Institution may be used.
+              description: JSON:API resource ID; UUID v4 is **recommended**, but any string that is unique within the realm of the Institution may be used.
               format: uuid
             attributes:
               type: object
@@ -1438,18 +1376,12 @@ components:
               $ref: '#/components/schemas/LinksResource'
             ounit:
               type: object
-              description: >
-                Hypermedia link to the _Organisational Units_ collection
-                associated to this resource.
+              description: |
+                Hypermedia link to the _Organisational Units_ collection associated to this resource.
 
+                **Recommended:** separate any collections by _Organisational Unit_ in order to avoid large HTTP responses.
 
-                **Recommended:** separate any collections by _Organisational
-                Unit_ in order to avoid large HTTP responses.
-
-
-                The resource collection links for _Programmes_ and _Courses_
-                shown below can also be implemented at the _Organisational Unit_
-                level.
+                The resource collection links for _Programmes_ and _Courses_ shown below can also be implemented at the _Organisational Unit_ level.
               required:
                 - href
               properties:
@@ -1458,17 +1390,12 @@ components:
                   format: uri
             programme:
               type: object
-              description: >
-                Hypermedia link to the _Programmes_ collection associated to
-                this resource.
+              description: |
+                Hypermedia link to the _Programmes_ collection associated to this resource.
 
+                **Recommended:** separate this collection by _Organisational Unit_ in order to avoid large HTTP responses.
 
-                **Recommended:** separate this collection by _Organisational
-                Unit_ in order to avoid large HTTP responses.
-
-
-                The resource collection link for _Courses_ shown below can also
-                be implemented at the _Programme_ level.
+                The resource collection link for _Courses_ shown below can also be implemented at the _Programme_ level.
               required:
                 - href
               properties:
@@ -1477,13 +1404,10 @@ components:
                   format: uri
             course:
               type: object
-              description: >
-                _**Discouraged!**_ Hypermedia link to the _Courses_ collection
-                associated to this resource.
+              description: |
+                _**Discouraged!**_ Hypermedia link to the _Courses_ collection associated to this resource.
 
-
-                **Recommended:** separate this collection by _Programme_ or by
-                _Organisational Unit_ in order to avoid large HTTP responses.
+                **Recommended:** separate this collection by _Programme_ or by _Organisational Unit_ in order to avoid large HTTP responses.
               required:
                 - href
               properties:
@@ -1514,10 +1438,7 @@ components:
                 description: JSON:API resource type.
               id:
                 type: string
-                description: >-
-                  JSON:API resource ID; UUID v4 is **recommended**, but any
-                  string that is unique within the realm of the Institution may
-                  be used.
+                description: JSON:API resource ID; UUID v4 is **recommended**, but any string that is unique within the realm of the Institution may be used.
                 format: uuid
               attributes:
                 type: object
@@ -1582,9 +1503,7 @@ components:
               description: JSON:API resource type.
             id:
               type: string
-              description: >-
-                JSON:API resource ID; UUID v4 is **recommended**, but any string
-                that is unique within the realm of the Institution may be used.
+              description: JSON:API resource ID; UUID v4 is **recommended**, but any string that is unique within the realm of the Institution may be used.
               format: uuid
             attributes:
               type: object
@@ -1628,13 +1547,10 @@ components:
               $ref: '#/components/schemas/LinksResource'
             programme:
               type: object
-              description: >
-                Hypermedia link to the _Programmes_ collection associated to
-                this resource.
+              description: |
+                Hypermedia link to the _Programmes_ collection associated to this resource.
 
-
-                The resource collection link for _Courses_ shown below can also
-                be implemented at the _Programme_ level.
+                The resource collection link for _Courses_ shown below can also be implemented at the _Programme_ level.
               required:
                 - href
               properties:
@@ -1643,9 +1559,8 @@ components:
                   format: uri
             course:
               type: object
-              description: >
-                Hypermedia link to the _Courses_ collection associated to this
-                resource.
+              description: |
+                Hypermedia link to the _Courses_ collection associated to this resource.
               required:
                 - href
               properties:
@@ -1686,10 +1601,7 @@ components:
                 description: JSON:API resource type.
               id:
                 type: string
-                description: >-
-                  JSON:API resource ID; UUID v4 is **recommended**, but any
-                  string that is unique within the realm of the Institution may
-                  be used.
+                description: JSON:API resource ID; UUID v4 is **recommended**, but any string that is unique within the realm of the Institution may be used.
                 format: uuid
               attributes:
                 type: object
@@ -1724,15 +1636,13 @@ components:
                     type: integer
                     minimum: 5
                     maximum: 8
-                    description: >
-                      [EQF
-                      Level](https://europa.eu/europass/en/description-eight-eqf-levels)
+                    description: |
+                      [EQF Level](https://europa.eu/europass/en/description-eight-eqf-levels)
                        provided to the learner upon completing the Programme.
                   iscedCode:
                     type: string
-                    description: >
-                      [ISCED-F
-                      code](http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-fields-of-education-and-training-2013-detailed-field-descriptions-2015-en.pdf)
+                    description: |
+                      [ISCED-F code](http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-fields-of-education-and-training-2013-detailed-field-descriptions-2015-en.pdf)
                        describing the field of education of the Programme.
                   languageOfInstruction:
                     type: string
@@ -1790,9 +1700,7 @@ components:
               description: JSON:API resource type.
             id:
               type: string
-              description: >-
-                JSON:API resource ID; UUID v4 is **recommended**, but any string
-                that is unique within the realm of the Institution may be used.
+              description: JSON:API resource ID; UUID v4 is **recommended**, but any string that is unique within the realm of the Institution may be used.
               format: uuid
             attributes:
               type: object
@@ -1827,15 +1735,13 @@ components:
                   type: integer
                   minimum: 5
                   maximum: 8
-                  description: >
-                    [EQF
-                    Level](https://europa.eu/europass/en/description-eight-eqf-levels)
+                  description: |
+                    [EQF Level](https://europa.eu/europass/en/description-eight-eqf-levels)
                      provided to the learner upon completing the Programme.
                 iscedCode:
                   type: string
-                  description: >
-                    [ISCED-F
-                    code](http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-fields-of-education-and-training-2013-detailed-field-descriptions-2015-en.pdf)
+                  description: |
+                    [ISCED-F code](http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-fields-of-education-and-training-2013-detailed-field-descriptions-2015-en.pdf)
                      describing the field of education of the Programme.
                 languageOfInstruction:
                   type: string
@@ -1872,9 +1778,8 @@ components:
               $ref: '#/components/schemas/LinksResource'
             course:
               type: object
-              description: >
-                Hypermedia link to the _Courses_ collection associated to this
-                resource.
+              description: |
+                Hypermedia link to the _Courses_ collection associated to this resource.
               required:
                 - href
               properties:
@@ -1898,9 +1803,8 @@ components:
               type: integer
               minimum: 5
               maximum: 8
-              description: >
-                [EQF
-                Level](https://europa.eu/europass/en/description-eight-eqf-levels)
+              description: |
+                [EQF Level](https://europa.eu/europass/en/description-eight-eqf-levels)
                  of the Programmes to which the global rule applies.
             year:
               type: string
@@ -1957,10 +1861,7 @@ components:
                 description: JSON:API resource type.
               id:
                 type: string
-                description: >-
-                  JSON:API resource ID; UUID v4 is **recommended**, but any
-                  string that is unique within the realm of the Institution may
-                  be used.
+                description: JSON:API resource ID; UUID v4 is **recommended**, but any string that is unique within the realm of the Institution may be used.
                 format: uuid
               attributes:
                 type: object
@@ -2004,9 +1905,7 @@ components:
                     pattern: '[1-9]/[1-9]'
                   ects:
                     type: integer
-                    description: >-
-                      Number of ECTS credits provided to the learner upon
-                      completing the Course.
+                    description: Number of ECTS credits provided to the learner upon completing the Course.
                   languageOfInstruction:
                     type: string
                     description: |
@@ -2019,32 +1918,25 @@ components:
                       e.g. `pt` for Portuguese, `pt-PT` for European Portuguese.
                   iscedCode:
                     type: string
-                    description: >
-                      [ISCED-F
-                      code](http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-fields-of-education-and-training-2013-detailed-field-descriptions-2015-en.pdf)
+                    description: |
+                      [ISCED-F code](http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-fields-of-education-and-training-2013-detailed-field-descriptions-2015-en.pdf)
                        describing the field of education of the Course.
 
-                      This may be left empty **if** a value for `subjectArea` or
-                      `otherCategorization` is provided.
+                      This may be left empty **if** a value for `subjectArea` or `otherCategorization` is provided.
                   subjectArea:
                     type: string
-                    description: >
-                      Erasmus subject area code describing the field of
-                      education of the Course.
+                    description: |
+                      Erasmus subject area code describing the field of education of the Course.
                   otherCategorization:
                     type: string
-                    description: >
-                      Any other term used internally to describe the field of
-                      education of the Course.
+                    description: |
+                      Any other term used internally to describe the field of education of the Course.
                   unavailableForIncomingMobility:
                     type: boolean
-                    description: >
-                      Return `true` when the Course is not available for
-                      incoming exchange students to enroll.
+                    description: |
+                      Return `true` when the Course is not available for incoming exchange students to enroll.
 
-
-                      Unless explicitly stated, client implementations should
-                      assume this as `false`.
+                      Unless explicitly stated, client implementations should assume this as `false`.
                   url:
                     type: array
                     description: External URL with optional language code.
@@ -2088,9 +1980,7 @@ components:
               description: JSON:API resource type.
             id:
               type: string
-              description: >-
-                JSON:API resource ID; UUID v4 is **recommended**, but any string
-                that is unique within the realm of the Institution may be used.
+              description: JSON:API resource ID; UUID v4 is **recommended**, but any string that is unique within the realm of the Institution may be used.
               format: uuid
             attributes:
               type: object
@@ -2134,9 +2024,7 @@ components:
                   pattern: '[1-9]/[1-9]'
                 ects:
                   type: integer
-                  description: >-
-                    Number of ECTS credits provided to the learner upon
-                    completing the Course.
+                  description: Number of ECTS credits provided to the learner upon completing the Course.
                 languageOfInstruction:
                   type: string
                   description: |
@@ -2149,32 +2037,25 @@ components:
                     e.g. `pt` for Portuguese, `pt-PT` for European Portuguese.
                 iscedCode:
                   type: string
-                  description: >
-                    [ISCED-F
-                    code](http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-fields-of-education-and-training-2013-detailed-field-descriptions-2015-en.pdf)
+                  description: |
+                    [ISCED-F code](http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-fields-of-education-and-training-2013-detailed-field-descriptions-2015-en.pdf)
                      describing the field of education of the Course.
 
-                    This may be left empty **if** a value for `subjectArea` or
-                    `otherCategorization` is provided.
+                    This may be left empty **if** a value for `subjectArea` or `otherCategorization` is provided.
                 subjectArea:
                   type: string
-                  description: >
-                    Erasmus subject area code describing the field of education
-                    of the Course.
+                  description: |
+                    Erasmus subject area code describing the field of education of the Course.
                 otherCategorization:
                   type: string
-                  description: >
-                    Any other term used internally to describe the field of
-                    education of the Course.
+                  description: |
+                    Any other term used internally to describe the field of education of the Course.
                 unavailableForIncomingMobility:
                   type: boolean
-                  description: >
-                    Return `true` when the Course is not available for incoming
-                    exchange students to enroll.
+                  description: |
+                    Return `true` when the Course is not available for incoming exchange students to enroll.
 
-
-                    Unless explicitly stated, client implementations should
-                    assume this as `false`.
+                    Unless explicitly stated, client implementations should assume this as `false`.
                 url:
                   type: array
                   description: External URL with optional language code.
