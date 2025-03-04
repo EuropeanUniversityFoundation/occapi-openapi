@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "start": "redocly preview-docs --host=0.0.0.0",
-    "build": "redocly bundle -o openapi_occapi_v1",
+    "build": "redocly bundle openapi/openapi.yaml -o openapi_occapi_v1",
     "postbuild": "./postbuild.sh",
     "test": "redocly lint"
   }
