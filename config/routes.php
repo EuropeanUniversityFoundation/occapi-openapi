@@ -1,17 +1,24 @@
 <?php
 
 use Slim\App;
-use Slim\Views\Twig;
 
 use App\Action\Occapi\OccapiRootAction;
 use App\Action\Occapi\OccapiDefaultAction;
+use App\Action\SpecificationAction;
 
 return function (App $app) {
-    $app->get('/', function ($request, $response, $args) {
-        $view = Twig::fromRequest($request);
-        return $view->render($response, 'index.html');
-    })->setName('root');
+    // Redirect app root to specification root.
+    $app->redirect('/', '/specification', 301);
 
+    // Redirect specification root to stable version specification.
+    $stable_version = SpecificationAction::STABLE_VERSION;
+
+    $stable_specification = '/specification/' . $stable_version;
+    $app->redirect('/specification', $stable_specification, 301);
+
+    // Specification route.
+    $app->get('/specification/{version}', SpecificationAction::class)
+        ->setName('specification');
 
     // OCCAPI routes.
     $app->redirect('/occapi', '/occapi/v1', 301);
