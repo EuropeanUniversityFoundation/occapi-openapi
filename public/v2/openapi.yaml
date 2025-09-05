@@ -1191,11 +1191,21 @@ components:
         - string
         - null
       description: |
-        Language code in [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format.
+        IETF BCP 47 language tag.
 
-        Optionally the script can be indicated in [ISO 15924](https://en.wikipedia.org/wiki/ISO_15924#List_of_codes) format.
+        Language tags allow to specify languages and their variations on script, region, etc.
 
-        e.g. `el` for Greek, `el-Latn` for Greek in Latin script.
+        **Usage**
+
+        - `el` for Greek
+        - `el-Latn` for Greek in Latin script.
+        - `el-CY` for Cypriot Greek
+        - `el-Latn-CY` for Cypriot Greek in Latin script.
+
+        **References**
+
+        - [Current specification](https://www.rfc-editor.org/info/bcp47)
+        - [Language subtag registry](https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry)
     StringWithOptionalLang:
       type: object
       required:

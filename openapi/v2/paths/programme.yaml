@@ -1,0 +1,37 @@
+get:
+  tags:
+    - Programme
+  summary: GET /hei/{heiId}/programme
+  description: |
+    This endpoint lists all _Programmes_ offered by an _Institution_.
+  operationId: getProgrammes
+  parameters:
+    - name: heiId
+      in: path
+      description: The SCHAC code of the Institution.
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK
+      headers:
+        X-Rate-Limit:
+          description: calls per hour allowed by the user.
+          schema:
+            type: integer
+            format: int32
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: ../components/schemas/ProgrammeCollection.yaml
+          example:
+            $ref: ../components/responses/ProgrammeCollection.yaml
+    '404':
+      description: Endpoint not available.
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: ../components/schemas/Error.yaml
+          example:
+            $ref: ../components/responses/EndpointNotAvailable.yaml

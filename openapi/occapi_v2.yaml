@@ -37,34 +37,34 @@ servers:
     description: Sandbox server (example data)
 paths:
   /:
-    $ref: paths/root.yaml
+    $ref: v2/paths/root.yaml
   # Institution & Organisational Unit endpoints.
   /hei:
-    $ref: paths/hei.yaml
+    $ref: v2/paths/hei.yaml
   '/hei/{heiId}':
-    $ref: 'paths/hei@{heiId}.yaml'
+    $ref: 'v2/paths/hei@{heiId}.yaml'
   '/hei/{heiId}/ounit':
-    $ref: 'paths/ounit.yaml'
+    $ref: 'v2/paths/ounit.yaml'
   '/hei/{heiId}/ounit/{id}':
-    $ref: 'paths/ounit@{id}.yaml'
+    $ref: 'v2/paths/ounit@{id}.yaml'
   # Programme endpoints.
   '/hei/{heiId}/programme':
-    $ref: 'paths/programme.yaml'
+    $ref: 'v2/paths/programme.yaml'
   '/hei/{heiId}/ounit/{id}/programme':
-    $ref: 'paths/ounit@{id}-programme.yaml'
+    $ref: 'v2/paths/ounit@{id}-programme.yaml'
   '/hei/{heiId}/programme/{id}':
-    $ref: 'paths/programme@{id}.yaml'
+    $ref: 'v2/paths/programme@{id}.yaml'
   # Course endpoints.
   '/hei/{heiId}/course':
-    $ref: 'paths/course.yaml'
+    $ref: 'v2/paths/course.yaml'
   '/hei/{heiId}/ounit/{id}/course':
-    $ref: 'paths/ounit@{id}-course.yaml'
+    $ref: 'v2/paths/ounit@{id}-course.yaml'
   '/hei/{heiId}/programme/{id}/course':
-    $ref: 'paths/programme@{id}-course.yaml'
+    $ref: 'v2/paths/programme@{id}-course.yaml'
   '/hei/{heiId}/course/{id}':
-    $ref: 'paths/course@{id}.yaml'
+    $ref: 'v2/paths/course@{id}.yaml'
   # Exanples
   # '/path':
-  #   $ref: 'paths/path-item.yaml'
+  #   $ref: 'v2/paths/path-item.yaml'
   # '/path/example':
-  #   $ref: 'paths/path-item-with-examples.yaml'
+  #   $ref: 'v2/paths/path-item-with-examples.yaml'

@@ -1,0 +1,42 @@
+type:
+  type: string
+  description: JSON:API resource type.
+id:
+  type: string
+  description: JSON:API resource ID; UUID v4 is **recommended**,
+   but any string that is unique within the realm of the Institution may be used.
+  format: uuid
+attributes:
+  type: object
+  description: JSON:API _attributes_ object.
+  required:
+    - title
+    - ounitId
+  properties:
+    title:
+      type: array
+      description: Title with optional language code.
+      items:
+        $ref: ./StringWithOptionalLang.yaml
+    abbreviation:
+      type: string
+      description: Most widely recognized abbreviation.
+    ounitId:
+      type: string
+      description: Unique identifier within the Institution. Can be a UUID.
+    ounitCode:
+      type: string
+      description: Human readable code identifying the Organisational Unit.
+    url:
+      type: array
+      description: External URL with optional language code.
+      items:
+        $ref: ./HttpWithOptionalLang.yaml
+links:
+  type: object
+  description: JSON:API _links_ object.
+  required:
+    - self
+  properties:
+    self:
+      $ref: ./LinksResource.yaml

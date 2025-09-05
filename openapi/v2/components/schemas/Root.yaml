@@ -1,0 +1,27 @@
+type: object
+description: Available endpoints and metadata.
+required:
+  - links
+properties:
+  jsonapi:
+    $ref: ./Jsonapi.yaml
+  meta:
+    type: object
+    description: Optional metadata.
+  links:
+    type: object
+    description: JSON:API _links_ object.
+    required:
+      - hei
+    properties:
+      self:
+        $ref: ./LinksSelf.yaml
+      hei:
+        type: object
+        description: Hypermedia link to the [Institution collection](#tag/Institution).
+        required:
+          - href
+        properties:
+          href:
+            type: string
+            format: uri

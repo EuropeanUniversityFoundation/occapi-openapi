@@ -1,0 +1,8 @@
+type: object
+description: Hypermedia link to the current path.
+required:
+  - href
+properties:
+  href:
+    type: string
+    format: uri

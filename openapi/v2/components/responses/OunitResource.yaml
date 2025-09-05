@@ -1,0 +1,29 @@
+jsonapi:
+  version: "1.0"
+  meta:
+    links:
+      self:
+        href: "http://jsonapi.org/format/1.0/"
+data:
+  type: ounit
+  id: 11223344-5566-7788-9900-aabbccddeeff
+  attributes:
+    title:
+      - string: Example Organisational Unit
+        lang: en
+    abbreviation: EOU
+    ounitId: 11223344-5566-7788-9900-aabbccddeeff
+    ounitCode: EI-EOU
+    url:
+      - uri: www.domain.tld/eou
+        lang: en
+  links:
+    self:
+      href: 'http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff'
+links:
+  self:
+    href: 'http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff'
+  programme:
+    href: 'http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/programme'
+  course:
+    href: 'http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/course'
