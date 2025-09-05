@@ -1,0 +1,37 @@
+type: array
+description: |
+  **Learning opportunity type** as defined in the European Learning Model (ELM).
+
+  _Note_: limited to the items in the controlled vocabulary that may apply
+    to Courses.
+
+  **Usage**
+
+  - `63f9f6180c` represents	_Apprenticeship_;
+  - `c_170b037d` represents	_Challenge_;
+  - `7e1ac538db` represents	_Class_;
+  - `05053c1cbe` represents	_Course_;
+  - `77b99de990` represents	_Internship_;
+  - `17744a2647` represents	_MOOC_;
+  - `11252a5207` represents	_Mentoring_;
+  - `8b965da2d4` represents	_Service learning_;
+  - `65a4cf5de2` represents	_Study visit_;
+  - `b2434ca358` represents	_Thesis_.
+
+  **References**
+
+  [Learning opportunity type - EU Vocabularies](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/learning-opportunity/25831c2)
+items:
+  type: string
+  enum: [
+    '63f9f6180c',
+    'c_170b037d',
+    '7e1ac538db',
+    '05053c1cbe',
+    '77b99de990',
+    '17744a2647',
+    '11252a5207',
+    '8b965da2d4',
+    '65a4cf5de2',
+    'b2434ca358'
+  ]

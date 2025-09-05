@@ -1,0 +1,21 @@
+type: array
+description: |
+  Indicates a local (national or other) classification system for fields
+    of study, followed by the applicable value (or code) in that system.
+
+  Multiple values are allowed in order to support multidisplinary
+    Courses.
+items:
+  type: object
+  required:
+    - classificationSystem
+    - classificationValue
+  properties:
+    classificationSystem:
+      type: string
+      description: 'Classification system'
+      minLength: 1
+    classificationValue:
+      type: string
+      description: 'Classification value'
+      minLength: 1

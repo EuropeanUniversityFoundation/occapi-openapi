@@ -1,0 +1,50 @@
+type: array
+description: |
+  **Assessment type** as defined in the European Learning Model (ELM).
+
+  **Usage**
+
+  - `de4d165a6c` represents _artefact assessment_;
+  - `3484bd7e51` represents _continuous evaluation_;
+  - `56539a6507` represents _group performance_;
+  - `c_4f874951` represents _Guided self-assessment_;
+  - `7331eb4762` represents _level of attendance_;
+  - `2939dae15f` represents _marked assignment_;
+  - `d30284d7df` represents _oral examination_;
+  - `19a2e5e671` represents _peer assessment_;
+  - `812e3b0ae1` represents _peer review_;
+  - `812e3b0ae1` represents _peer review_;
+  - `4f03b91c0e` represents _portfolio_;
+  - `6a4db9f11d` represents _practical assessment_;
+  - `c_04b30a72` represents _Presentation_;
+  - `c4256a2726` represents _problem based learning_;
+  - `795dac4096` represents _project work_;
+  - `b1b68f6735` represents _quiz_;
+  - `c_2b3bd410` represents _Self-assessment_;
+  - `6e6cb2cc78` represents _written examination_.
+
+  **References**
+
+  [Assessment type - EU Vocabularies](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/assessment/25831c2)
+items:
+  type: string
+  enum: [
+    'de4d165a6c',
+    '3484bd7e51',
+    '56539a6507',
+    'c_4f874951',
+    '7331eb4762',
+    '2939dae15f',
+    'd30284d7df',
+    '19a2e5e671',
+    '812e3b0ae1',
+    '812e3b0ae1',
+    '4f03b91c0e',
+    '6a4db9f11d',
+    'c_04b30a72',
+    'c4256a2726',
+    '795dac4096',
+    'b1b68f6735',
+    'c_2b3bd410',
+    '6e6cb2cc78'
+  ]

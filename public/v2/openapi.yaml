@@ -2083,6 +2083,168 @@ components:
           properties:
             self:
               $ref: '#/components/schemas/LinksResource'
+    ElmAssessmentType:
+      type: array
+      description: |
+        **Assessment type** as defined in the European Learning Model (ELM).
+
+        **Usage**
+
+        - `de4d165a6c` represents _artefact assessment_;
+        - `3484bd7e51` represents _continuous evaluation_;
+        - `56539a6507` represents _group performance_;
+        - `c_4f874951` represents _Guided self-assessment_;
+        - `7331eb4762` represents _level of attendance_;
+        - `2939dae15f` represents _marked assignment_;
+        - `d30284d7df` represents _oral examination_;
+        - `19a2e5e671` represents _peer assessment_;
+        - `812e3b0ae1` represents _peer review_;
+        - `812e3b0ae1` represents _peer review_;
+        - `4f03b91c0e` represents _portfolio_;
+        - `6a4db9f11d` represents _practical assessment_;
+        - `c_04b30a72` represents _Presentation_;
+        - `c4256a2726` represents _problem based learning_;
+        - `795dac4096` represents _project work_;
+        - `b1b68f6735` represents _quiz_;
+        - `c_2b3bd410` represents _Self-assessment_;
+        - `6e6cb2cc78` represents _written examination_.
+
+        **References**
+
+        [Assessment type - EU Vocabularies](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/assessment/25831c2)
+      items:
+        type: string
+        enum:
+          - de4d165a6c
+          - 3484bd7e51
+          - 56539a6507
+          - c_4f874951
+          - 7331eb4762
+          - 2939dae15f
+          - d30284d7df
+          - 19a2e5e671
+          - 812e3b0ae1
+          - 812e3b0ae1
+          - 4f03b91c0e
+          - 6a4db9f11d
+          - c_04b30a72
+          - c4256a2726
+          - 795dac4096
+          - b1b68f6735
+          - c_2b3bd410
+          - 6e6cb2cc78
+    ElmLearningActivityType:
+      type: array
+      description: |
+        **Learning activity type** as defined in the European Learning Model (ELM).
+
+        **Usage**
+
+        - `d46a826a39` represents _apprenticeship_;
+        - `ff436ea7c9` represents _classroom coursework_;
+        - `bf2e3a7bae` represents _e-learning coursework_;
+        - `fd33e234ae` represents _educational programme_;
+        - `bf5588ff84` represents _internship_;
+        - `4357e0e681` represents _job experience_;
+        - `3c8bd58d62` represents _lab / simulation / practice coursework_;
+        - `c_5665a0ad` represents _mentoring and monitoring activity_;
+        - `a7e556215a` represents _research_;
+        - `b660f5dcea` represents _self-motivated study_;
+        - `59eaf34fab` represents _volunteering_;
+        - `efff75e10a` represents _workshop, seminar or conference_.
+
+        **References**
+
+        [Learning activity type - EU Vocabularies](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/learning-activity/25831c2)
+      items:
+        type: string
+        enum:
+          - d46a826a39
+          - ff436ea7c9
+          - bf2e3a7bae
+          - fd33e234ae
+          - bf5588ff84
+          - 4357e0e681
+          - 3c8bd58d62
+          - c_5665a0ad
+          - a7e556215a
+          - b660f5dcea
+          - 59eaf34fab
+          - efff75e10a
+    ElmLearningOpportunityTypeCourse:
+      type: array
+      description: "**Learning opportunity type** as defined in the European Learning Model (ELM).\n\n_Note_: limited to the items in the controlled vocabulary that may apply\n  to Courses.\n\n**Usage**\n\n- `63f9f6180c` represents\t_Apprenticeship_;\n- `c_170b037d` represents\t_Challenge_;\n- `7e1ac538db` represents\t_Class_;\n- `05053c1cbe` represents\t_Course_;\n- `77b99de990` represents\t_Internship_;\n- `17744a2647` represents\t_MOOC_;\n- `11252a5207` represents\t_Mentoring_;\n- `8b965da2d4` represents\t_Service learning_;\n- `65a4cf5de2` represents\t_Study visit_;\n- `b2434ca358` represents\t_Thesis_.\n\n**References**\n\n[Learning opportunity type - EU Vocabularies](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/learning-opportunity/25831c2)\n"
+      items:
+        type: string
+        enum:
+          - 63f9f6180c
+          - c_170b037d
+          - 7e1ac538db
+          - 05053c1cbe
+          - 77b99de990
+          - 17744a2647
+          - 11252a5207
+          - 8b965da2d4
+          - 65a4cf5de2
+          - b2434ca358
+    ElmModeOfLearningAndAssessment:
+      type: array
+      description: "**Mode of learning and assessment** as defined in the European Learning\n  Model (ELM).\n\n**Usage**\n\n- `e92d221e4d` represents\t_Blended_\n- `c_3a90b26d` represents\t_Hybrid_\n- `920fbb3cbe` represents\t_Online_\n- `9191af2ed9` represents\t_Presential_\n- `7813801c77` represents\t_Project based_\n- `ed4c557045` represents\t_Research-Lab based_\n- `729f3bed4b` represents\t_Workbased_\n\n**References**\n\n[Mode of learning and assessment - EU Vocabularies](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/learning-assessment/25831c2)\n"
+      items:
+        type: string
+        enum:
+          - e92d221e4d
+          - c_3a90b26d
+          - 920fbb3cbe
+          - 9191af2ed9
+          - 7813801c77
+          - ed4c557045
+          - 729f3bed4b
+    LanguageOfInstruction:
+      type: array
+      minItems: 1
+      description: |
+        IETF BCP 47 language tag.
+
+        Language tags allow to specify languages and their variations on script,
+          region, etc.
+
+        **Usage**
+
+        - `el` for Greek
+        - `el-Latn` for Greek in Latin script.
+        - `el-CY` for Cypriot Greek
+        - `el-Latn-CY` for Cypriot Greek in Latin script.
+
+        **References**
+
+        - [Current specification](https://www.rfc-editor.org/info/bcp47)
+        - [Language subtag registry](https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry)
+      items:
+        type: string
+        minLength: 2
+    LocalClassification:
+      type: array
+      description: |
+        Indicates a local (national or other) classification system for fields
+          of study, followed by the applicable value (or code) in that system.
+
+        Multiple values are allowed in order to support multidisplinary
+          Courses.
+      items:
+        type: object
+        required:
+          - classificationSystem
+          - classificationValue
+        properties:
+          classificationSystem:
+            type: string
+            description: Classification system
+            minLength: 1
+          classificationValue:
+            type: string
+            description: Classification value
+            minLength: 1
     CourseMeta:
       type: object
       description: |
@@ -2156,84 +2318,101 @@ components:
               type:
                 type: string
                 description: JSON:API resource type.
+                enum:
+                  - course
               id:
                 type: string
-                description: JSON:API resource ID; UUID v4 is **recommended**, but any string that is unique within the realm of the Institution may be used.
-                format: uuid
+                description: JSON:API resource ID; UUID v4 is **recommended**, but any value that is unique within the realm of the Institution may be used.
               attributes:
                 type: object
                 description: JSON:API _attributes_ object.
                 required:
                   - title
                   - code
-                  - description
-                  - learningOutcomes
-                  - academicTerm
                   - ects
-                  - languageOfInstruction
-                  - iscedCode
                 properties:
                   title:
                     type: array
+                    minItems: 1
                     description: Title with optional language code.
                     items:
                       $ref: '#/components/schemas/StringWithOptionalLang'
                   code:
                     type: string
+                    minItems: 1
                     description: Human readable code identifying the Course.
-                  description:
-                    type: array
-                    description: Description with optional language code.
-                    items:
-                      $ref: '#/components/schemas/MultilineStringWithOptionalLang'
-                  learningOutcomes:
-                    type: array
-                    description: Learning outcomes with optional language code.
-                    items:
-                      $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                  ects:
+                    type: integer
+                    minimum: 0
+                    description: |
+                      Number of ECTS credits awarded to the learner upon completing the
+                        Course.
                   academicTerm:
-                    type: string
+                    type: array
                     description: |
                       Academic term in which the Course is delivered.
 
-                      e.g. `1/2` for first semester,
-                       `2/2` for second semester,
-                       `1/1` for the full academic year.
-                    pattern: '[1-9]/[1-9]'
-                  ects:
-                    type: integer
-                    description: Number of ECTS credits provided to the learner upon completing the Course.
-                  languageOfInstruction:
-                    type: string
-                    description: |
-                      Language code in
-                       [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format.
+                      Multiple values are allowed in order to support Courses delivered in
+                        in more than one academic term throughout an academic year.
 
-                      Optionally the country locale can be indicated in
-                       [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+                      **Usage**
 
-                      e.g. `pt` for Portuguese, `pt-PT` for European Portuguese.
+                      - `1/2` indicates first (1) semester (1/2);
+                      - `2/3` indicates second (2) trimester (1/3);
+                      - `1/1` indicates full academic year.
+                    items:
+                      type: string
+                      pattern: ^[1-9]\/[1/9]$
+                  description:
+                    type: array
+                    minItems: 1
+                    description: Description with optional language code.
+                    items:
+                      $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                  elmAssessmentType:
+                    $ref: '#/components/schemas/ElmAssessmentType'
+                  elmLearningActivityType:
+                    $ref: '#/components/schemas/ElmLearningActivityType'
+                  elmLearningOpportunityType:
+                    $ref: '#/components/schemas/ElmLearningOpportunityTypeCourse'
+                  elmModeOfLearning:
+                    $ref: '#/components/schemas/ElmModeOfLearningAndAssessment'
                   iscedCode:
-                    type: string
+                    type: array
                     description: |
-                      [ISCED-F code](http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-fields-of-education-and-training-2013-detailed-field-descriptions-2015-en.pdf)
-                       describing the field of education of the Course.
+                      ISCED-F code describing the field of education of the Course.
 
-                      This may be left empty **if** a value for `subjectArea` or `otherCategorization` is provided.
-                  subjectArea:
-                    type: string
-                    description: |
-                      Erasmus subject area code describing the field of education of the Course.
-                  otherCategorization:
-                    type: string
-                    description: |
-                      Any other term used internally to describe the field of education of the Course.
-                  unavailableForIncomingMobility:
+                      Multiple values are allowed in order to support multidisplinary
+                        Courses.
+
+                      **References**
+
+                      [Fields of education and training 2013](http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-fields-of-education-and-training-2013-detailed-field-descriptions-2015-en.pdf)
+                        (PDF)
+                    items:
+                      type: string
+                      minLength: 2
+                      maxLength: 4
+                  languageOfInstruction:
+                    $ref: '#/components/schemas/LanguageOfInstruction'
+                  learningOutcomes:
+                    type: array
+                    minItems: 1
+                    description: Learning outcomes with optional language code.
+                    items:
+                      $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                  localClassification:
+                    $ref: '#/components/schemas/LocalClassification'
+                  restrictedToLocalStudents:
                     type: boolean
                     description: |
-                      Return `true` when the Course is not available for incoming exchange students to enroll.
-
-                      Unless explicitly stated, client implementations should assume this as `false`.
+                      Return `true` when enrollment in the Course is restricted to students
+                        enrolled at this Institution.
+                  restrictedToAllianceStudents:
+                    type: boolean
+                    description: |
+                      Return `true` when enrollment in the Course is restricted to students
+                        enrolled at a partner Institution in the same University Alliance.
                   url:
                     type: array
                     description: External URL with optional language code.
@@ -2285,74 +2464,90 @@ components:
               required:
                 - title
                 - code
-                - description
-                - learningOutcomes
-                - academicTerm
                 - ects
-                - languageOfInstruction
-                - iscedCode
               properties:
                 title:
                   type: array
+                  minItems: 1
                   description: Title with optional language code.
                   items:
                     $ref: '#/components/schemas/StringWithOptionalLang'
                 code:
                   type: string
+                  minItems: 1
                   description: Human readable code identifying the Course.
-                description:
-                  type: array
-                  description: Description with optional language code.
-                  items:
-                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
-                learningOutcomes:
-                  type: array
-                  description: Learning outcomes with optional language code.
-                  items:
-                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                ects:
+                  type: integer
+                  minimum: 0
+                  description: |
+                    Number of ECTS credits awarded to the learner upon completing the
+                      Course.
                 academicTerm:
-                  type: string
+                  type: array
                   description: |
                     Academic term in which the Course is delivered.
 
-                    e.g. `1/2` for first semester,
-                     `2/2` for second semester,
-                     `1/1` for the full academic year.
-                  pattern: '[1-9]/[1-9]'
-                ects:
-                  type: integer
-                  description: Number of ECTS credits provided to the learner upon completing the Course.
-                languageOfInstruction:
-                  type: string
-                  description: |
-                    Language code in
-                     [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format.
+                    Multiple values are allowed in order to support Courses delivered in
+                      in more than one academic term throughout an academic year.
 
-                    Optionally the country locale can be indicated in
-                     [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+                    **Usage**
 
-                    e.g. `pt` for Portuguese, `pt-PT` for European Portuguese.
+                    - `1/2` indicates first (1) semester (1/2);
+                    - `2/3` indicates second (2) trimester (1/3);
+                    - `1/1` indicates full academic year.
+                  items:
+                    type: string
+                    pattern: ^[1-9]\/[1/9]$
+                description:
+                  type: array
+                  minItems: 1
+                  description: Description with optional language code.
+                  items:
+                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                elmAssessmentType:
+                  $ref: '#/components/schemas/ElmAssessmentType'
+                elmLearningActivityType:
+                  $ref: '#/components/schemas/ElmLearningActivityType'
+                elmLearningOpportunityType:
+                  $ref: '#/components/schemas/ElmLearningOpportunityTypeCourse'
+                elmModeOfLearning:
+                  $ref: '#/components/schemas/ElmModeOfLearningAndAssessment'
                 iscedCode:
-                  type: string
+                  type: array
                   description: |
-                    [ISCED-F code](http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-fields-of-education-and-training-2013-detailed-field-descriptions-2015-en.pdf)
-                     describing the field of education of the Course.
+                    ISCED-F code describing the field of education of the Course.
 
-                    This may be left empty **if** a value for `subjectArea` or `otherCategorization` is provided.
-                subjectArea:
-                  type: string
-                  description: |
-                    Erasmus subject area code describing the field of education of the Course.
-                otherCategorization:
-                  type: string
-                  description: |
-                    Any other term used internally to describe the field of education of the Course.
-                unavailableForIncomingMobility:
+                    Multiple values are allowed in order to support multidisplinary
+                      Courses.
+
+                    **References**
+
+                    [Fields of education and training 2013](http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-fields-of-education-and-training-2013-detailed-field-descriptions-2015-en.pdf)
+                      (PDF)
+                  items:
+                    type: string
+                    minLength: 2
+                    maxLength: 4
+                languageOfInstruction:
+                  $ref: '#/components/schemas/LanguageOfInstruction'
+                learningOutcomes:
+                  type: array
+                  minItems: 1
+                  description: Learning outcomes with optional language code.
+                  items:
+                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                localClassification:
+                  $ref: '#/components/schemas/LocalClassification'
+                restrictedToLocalStudents:
                   type: boolean
                   description: |
-                    Return `true` when the Course is not available for incoming exchange students to enroll.
-
-                    Unless explicitly stated, client implementations should assume this as `false`.
+                    Return `true` when enrollment in the Course is restricted to students
+                     enrolled at this Institution.
+                restrictedToAllianceStudents:
+                  type: boolean
+                  description: |
+                    Return `true` when enrollment in the Course is restricted to students
+                     enrolled at a partner Institution in the same University Alliance.
                 url:
                   type: array
                   description: External URL with optional language code.
@@ -2380,12 +2575,18 @@ components:
                     $ref: '#/components/schemas/MultilineStringWithOptionalLang'
                 teachingMethod:
                   type: array
-                  description: Teaching method with optional language code.
+                  description: |
+                    Teaching method with optional language code.
+
+                    **Note:** It is preferable to use `elmLearningActivityType` instead.
                   items:
                     $ref: '#/components/schemas/MultilineStringWithOptionalLang'
                 assessmentMethod:
                   type: array
-                  description: Assessment method with optional language code.
+                  description: |
+                    Assessment method with optional language code.
+
+                    **Note:** It is preferable to use `elmAssessmentType` instead.
                   items:
                     $ref: '#/components/schemas/MultilineStringWithOptionalLang'
             meta:
