@@ -162,7 +162,7 @@ services:
 #    labels:
 #    - "traefik.http.services.${PROJECT_NAME}_solr.loadbalancer.server.port=8983"
 #    - "traefik.http.routers.${PROJECT_NAME}_solr.rule=Host(`solr.${PROJECT_BASE_URL}`)"
-  
+
 #  opensearch:
 #    image: opensearchproject/opensearch:$OPENSEARCH_TAG
 #    environment:
@@ -193,18 +193,24 @@ services:
 #    image: gotenberg/gotenberg
 #    container_name: "${PROJECT_NAME}_gotenberg"
 
-#  node:
-#    image: wodby/node:$NODE_TAG
-#    container_name: "${PROJECT_NAME}_node"
-#    working_dir: /app
-#    labels:
-#    - "traefik.http.services.${PROJECT_NAME}_node.loadbalancer.server.port=3000"
-#    - "traefik.http.routers.${PROJECT_NAME}_node.rule=Host(`node.${PROJECT_BASE_URL}`)"
-#    expose:
-#    - "3000"
-#    volumes:
-#    - ./path/to/your/single-page-app:/app
-#    command: sh -c 'npm install && npm run start'
+  node:
+    image: wodby/node:$NODE_TAG
+    container_name: "${PROJECT_NAME}_node"
+    working_dir: /var/www/html
+    labels:
+    - "traefik.http.services.${PROJECT_NAME}_node.loadbalancer.server.port=${NODE_PORT}"
+    - "traefik.http.routers.${PROJECT_NAME}_node.rule=Host(`node.${PROJECT_BASE_URL}`)"
+    expose:
+    - "${NODE_PORT}"
+    environment:
+      - SLIM_BASE_URL=${PROJECT_BASE_URL}:${HTTP_PORT}
+      - PROD_BASE_URL=${PROD_BASE_URL}
+      - BUILD_PROD=${BUILD_PROD}
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "${NODE_PORT}:8080"
+    command: sh -c "tail -f /dev/null"
 
 #  webgrind:
 #    image: wodby/webgrind:$WEBGRIND_TAG

@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   version: 1.0.0-beta5
-  title: Open Course Catalogue API
+  title: Open Course Catalogue API specification
   termsOfService: ''
   contact:
     email: api.support@uni-foundation.eu

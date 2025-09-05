@@ -8,10 +8,9 @@ apis:
     output: ./public/v2/openapi.yaml
 rules:
   no-unused-components: warn
-theme:
-  openapi:
-    htmlTemplate: ./docs/index.html
-    theme:
-      colors:
-        primary:
-          main: "#32329f"
+openapi:
+  htmlTemplate: ./docs/index.html
+  theme:
+    colors:
+      primary:
+        main: "#32329f"
