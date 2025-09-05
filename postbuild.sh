@@ -10,7 +10,7 @@ DEV_URL="http://"${PROJECT_BASE_URL}":"${HTTP_PORT}
 SPEC_FILE="./public/openapi_occapi_v1.yaml"
 
 echo -e ${BUILD_PROD}
-
+exit 0
 if [ ${BUILD_PROD} = true ]; then
   echo -e "Replacing URLs in public files with production URL..."
   find ./data/v1 -name index.json -exec sed -i -e "s,${DEV_URL},${PROD_URL},g" {} \;

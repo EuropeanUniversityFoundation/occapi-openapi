@@ -15,6 +15,28 @@
         margin: 0;
         padding: 0;
       }
+      #messages {
+        margin: 0;
+        padding: 0.25rem;
+        text-align: center;
+        font-family: sans-serif;
+        background-color: #32329f;
+        color: #fff;
+      }
+      #messages a {
+        margin: 0.25rem;
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.5rem;
+        color: #fff;
+        text-decoration: none;
+      }
+      .stable {
+        background-color: green;
+      }
+      .latest {
+        background-color: darkred;
+      }
     </style>
     <!-- Matomo -->
     <script>
@@ -33,7 +55,18 @@
     <!-- End Matomo Code -->
   </head>
   <body>
-    <redoc spec-url="./openapi_occapi_v1.yaml"></redoc>
+  {% if has_stable or has_latest %}
+    <div id="messages">Switch to &nbsp;
+    {%- if has_stable -%}
+      <a href="./{{ has_stable }}" class="stable">{{ has_stable }} (stable)</a>
+    {%- endif -%}
+    {% if has_stable and has_latest %} or {% endif %}
+    {%- if has_latest -%}
+      <a href="./{{ has_latest }}" class="latest">{{ has_latest }} (latest)</a>
+    {%- endif -%}
+    </div>
+  {% endif %}
+    <redoc spec-url="../{{ version }}/openapi.yaml"></redoc>
     <script src="https://cdn.jsdelivr.net/npm/redoc@latest/bundles/redoc.standalone.js"> </script>
   </body>
 </html>

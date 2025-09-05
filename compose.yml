@@ -1,5 +1,3 @@
-version: "3.7"
-
 services:
   # mariadb:
   #   image: wodby/mariadb:$MARIADB_TAG
@@ -30,25 +28,29 @@ services:
     image: wodby/php:$PHP_TAG
     container_name: "${PROJECT_NAME}_php"
     environment:
-      SSMTP_MAILHUB: mailhog:1025
-#      SSMTP_MAILHUB: opensmtpd:25
-      PHP_SENDMAIL_PATH: '"/usr/bin/dos2unix -u | /usr/sbin/ssmtp -t -f"'
-      # DB_HOST: $DB_HOST
-      # DB_USER: $DB_USER
-      # DB_PASSWORD: $DB_PASSWORD
-      # DB_NAME: $DB_NAME
+      # By default xdebug extension also disabled.
+      PHP_EXTENSIONS_DISABLE: xhprof,spx
+      PHP_MAIL_MIXED_LF_AND_CRLF: 'On'
+      # Mailpit:
+      MSMTP_HOST: mailpit
+      MSMTP_PORT: 1025
+#      # OpenSMTPD:
+#      MSMTP_HOST: opensmtpd
+#      MSMTP_PORT: 25
+      DB_HOST: $DB_HOST
+      DB_USER: $DB_USER
+      DB_PASSWORD: $DB_PASSWORD
+      DB_NAME: $DB_NAME
       PHP_FPM_USER: wodby
       PHP_FPM_GROUP: wodby
 ## Read instructions at https://wodby.com/docs/stacks/php/local/#xdebug
-#      PHP_XDEBUG: 1
 #      PHP_XDEBUG_MODE: debug
 #      PHP_XDEBUG_MODE: profile
 #      PHP_XDEBUG_USE_COMPRESSION: false
 #      PHP_IDE_CONFIG: serverName=my-ide
 #      PHP_XDEBUG_IDEKEY: "my-ide"
-#      PHP_XDEBUG_CLIENT_HOST: 172.17.0.1 # Linux
-#      PHP_XDEBUG_CLIENT_HOST: host.docker.internal # Docker 18.03+ Mac/Win
-#      PHP_XDEBUG_CLIENT_HOST: 10.0.75.1 # Windows
+    extra_hosts:
+    - "host.docker.internal:host-gateway"
     volumes:
     - ./:/var/www/html:cached
 ## Alternative for macOS users: Mutagen https://wodby.com/docs/stacks/php/local#docker-for-mac
@@ -91,21 +93,24 @@ services:
 #    labels:
 #    - "traefik.http.routers.${PROJECT_NAME}_apache.rule=Host(`${PROJECT_BASE_URL}`)"
 
-  mailhog:
-    image: mailhog/mailhog
-    container_name: "${PROJECT_NAME}_mailhog"
+  mailpit:
+    image: axllent/mailpit
+    container_name: "${PROJECT_NAME}_mailpit"
     labels:
-    - "traefik.http.services.${PROJECT_NAME}_mailhog.loadbalancer.server.port=8025"
-    - "traefik.http.routers.${PROJECT_NAME}_mailhog.rule=Host(`mailhog.${PROJECT_BASE_URL}`)"
+    - "traefik.http.services.${PROJECT_NAME}_mailpit.loadbalancer.server.port=8025"
+    - "traefik.http.routers.${PROJECT_NAME}_mailpit.rule=Host(`mailpit.${PROJECT_BASE_URL}`)"
 
 #  crond:
 #    image: wodby/php:$PHP_TAG
 #    container_name: "${PROJECT_NAME}_crond"
+#    init: true
 #    environment:
 #      CRONTAB: "0 * * * * echo 'cron test'"
 #    command: sudo crond -f -d 0
 #    volumes:
 #    - ./:/var/www/html:cached
+### Alternative for macOS users: Mutagen https://wodby.com/docs/stacks/php/local#docker-for-mac
+##    - backend:/var/www/html
 
 #  varnish:
 #    image: wodby/varnish:$VARNISH_TAG
@@ -121,13 +126,14 @@ services:
 #    - "traefik.http.services.${PROJECT_NAME}_varnish.loadbalancer.server.port=6081"
 #    - "traefik.http.routers.${PROJECT_NAME}_varnish.rule=Host(`varnish.${PROJECT_BASE_URL}`)"
 
-#  redis:
-#    container_name: "${PROJECT_NAME}_redis"
-#    image: wodby/redis:$REDIS_TAG
+#  valkey:
+#    container_name: "${PROJECT_NAME}_valkey"
+#    image: wodby/valkey:$VALKEY_TAG
 
 #  adminer:
 #    container_name: "${PROJECT_NAME}_adminer"
 #    image: wodby/adminer:$ADMINER_TAG
+#    init: true
 #    environment:
 ##      # For PostgreSQL:
 ##      ADMINER_DEFAULT_DB_DRIVER: pgsql
@@ -157,22 +163,23 @@ services:
 #    - "traefik.http.services.${PROJECT_NAME}_solr.loadbalancer.server.port=8983"
 #    - "traefik.http.routers.${PROJECT_NAME}_solr.rule=Host(`solr.${PROJECT_BASE_URL}`)"
 
-#  elasticsearch:
-#    image: wodby/elasticsearch:$ELASTICSEARCH_TAG
+#  opensearch:
+#    image: opensearchproject/opensearch:$OPENSEARCH_TAG
 #    environment:
-#      ES_JAVA_OPTS: "-Xms500m -Xmx500m"
-#    ulimits:
-#      memlock:
-#        soft: -1
-#        hard: -1
-
-#  kibana:
-#    image: wodby/kibana:$KIBANA_TAG
+#      "discovery.type": "single-node"
+#      "plugins.security.disabled": true
+#      OPENSEARCH_INITIAL_ADMIN_PASSWORD: $OPENSEARCH_ADMIN_PASSWORD
+#
+#  opensearch-dashboards:
+#    image: opensearchproject/opensearch-dashboards:$OPENSEARCH_TAG
+#    environment:
+#      OPENSEARCH_HOSTS: '["http://opensearch:9200"]'
+#      DISABLE_SECURITY_DASHBOARDS_PLUGIN: true
 #    depends_on:
-#    - elasticsearch
+#    - opensearch
 #    labels:
-#    - "traefik.http.services.${PROJECT_NAME}_kibana.loadbalancer.server.port=5601"
-#    - "traefik.http.routers.${PROJECT_NAME}_kibana.rule=Host(`kibana.${PROJECT_BASE_URL}`)"
+#    - "traefik.http.services.${PROJECT_NAME}_opensearch.loadbalancer.server.port=5601"
+#    - "traefik.http.routers.${PROJECT_NAME}_opensearch.rule=Host(`opensearch.${PROJECT_BASE_URL}`)"
 
 #  memcached:
 #    container_name: "${PROJECT_NAME}_memcached"
@@ -182,22 +189,19 @@ services:
 #    container_name: "${PROJECT_NAME}_rsyslog"
 #    image: wodby/rsyslog:$RSYSLOG_TAG
 
-#  athenapdf:
-#    image: arachnysdocker/athenapdf-service:$ATHENAPDF_TAG
-#    container_name: "${PROJECT_NAME}_athenapdf"
-#    environment:
-#      WEAVER_AUTH_KEY: weaver-auth-key
-#      WEAVER_ATHENA_CMD: "athenapdf -S"
-#      WEAVER_MAX_WORKERS: 10
-#      WEAVER_MAX_CONVERSION_QUEUE: 50
-#      WEAVER_WORKER_TIMEOUT: 90
-#      WEAVER_CONVERSION_FALLBACK: "false"
+#  gotenberg:
+#    image: gotenberg/gotenberg
+#    container_name: "${PROJECT_NAME}_gotenberg"
 
   node:
-    image: node:${NODE_TAG}
+    image: wodby/node:$NODE_TAG
     container_name: "${PROJECT_NAME}_node"
-    user: "node"
     working_dir: /var/www/html
+    labels:
+    - "traefik.http.services.${PROJECT_NAME}_node.loadbalancer.server.port=${NODE_PORT}"
+    - "traefik.http.routers.${PROJECT_NAME}_node.rule=Host(`node.${PROJECT_BASE_URL}`)"
+    expose:
+    - "${NODE_PORT}"
     environment:
       - SLIM_BASE_URL=${PROJECT_BASE_URL}:${HTTP_PORT}
       - PROD_BASE_URL=${PROD_BASE_URL}

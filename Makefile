@@ -11,8 +11,8 @@ help : docker.mk
 ## up	:	Start up containers.
 up:
 	@echo "Starting up containers for for $(PROJECT_NAME)..."
-	docker-compose pull
-	docker-compose up -d --remove-orphans
+	docker compose pull
+	docker compose up -d --remove-orphans
 	@echo "Find the site at http://$(PROJECT_BASE_URL):$(HTTP_PORT)"
 
 mutagen:
@@ -24,13 +24,13 @@ down: stop
 ## start	:	Start containers without updating.
 start:
 	@echo "Starting containers for $(PROJECT_NAME) from where you left off..."
-	@docker-compose start
+	@docker compose start
 	@echo "Find the site at http://$(PROJECT_BASE_URL):$(HTTP_PORT)"
 
 ## stop	:	Stop containers.
 stop:
 	@echo "Stopping containers for $(PROJECT_NAME)..."
-	@docker-compose stop
+	@docker compose stop
 
 ## prune	:	Remove containers and their volumes.
 ##		You can optionally pass an argument with the service name to prune single container
@@ -38,7 +38,7 @@ stop:
 ##		prune mariadb solr	: Prune `mariadb` and `solr` containers and remove their volumes.
 prune:
 	@echo "Removing containers for $(PROJECT_NAME)..."
-	@docker-compose down -v $(filter-out $@,$(MAKECMDGOALS))
+	@docker compose down -v $(filter-out $@,$(MAKECMDGOALS))
 
 ## ps	:	List running containers.
 ps:
@@ -54,7 +54,7 @@ shell:
 ##		logs php	: View `php` container logs.
 ##		logs nginx php	: View `nginx` and `php` containers logs.
 logs:
-	@docker-compose logs -f $(filter-out $@,$(MAKECMDGOALS))
+	@docker compose logs -f $(filter-out $@,$(MAKECMDGOALS))
 
 # https://stackoverflow.com/a/6273809/1826109
 %:

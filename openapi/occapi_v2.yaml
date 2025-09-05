@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  version: 1.0.0-beta5
-  title: Open Course Catalogue API specification
+  version: 2.0.0-dev
+  title: Open Course Catalogue API
   termsOfService: ''
   contact:
     email: api.support@uni-foundation.eu
@@ -12,7 +12,7 @@ info:
   x-logo:
     url: 'https://uni-foundation.eu/wp-content/uploads/2019/04/EUF-1.png'
   description:
-    $ref: ./info-description.md
+    $ref: ./v2/info-description.md
 # externalDocs:
 #   description: Find out how to create a GitHub repo for your OpenAPI definition.
 #   url: 'https://github.com/Rebilly/generator-openapi-repo'
@@ -33,7 +33,7 @@ tags:
        about the relation between each Course and all or specific Programmes.
   # - name: Tag
 servers:
-  - url: '/occapi/v1'
+  - url: '/occapi/v2'
     description: Sandbox server (example data)
 paths:
   /:

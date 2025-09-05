@@ -1,0 +1,16 @@
+# See https://redoc.ly/docs/cli/configuration/ for more information.
+apis:
+  occapi@v1:
+    root: ./openapi/occapi_v1.yaml
+    output: ./public/v1/openapi.yaml
+  occapi@v2:
+    root: ./openapi/occapi_v2.yaml
+    output: ./public/v2/openapi.yaml
+rules:
+  no-unused-components: warn
+openapi:
+  htmlTemplate: ./docs/index.html
+  theme:
+    colors:
+      primary:
+        main: "#32329f"

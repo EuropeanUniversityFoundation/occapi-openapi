@@ -2,13 +2,25 @@
   "name": "acme-api",
   "version": "1.0.0",
   "dependencies": {
-    "@redocly/cli": "^1.4.0"
+    "@redocly/cli": "^2.0.8",
+    "npm-watch": "^0.13.0"
   },
   "private": true,
+  "watch": {
+    "build": {
+      "patterns": [
+        "openapi"
+      ],
+      "extensions": "yaml,md",
+      "quiet": true,
+      "legacyWatch": true
+    }
+  },
   "scripts": {
-    "start": "redocly preview-docs --host=0.0.0.0",
-    "build": "redocly bundle openapi/openapi.yaml -o openapi_occapi_v1",
+    "start": "npm-watch",
+    "build": "redocly bundle",
     "postbuild": "./postbuild.sh",
-    "test": "redocly lint"
+    "test": "redocly lint",
+    "watch": "npm-watch"
   }
 }
