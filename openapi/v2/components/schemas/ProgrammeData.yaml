@@ -59,6 +59,83 @@ attributes:
       description: Description with optional language code.
       items:
         $ref: ./MultilineStringWithOptionalLang.yaml
+    elmLearningOpportunityType:
+      type: array
+      description: |
+        **Learning opportunity type** as defined in the European Learning Model
+         (ELM).
+
+        _Note_: limited to the items in the controlled vocabulary that may apply
+         to Programmes.
+
+        **Usage**
+
+        - `79343569f3` represents _Educational programme_
+        - `0f7dac46ca` represents _Programme module_
+        - `74a4a268e8` represents _Short learning programme_
+
+        **References**
+
+        [Learning opportunity type - EU Vocabularies](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/learning-opportunity/25831c2)
+      items:
+        type: string
+        enum: [
+          '79343569f3',
+          '0f7dac46ca',
+          '74a4a268e8'
+        ]
+    elmLearningScheduleType:
+      type: array
+      description: |
+        **Learning schedule type** as defined in the European Learning Model
+         (ELM).
+
+        **Usage**
+
+        - `72a0ab92fa` represents _Full time_
+        - `f230bae523` represents _Part time intensive_
+        - `67395e6b5a` represents _Part time light_
+
+        **References**
+
+        [Learning schedule type - EU Vocabularies](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/learning-schedule/25831c2)
+      items:
+        type: string
+        enum: [
+          '72a0ab92fa',
+          'f230bae523',
+          '67395e6b5a'
+        ]
+    elmModeOfLearning:
+      type: array
+      description: |
+        **Mode of learning and assessment** as defined in the European Learning
+         Model (ELM).
+
+        **Usage**
+
+        - `e92d221e4d` represents	_Blended_
+        - `c_3a90b26d` represents	_Hybrid_
+        - `920fbb3cbe` represents	_Online_
+        - `9191af2ed9` represents	_Presential_
+        - `7813801c77` represents	_Project based_
+        - `ed4c557045` represents	_Research-Lab based_
+        - `729f3bed4b` represents	_Workbased_
+
+        **References**
+
+        [Mode of learning and assessment - EU Vocabularies](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/learning-assessment/25831c2)
+      items:
+        type: string
+        enum: [
+          'e92d221e4d',
+          'c_3a90b26d',
+          '920fbb3cbe',
+          '9191af2ed9',
+          '7813801c77',
+          'ed4c557045',
+          '729f3bed4b'
+        ]
     iscedCode:
       type: array
       minItems: 1
