@@ -5,6 +5,6 @@ properties:
   uri:
     type: string
     format: uri
-    description: Value
+    description: URL
   lang:
     $ref: ./Lang.yaml

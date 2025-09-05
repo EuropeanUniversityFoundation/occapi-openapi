@@ -1,4 +1,0 @@
-type: array
-description: Description with optional language code.
-items:
-  $ref: ./MultilineLang.yaml

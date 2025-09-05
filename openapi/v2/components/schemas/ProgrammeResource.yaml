@@ -24,13 +24,3 @@ properties:
     properties:
       self:
         $ref: ./LinksResource.yaml
-      course:
-        type: object
-        description: |
-          Hypermedia link to the _Courses_ collection associated to this resource.
-        required:
-          - href
-        properties:
-          href:
-            type: string
-            format: uri

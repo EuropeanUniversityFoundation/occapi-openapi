@@ -4,6 +4,7 @@ required:
 properties:
   string:
     type: string
-    description: Value
+    minLength: 1
+    description: Text value.
   lang:
     $ref: ./Lang.yaml

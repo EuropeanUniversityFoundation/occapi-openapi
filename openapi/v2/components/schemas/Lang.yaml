@@ -1,6 +1,7 @@
 type:
   - string
   - null
+minLength: 2
 description: |
   IETF BCP 47 language tag.
 
