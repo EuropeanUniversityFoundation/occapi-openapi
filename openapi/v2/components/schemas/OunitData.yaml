@@ -19,12 +19,15 @@ attributes:
       description: Title with optional language code.
       items:
         $ref: ./StringWithOptionalLang.yaml
-    abbreviation:
-      type: string
-      description: Most widely recognized abbreviation.
     ounitId:
       type: string
       description: Unique identifier within the Institution. Can be a UUID.
+    abbreviation:
+      type: array
+      description: Most widely recognized abbbreviation with optional language
+       code.
+      items:
+        $ref: ./StringWithOptionalLang.yaml
     ounitCode:
       type: string
       description: Human readable code identifying the Organisational Unit.
