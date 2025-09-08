@@ -13,15 +13,13 @@ properties:
       required:
         - type
         - id
-        - links
         - attributes
+        - links
       properties:
         $ref: ./InstitutionData.yaml
   links:
     type: object
     description: JSON:API _links_ object.
-    # required:
-    #   - self
     properties:
       self:
         $ref: ./LinksCollection.yaml

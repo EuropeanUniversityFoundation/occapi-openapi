@@ -31,4 +31,4 @@ properties:
                 description: |
                   JSON:API version supported by the server.
 
-                  http://jsonapi.org/format/1.0/
+                  http://jsonapi.org/format/1.1/

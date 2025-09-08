@@ -1,6 +1,7 @@
 type:
   type: string
   description: JSON:API resource type.
+  enum: ['hei']
 id:
   type: string
   description: JSON:API resource ID; **must match** `heiId`.
@@ -38,7 +39,7 @@ attributes:
       type: string
       format: date-time
       description: |
-        Timestamp of the latest change to this resource, formatted as
+        Time of latest change to this resource, formatted as
         [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
 links:
   type: object
@@ -48,3 +49,9 @@ links:
   properties:
     self:
       $ref: ./LinksResource.yaml
+    ounit:
+      $ref: ./LinksOunitCollection.yaml
+    programme:
+      $ref: ./LinksProgrammeCollection.yaml
+    course:
+      $ref: ./LinksCourseCollection.yaml

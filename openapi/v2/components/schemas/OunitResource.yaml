@@ -2,7 +2,6 @@ type: object
 description: JSON:API _Organisational Unit_ resource.
 required:
   - data
-  - links
 properties:
   jsonapi:
     $ref: ./Jsonapi.yaml
@@ -12,37 +11,13 @@ properties:
     required:
       - type
       - id
-      - links
       - attributes
+      - links
     properties:
       $ref: ./OunitData.yaml
   links:
     type: object
     description: JSON:API _links_ object.
-    # required:
-    #   - self
     properties:
       self:
         $ref: ./LinksResource.yaml
-      programme:
-        type: object
-        description: |
-          Hypermedia link to the _Programmes_ collection associated to this resource.
-
-          The resource collection link for _Courses_ shown below can also be implemented at the _Programme_ level.
-        required:
-          - href
-        properties:
-          href:
-            type: string
-            format: uri
-      course:
-        type: object
-        description: |
-          Hypermedia link to the _Courses_ collection associated to this resource.
-        required:
-          - href
-        properties:
-          href:
-            type: string
-            format: uri

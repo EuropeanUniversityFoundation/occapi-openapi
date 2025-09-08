@@ -1,6 +1,6 @@
 type: object
 description: |
-  Hypermedia link to the _Course_ collection associated with this resource.
+  Hypermedia link to the _Institution_ collection covered with this server.
 required:
   - href
 properties:

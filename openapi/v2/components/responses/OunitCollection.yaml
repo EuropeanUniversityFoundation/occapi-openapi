@@ -1,9 +1,9 @@
 jsonapi:
-  version: "1.0"
+  version: "1.1"
   meta:
     links:
       self:
-        href: "http://jsonapi.org/format/1.0/"
+        href: "http://jsonapi.org/format/1.1/"
 data:
   - type: ounit
     id: 11223344-5566-7788-9900-aabbccddeeff

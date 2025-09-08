@@ -1,8 +1,8 @@
 get:
   tags:
-    - API provider
+    - API server
   summary: GET /
-  description: Get primary Hypermedia links and optional metadata about the provider.
+  description: Get server information and primary Hypermedia links.
   operationId: getRoot
   responses:
     '200':

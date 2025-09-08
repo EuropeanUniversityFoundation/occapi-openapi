@@ -1,6 +1,7 @@
 type: object
 description: |
-  Hypermedia link to the _Course_ collection associated with this resource.
+  Hypermedia link to the _Organizational Unit_ collection associated with this
+   resource.
 required:
   - href
 properties:

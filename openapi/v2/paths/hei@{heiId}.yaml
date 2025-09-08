@@ -4,7 +4,7 @@ get:
   summary: GET /hei/{heiId}
   description: |
     This endpoint exposes some basic information about an Institution covered by
-     the provider, which should be sufficient to satisfy basic UX/UI needs of
+     the server, which should be sufficient to satisfy basic UX/UI needs of
      app developers.
 
     In order to obtain more detailed and up to date information about an

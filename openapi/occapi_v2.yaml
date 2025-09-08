@@ -17,10 +17,10 @@ info:
 #   description: Find out how to create a GitHub repo for your OpenAPI definition.
 #   url: 'https://github.com/Rebilly/generator-openapi-repo'
 tags:
-  - name: API provider
-    description: Information about the provider.
+  - name: API server
+    description: Information about the server.
   - name: Institution
-    description: Information about the Institutions covered by the provider.
+    description: Information about the Institutions covered by the server.
   - name: Organisational Unit
     description: Information about Organisational Units in an Institution.
   - name: Programme
@@ -63,8 +63,3 @@ paths:
     $ref: 'v2/paths/programme@{id}-course.yaml'
   '/hei/{heiId}/course/{id}':
     $ref: 'v2/paths/course@{id}.yaml'
-  # Exanples
-  # '/path':
-  #   $ref: 'v2/paths/path-item.yaml'
-  # '/path/example':
-  #   $ref: 'v2/paths/path-item-with-examples.yaml'

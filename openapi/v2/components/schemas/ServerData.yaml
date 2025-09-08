@@ -1,0 +1,45 @@
+type: object
+description: Information about the API server.
+required:
+  - type
+  - id
+  - attributes
+  - links
+properties:
+  type:
+    type: string
+    description: JSON:API resource type.
+    enum: ['server']
+  id:
+    type: string
+    description: UUID v4
+    format: uuid
+  attributes:
+    type: object
+    description: JSON:API _attributes_ object.
+    required:
+      - serverName
+    properties:
+      serverName:
+        type: array
+        minItems: 1
+        description: Server name with optional language code.
+        items:
+          $ref: ./StringWithOptionalLang.yaml
+      termsOfService:
+        type: array
+        minItems: 1
+        description: URL for Terms of service with optional language code.
+        items:
+          $ref: ./HttpWithOptionalLang.yaml
+  links:
+    type: object
+    description: JSON:API _links_ object.
+    required:
+      - self
+      - hei
+    properties:
+      self:
+        $ref: ./LinksResource.yaml
+      hei:
+        $ref: ./LinksInstitutionCollection.yaml

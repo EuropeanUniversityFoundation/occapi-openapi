@@ -1,9 +1,9 @@
 jsonapi:
-  version: "1.0"
+  version: "1.1"
   meta:
     links:
       self:
-        href: "http://jsonapi.org/format/1.0/"
+        href: "http://jsonapi.org/format/1.1/"
 errors:
   - status: "404"
     title: Resource not found.

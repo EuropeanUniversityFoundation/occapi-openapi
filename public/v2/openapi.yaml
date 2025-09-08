@@ -16,10 +16,10 @@ servers:
   - url: /occapi/v2
     description: Sandbox server (example data)
 tags:
-  - name: API provider
-    description: Information about the provider.
+  - name: API server
+    description: Information about the server.
   - name: Institution
-    description: Information about the Institutions covered by the provider.
+    description: Information about the Institutions covered by the server.
   - name: Organisational Unit
     description: Information about Organisational Units in an Institution.
   - name: Programme
@@ -34,9 +34,9 @@ paths:
   /:
     get:
       tags:
-        - API provider
+        - API server
       summary: GET /
-      description: Get primary Hypermedia links and optional metadata about the provider.
+      description: Get server information and primary Hypermedia links.
       operationId: getRoot
       responses:
         '200':
@@ -53,11 +53,11 @@ paths:
                 $ref: '#/components/schemas/Root'
               example:
                 jsonapi:
-                  version: '1.0'
+                  version: '1.1'
                   meta:
                     links:
                       self:
-                        href: http://jsonapi.org/format/1.0/
+                        href: http://jsonapi.org/format/1.1/
                 meta: {}
                 links:
                   self:
@@ -72,11 +72,11 @@ paths:
                 $ref: '#/components/schemas/Error'
               example:
                 jsonapi:
-                  version: '1.0'
+                  version: '1.1'
                   meta:
                     links:
                       self:
-                        href: http://jsonapi.org/format/1.0/
+                        href: http://jsonapi.org/format/1.1/
                 errors:
                   - status: '404'
                     title: Endpoint not available.
@@ -86,7 +86,7 @@ paths:
         - Institution
       summary: GET /hei
       description: |
-        This endpoint lists all _Institutions_ covered by this provider.
+        This endpoint lists all _Institutions_ covered by this server.
 
         In order to obtain more detailed and up to date information about an
          Institution, it is **recommended** that client implementations use the
@@ -108,11 +108,11 @@ paths:
                 $ref: '#/components/schemas/InstitutionCollection'
               example:
                 jsonapi:
-                  version: '1.0'
+                  version: '1.1'
                   meta:
                     links:
                       self:
-                        href: http://jsonapi.org/format/1.0/
+                        href: http://jsonapi.org/format/1.1/
                 data:
                   - type: hei
                     id: 12345678-90ab-cdef-1234-567890abcdef
@@ -139,11 +139,11 @@ paths:
                 $ref: '#/components/schemas/Error'
               example:
                 jsonapi:
-                  version: '1.0'
+                  version: '1.1'
                   meta:
                     links:
                       self:
-                        href: http://jsonapi.org/format/1.0/
+                        href: http://jsonapi.org/format/1.1/
                 errors:
                   - status: '404'
                     title: Endpoint not available.
@@ -154,7 +154,7 @@ paths:
       summary: GET /hei/{heiId}
       description: |
         This endpoint exposes some basic information about an Institution covered by
-         the provider, which should be sufficient to satisfy basic UX/UI needs of
+         the server, which should be sufficient to satisfy basic UX/UI needs of
          app developers.
 
         In order to obtain more detailed and up to date information about an
@@ -184,11 +184,11 @@ paths:
                 $ref: '#/components/schemas/InstitutionResource'
               example:
                 jsonapi:
-                  version: '1.0'
+                  version: '1.1'
                   meta:
                     links:
                       self:
-                        href: http://jsonapi.org/format/1.0/
+                        href: http://jsonapi.org/format/1.1/
                 data:
                   type: hei
                   id: 12345678-90ab-cdef-1234-567890abcdef
@@ -221,11 +221,11 @@ paths:
                 $ref: '#/components/schemas/Error'
               example:
                 jsonapi:
-                  version: '1.0'
+                  version: '1.1'
                   meta:
                     links:
                       self:
-                        href: http://jsonapi.org/format/1.0/
+                        href: http://jsonapi.org/format/1.1/
                 errors:
                   - status: '404'
                     title: Resource not found.
@@ -262,11 +262,11 @@ paths:
                 $ref: '#/components/schemas/OunitCollection'
               example:
                 jsonapi:
-                  version: '1.0'
+                  version: '1.1'
                   meta:
                     links:
                       self:
-                        href: http://jsonapi.org/format/1.0/
+                        href: http://jsonapi.org/format/1.1/
                 data:
                   - type: ounit
                     id: 11223344-5566-7788-9900-aabbccddeeff
@@ -294,11 +294,11 @@ paths:
                 $ref: '#/components/schemas/Error'
               example:
                 jsonapi:
-                  version: '1.0'
+                  version: '1.1'
                   meta:
                     links:
                       self:
-                        href: http://jsonapi.org/format/1.0/
+                        href: http://jsonapi.org/format/1.1/
                 errors:
                   - status: '404'
                     title: Endpoint not available.
@@ -343,11 +343,11 @@ paths:
                 $ref: '#/components/schemas/OunitResource'
               example:
                 jsonapi:
-                  version: '1.0'
+                  version: '1.1'
                   meta:
                     links:
                       self:
-                        href: http://jsonapi.org/format/1.0/
+                        href: http://jsonapi.org/format/1.1/
                 data:
                   type: ounit
                   id: 11223344-5566-7788-9900-aabbccddeeff
@@ -379,11 +379,11 @@ paths:
                 $ref: '#/components/schemas/Error'
               example:
                 jsonapi:
-                  version: '1.0'
+                  version: '1.1'
                   meta:
                     links:
                       self:
-                        href: http://jsonapi.org/format/1.0/
+                        href: http://jsonapi.org/format/1.1/
                 errors:
                   - status: '404'
                     title: Resource not found.
@@ -417,11 +417,11 @@ paths:
                 $ref: '#/components/schemas/ProgrammeCollection'
               example:
                 jsonapi:
-                  version: '1.0'
+                  version: '1.1'
                   meta:
                     links:
                       self:
-                        href: http://jsonapi.org/format/1.0/
+                        href: http://jsonapi.org/format/1.1/
                 data:
                   - type: programme
                     id: abcdef12-3456-7890-abcd-ef1234567890
@@ -458,11 +458,11 @@ paths:
                 $ref: '#/components/schemas/Error'
               example:
                 jsonapi:
-                  version: '1.0'
+                  version: '1.1'
                   meta:
                     links:
                       self:
-                        href: http://jsonapi.org/format/1.0/
+                        href: http://jsonapi.org/format/1.1/
                 errors:
                   - status: '404'
                     title: Endpoint not available.
@@ -503,11 +503,11 @@ paths:
                 $ref: '#/components/schemas/ProgrammeCollection'
               example:
                 jsonapi:
-                  version: '1.0'
+                  version: '1.1'
                   meta:
                     links:
                       self:
-                        href: http://jsonapi.org/format/1.0/
+                        href: http://jsonapi.org/format/1.1/
                 data:
                   - type: programme
                     id: abcdef12-3456-7890-abcd-ef1234567890
@@ -544,11 +544,11 @@ paths:
                 $ref: '#/components/schemas/Error'
               example:
                 jsonapi:
-                  version: '1.0'
+                  version: '1.1'
                   meta:
                     links:
                       self:
-                        href: http://jsonapi.org/format/1.0/
+                        href: http://jsonapi.org/format/1.1/
                 errors:
                   - status: '404'
                     title: Endpoint not available.
@@ -590,11 +590,11 @@ paths:
                 $ref: '#/components/schemas/ProgrammeResource'
               example:
                 jsonapi:
-                  version: '1.0'
+                  version: '1.1'
                   meta:
                     links:
                       self:
-                        href: http://jsonapi.org/format/1.0/
+                        href: http://jsonapi.org/format/1.1/
                 data:
                   type: programme
                   id: abcdef12-3456-7890-abcd-ef1234567890
@@ -633,11 +633,11 @@ paths:
                 $ref: '#/components/schemas/Error'
               example:
                 jsonapi:
-                  version: '1.0'
+                  version: '1.1'
                   meta:
                     links:
                       self:
-                        href: http://jsonapi.org/format/1.0/
+                        href: http://jsonapi.org/format/1.1/
                 errors:
                   - status: '404'
                     title: Resource not found.
@@ -671,11 +671,11 @@ paths:
                 $ref: '#/components/schemas/CourseCollection'
               example:
                 jsonapi:
-                  version: '1.0'
+                  version: '1.1'
                   meta:
                     links:
                       self:
-                        href: http://jsonapi.org/format/1.0/
+                        href: http://jsonapi.org/format/1.1/
                 data:
                   - type: course
                     id: aabbccdd-eeff-1122-3344-556677889900
@@ -728,11 +728,11 @@ paths:
                 $ref: '#/components/schemas/Error'
               example:
                 jsonapi:
-                  version: '1.0'
+                  version: '1.1'
                   meta:
                     links:
                       self:
-                        href: http://jsonapi.org/format/1.0/
+                        href: http://jsonapi.org/format/1.1/
                 errors:
                   - status: '404'
                     title: Endpoint not available.
@@ -773,11 +773,11 @@ paths:
                 $ref: '#/components/schemas/CourseCollection'
               example:
                 jsonapi:
-                  version: '1.0'
+                  version: '1.1'
                   meta:
                     links:
                       self:
-                        href: http://jsonapi.org/format/1.0/
+                        href: http://jsonapi.org/format/1.1/
                 data:
                   - type: course
                     id: aabbccdd-eeff-1122-3344-556677889900
@@ -829,11 +829,11 @@ paths:
                 $ref: '#/components/schemas/Error'
               example:
                 jsonapi:
-                  version: '1.0'
+                  version: '1.1'
                   meta:
                     links:
                       self:
-                        href: http://jsonapi.org/format/1.0/
+                        href: http://jsonapi.org/format/1.1/
                 errors:
                   - status: '404'
                     title: Endpoint not available.
@@ -874,11 +874,11 @@ paths:
                 $ref: '#/components/schemas/CourseCollection'
               example:
                 jsonapi:
-                  version: '1.0'
+                  version: '1.1'
                   meta:
                     links:
                       self:
-                        href: http://jsonapi.org/format/1.0/
+                        href: http://jsonapi.org/format/1.1/
                 data:
                   - type: course
                     id: aabbccdd-eeff-1122-3344-556677889900
@@ -930,11 +930,11 @@ paths:
                 $ref: '#/components/schemas/Error'
               example:
                 jsonapi:
-                  version: '1.0'
+                  version: '1.1'
                   meta:
                     links:
                       self:
-                        href: http://jsonapi.org/format/1.0/
+                        href: http://jsonapi.org/format/1.1/
                 errors:
                   - status: '404'
                     title: Endpoint not available.
@@ -978,11 +978,11 @@ paths:
                 $ref: '#/components/schemas/CourseResource'
               example:
                 jsonapi:
-                  version: '1.0'
+                  version: '1.1'
                   meta:
                     links:
                       self:
-                        href: http://jsonapi.org/format/1.0/
+                        href: http://jsonapi.org/format/1.1/
                 data:
                   type: course
                   id: aabbccdd-eeff-1122-3344-556677889900
@@ -1071,11 +1071,11 @@ paths:
                 $ref: '#/components/schemas/Error'
               example:
                 jsonapi:
-                  version: '1.0'
+                  version: '1.1'
                   meta:
                     links:
                       self:
-                        href: http://jsonapi.org/format/1.0/
+                        href: http://jsonapi.org/format/1.1/
                 errors:
                   - status: '404'
                     title: Resource not found.
@@ -1115,77 +1115,7 @@ components:
                       description: |
                         JSON:API version supported by the server.
 
-                        http://jsonapi.org/format/1.0/
-    LinksSelf:
-      type: object
-      description: Hypermedia link to the current path.
-      required:
-        - href
-      properties:
-        href:
-          type: string
-          format: uri
-    Root:
-      type: object
-      description: Available endpoints and metadata.
-      required:
-        - links
-      properties:
-        jsonapi:
-          $ref: '#/components/schemas/Jsonapi'
-        meta:
-          type: object
-          description: Optional metadata.
-        links:
-          type: object
-          description: JSON:API _links_ object.
-          required:
-            - hei
-          properties:
-            self:
-              $ref: '#/components/schemas/LinksSelf'
-            hei:
-              type: object
-              description: Hypermedia link to the [Institution collection](#tag/Institution).
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: uri
-    Error:
-      type: object
-      description: JSON:API `errors` object.
-      required:
-        - errors
-      properties:
-        jsonapi:
-          $ref: '#/components/schemas/Jsonapi'
-        errors:
-          type: array
-          description: List of errors.
-          items:
-            type: object
-            description: JSON:API `error` object.
-            properties:
-              status:
-                type: string
-                description: The HTTP status code applicable to this problem.
-              title:
-                type: string
-                description: Human-readable summary of the problem.
-              source:
-                type: object
-                description: |
-                  An object containing references to the source of the error.
-                properties:
-                  pointer:
-                    type: string
-                    description: |
-                      A JSON Pointer to the associated entity in the request document.
-                  parameter:
-                    type: string
-                    description: Which URI query parameter caused the error.
+                        http://jsonapi.org/format/1.1/
     Lang:
       type:
         - string
@@ -1238,6 +1168,155 @@ components:
         href:
           type: string
           format: uri
+    LinksInstitutionCollection:
+      type: object
+      description: |
+        Hypermedia link to the _Institution_ collection covered with this server.
+      required:
+        - href
+      properties:
+        href:
+          type: string
+          format: uri
+    ServerData:
+      type: object
+      description: Information about the API server.
+      required:
+        - type
+        - id
+        - attributes
+        - links
+      properties:
+        type:
+          type: string
+          description: JSON:API resource type.
+          enum:
+            - server
+        id:
+          type: string
+          description: UUID v4
+          format: uuid
+        attributes:
+          type: object
+          description: JSON:API _attributes_ object.
+          required:
+            - serverName
+          properties:
+            serverName:
+              type: array
+              minItems: 1
+              description: Server name with optional language code.
+              items:
+                $ref: '#/components/schemas/StringWithOptionalLang'
+            termsOfService:
+              type: array
+              minItems: 1
+              description: URL for Terms of service with optional language code.
+              items:
+                $ref: '#/components/schemas/HttpWithOptionalLang'
+        links:
+          type: object
+          description: JSON:API _links_ object.
+          required:
+            - self
+            - hei
+          properties:
+            self:
+              $ref: '#/components/schemas/LinksResource'
+            hei:
+              $ref: '#/components/schemas/LinksInstitutionCollection'
+    LinksSelf:
+      type: object
+      description: Hypermedia link to the current path.
+      required:
+        - href
+      properties:
+        href:
+          type: string
+          format: uri
+    Root:
+      type: object
+      description: Available endpoints and metadata.
+      required:
+        - data
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/Jsonapi'
+        data:
+          $ref: '#/components/schemas/ServerData'
+        meta:
+          type: object
+          description: Optional metadata.
+        links:
+          type: object
+          description: JSON:API _links_ object.
+          properties:
+            self:
+              $ref: '#/components/schemas/LinksSelf'
+    Error:
+      type: object
+      description: JSON:API `errors` object.
+      required:
+        - errors
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/Jsonapi'
+        errors:
+          type: array
+          description: List of errors.
+          items:
+            type: object
+            description: JSON:API `error` object.
+            properties:
+              status:
+                type: string
+                description: The HTTP status code applicable to this problem.
+              title:
+                type: string
+                description: Human-readable summary of the problem.
+              source:
+                type: object
+                description: |
+                  An object containing references to the source of the error.
+                properties:
+                  pointer:
+                    type: string
+                    description: |
+                      A JSON Pointer to the associated entity in the request document.
+                  parameter:
+                    type: string
+                    description: Which URI query parameter caused the error.
+    LinksOunitCollection:
+      type: object
+      description: |
+        Hypermedia link to the _Organizational Unit_ collection associated with this
+         resource.
+      required:
+        - href
+      properties:
+        href:
+          type: string
+          format: uri
+    LinksProgrammeCollection:
+      type: object
+      description: |
+        Hypermedia link to the _Programme_ collection associated with this resource.
+      required:
+        - href
+      properties:
+        href:
+          type: string
+          format: uri
+    LinksCourseCollection:
+      type: object
+      description: |
+        Hypermedia link to the _Course_ collection associated with this resource.
+      required:
+        - href
+      properties:
+        href:
+          type: string
+          format: uri
     LinksCollection:
       type: object
       description: Hypermedia link to this resource collection.
@@ -1263,12 +1342,14 @@ components:
             required:
               - type
               - id
-              - links
               - attributes
+              - links
             properties:
               type:
                 type: string
                 description: JSON:API resource type.
+                enum:
+                  - hei
               id:
                 type: string
                 description: JSON:API resource ID; **must match** `heiId`.
@@ -1305,7 +1386,7 @@ components:
                     type: string
                     format: date-time
                     description: |
-                      Timestamp of the latest change to this resource, formatted as
+                      Time of latest change to this resource, formatted as
                       [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
               links:
                 type: object
@@ -1315,6 +1396,12 @@ components:
                 properties:
                   self:
                     $ref: '#/components/schemas/LinksResource'
+                  ounit:
+                    $ref: '#/components/schemas/LinksOunitCollection'
+                  programme:
+                    $ref: '#/components/schemas/LinksProgrammeCollection'
+                  course:
+                    $ref: '#/components/schemas/LinksCourseCollection'
         links:
           type: object
           description: JSON:API _links_ object.
@@ -1326,7 +1413,6 @@ components:
       description: JSON:API _Institution_ resource.
       required:
         - data
-        - links
       properties:
         jsonapi:
           $ref: '#/components/schemas/Jsonapi'
@@ -1336,12 +1422,14 @@ components:
           required:
             - type
             - id
-            - links
             - attributes
+            - links
           properties:
             type:
               type: string
               description: JSON:API resource type.
+              enum:
+                - hei
             id:
               type: string
               description: JSON:API resource ID; **must match** `heiId`.
@@ -1378,7 +1466,7 @@ components:
                   type: string
                   format: date-time
                   description: |
-                    Timestamp of the latest change to this resource, formatted as
+                    Time of latest change to this resource, formatted as
                     [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
             links:
               type: object
@@ -1388,52 +1476,18 @@ components:
               properties:
                 self:
                   $ref: '#/components/schemas/LinksResource'
+                ounit:
+                  $ref: '#/components/schemas/LinksOunitCollection'
+                programme:
+                  $ref: '#/components/schemas/LinksProgrammeCollection'
+                course:
+                  $ref: '#/components/schemas/LinksCourseCollection'
         links:
           type: object
           description: JSON:API _links_ object.
           properties:
             self:
               $ref: '#/components/schemas/LinksResource'
-            ounit:
-              type: object
-              description: |
-                Hypermedia link to the _Organisational Units_ collection associated to this resource.
-
-                **Recommended:** separate any collections by _Organisational Unit_ in order to avoid large HTTP responses.
-
-                The resource collection links for _Programmes_ and _Courses_ shown below can also be implemented at the _Organisational Unit_ level.
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: uri
-            programme:
-              type: object
-              description: |
-                Hypermedia link to the _Programmes_ collection associated to this resource.
-
-                **Recommended:** separate this collection by _Organisational Unit_ in order to avoid large HTTP responses.
-
-                The resource collection link for _Courses_ shown below can also be implemented at the _Programme_ level.
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: uri
-            course:
-              type: object
-              description: |
-                _**Discouraged!**_ Hypermedia link to the _Courses_ collection associated to this resource.
-
-                **Recommended:** separate this collection by _Programme_ or by _Organisational Unit_ in order to avoid large HTTP responses.
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: uri
     OunitCollection:
       type: object
       description: JSON:API collection of _Organisational Unit_ resources.
@@ -1450,12 +1504,14 @@ components:
             required:
               - type
               - id
-              - links
               - attributes
+              - links
             properties:
               type:
                 type: string
                 description: JSON:API resource type.
+                enum:
+                  - ounit
               id:
                 type: string
                 description: JSON:API resource ID; UUID v4 is **recommended**, but any string that is unique within the realm of the Institution may be used.
@@ -1493,7 +1549,7 @@ components:
                     type: string
                     format: date-time
                     description: |
-                      Timestamp of the latest change to this resource, formatted as
+                      Time of latest change to this resource, formatted as
                       [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
               links:
                 type: object
@@ -1503,6 +1559,10 @@ components:
                 properties:
                   self:
                     $ref: '#/components/schemas/LinksResource'
+                  programme:
+                    $ref: '#/components/schemas/LinksProgrammeCollection'
+                  course:
+                    $ref: '#/components/schemas/LinksCourseCollection'
         links:
           type: object
           description: JSON:API _links_ object.
@@ -1514,7 +1574,6 @@ components:
       description: JSON:API _Organisational Unit_ resource.
       required:
         - data
-        - links
       properties:
         jsonapi:
           $ref: '#/components/schemas/Jsonapi'
@@ -1524,12 +1583,14 @@ components:
           required:
             - type
             - id
-            - links
             - attributes
+            - links
           properties:
             type:
               type: string
               description: JSON:API resource type.
+              enum:
+                - ounit
             id:
               type: string
               description: JSON:API resource ID; UUID v4 is **recommended**, but any string that is unique within the realm of the Institution may be used.
@@ -1567,7 +1628,7 @@ components:
                   type: string
                   format: date-time
                   description: |
-                    Timestamp of the latest change to this resource, formatted as
+                    Time of latest change to this resource, formatted as
                     [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
             links:
               type: object
@@ -1577,34 +1638,16 @@ components:
               properties:
                 self:
                   $ref: '#/components/schemas/LinksResource'
+                programme:
+                  $ref: '#/components/schemas/LinksProgrammeCollection'
+                course:
+                  $ref: '#/components/schemas/LinksCourseCollection'
         links:
           type: object
           description: JSON:API _links_ object.
           properties:
             self:
               $ref: '#/components/schemas/LinksResource'
-            programme:
-              type: object
-              description: |
-                Hypermedia link to the _Programmes_ collection associated to this resource.
-
-                The resource collection link for _Courses_ shown below can also be implemented at the _Programme_ level.
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: uri
-            course:
-              type: object
-              description: |
-                Hypermedia link to the _Courses_ collection associated to this resource.
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: uri
     EqfLevelProvided:
       type: integer
       minimum: 5
@@ -1733,16 +1776,6 @@ components:
         - `9/3` indicates nine (9) trimesters (1/3) equivalent to three full
           academic years;
         - `3/1` indicates three (3) full years (1/1) absent a division in terms.
-    LinksCourseCollection:
-      type: object
-      description: |
-        Hypermedia link to the _Courses_ collection associated with this resource.
-      required:
-        - href
-      properties:
-        href:
-          type: string
-          format: uri
     ProgrammeCollection:
       type: object
       description: JSON:API collection of _Programme_ resources.
@@ -1861,7 +1894,7 @@ components:
                     type: string
                     format: date-time
                     description: |
-                      Timestamp of the latest change to this resource, formatted as
+                      Time of latest change to this resource, formatted as
                        [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
               links:
                 type: object
@@ -1884,7 +1917,6 @@ components:
       description: JSON:API _Programme_ resource.
       required:
         - data
-        - links
       properties:
         jsonapi:
           $ref: '#/components/schemas/Jsonapi'
@@ -1894,8 +1926,8 @@ components:
           required:
             - type
             - id
-            - links
             - attributes
+            - links
           properties:
             type:
               type: string
@@ -1996,7 +2028,7 @@ components:
                   type: string
                   format: date-time
                   description: |
-                    Timestamp of the latest change to this resource, formatted as
+                    Time of latest change to this resource, formatted as
                      [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
             links:
               type: object
@@ -2193,8 +2225,8 @@ components:
             required:
               - type
               - id
-              - links
               - attributes
+              - links
             properties:
               type:
                 type: string
@@ -2303,7 +2335,7 @@ components:
                     type: string
                     format: date-time
                     description: |
-                      Timestamp of the latest change to this resource, formatted as
+                      Time of latest change to this resource, formatted as
                        [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
               meta:
                 $ref: '#/components/schemas/CourseMeta'
@@ -2335,8 +2367,8 @@ components:
           required:
             - type
             - id
-            - links
             - attributes
+            - links
           properties:
             type:
               type: string
@@ -2480,7 +2512,7 @@ components:
                   type: string
                   format: date-time
                   description: |
-                    Timestamp of the latest change to this resource, formatted as
+                    Time of latest change to this resource, formatted as
                      [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
             meta:
               $ref: '#/components/schemas/CourseMeta'

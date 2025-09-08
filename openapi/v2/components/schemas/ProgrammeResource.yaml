@@ -2,7 +2,6 @@ type: object
 description: JSON:API _Programme_ resource.
 required:
   - data
-  - links
 properties:
   jsonapi:
     $ref: ./Jsonapi.yaml
@@ -12,15 +11,13 @@ properties:
     required:
       - type
       - id
-      - links
       - attributes
+      - links
     properties:
       $ref: ./ProgrammeData.yaml
   links:
     type: object
     description: JSON:API _links_ object.
-    # required:
-    #   - self
     properties:
       self:
         $ref: ./LinksResource.yaml
