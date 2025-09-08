@@ -1279,6 +1279,7 @@ components:
                 required:
                   - title
                   - heiId
+                  - lastModified
                 properties:
                   title:
                     type: array
@@ -1297,6 +1298,12 @@ components:
                     description: External URL with optional language code.
                     items:
                       $ref: '#/components/schemas/HttpWithOptionalLang'
+                  lastModified:
+                    type: string
+                    format: date-time
+                    description: |
+                      Timestamp of the latest change to this resource, formatted as
+                      [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
               links:
                 type: object
                 description: JSON:API _links_ object.
@@ -1342,6 +1349,7 @@ components:
               required:
                 - title
                 - heiId
+                - lastModified
               properties:
                 title:
                   type: array
@@ -1360,6 +1368,12 @@ components:
                   description: External URL with optional language code.
                   items:
                     $ref: '#/components/schemas/HttpWithOptionalLang'
+                lastModified:
+                  type: string
+                  format: date-time
+                  description: |
+                    Timestamp of the latest change to this resource, formatted as
+                    [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
             links:
               type: object
               description: JSON:API _links_ object.
@@ -1446,6 +1460,7 @@ components:
                 required:
                   - title
                   - ounitId
+                  - lastModified
                 properties:
                   title:
                     type: array
@@ -1466,6 +1481,12 @@ components:
                     description: External URL with optional language code.
                     items:
                       $ref: '#/components/schemas/HttpWithOptionalLang'
+                  lastModified:
+                    type: string
+                    format: date-time
+                    description: |
+                      Timestamp of the latest change to this resource, formatted as
+                      [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
               links:
                 type: object
                 description: JSON:API _links_ object.
@@ -1511,6 +1532,7 @@ components:
               required:
                 - title
                 - ounitId
+                - lastModified
               properties:
                 title:
                   type: array
@@ -1531,6 +1553,12 @@ components:
                   description: External URL with optional language code.
                   items:
                     $ref: '#/components/schemas/HttpWithOptionalLang'
+                lastModified:
+                  type: string
+                  format: date-time
+                  description: |
+                    Timestamp of the latest change to this resource, formatted as
+                    [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
             links:
               type: object
               description: JSON:API _links_ object.
@@ -1740,6 +1768,7 @@ components:
                   - code
                   - ects
                   - eqfLevelProvided
+                  - lastModified
                 properties:
                   title:
                     type: array
@@ -1807,15 +1836,23 @@ components:
                     items:
                       $ref: '#/components/schemas/HttpWithOptionalLang'
                   validSince:
-                    type: date
+                    type: string
+                    format: date
                     description: |
                       The first date in which the Programme was offered, formatted as
                        [_YYYY-MM-DD_](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
                   validUntil:
-                    type: date
+                    type: string
+                    format: date
                     description: |
                       The last date in which the Programme was offered, formatted as
                        [_YYYY-MM-DD_](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+                  lastModified:
+                    type: string
+                    format: date-time
+                    description: |
+                      Timestamp of the latest change to this resource, formatted as
+                       [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
               links:
                 type: object
                 description: JSON:API _links_ object.
@@ -1866,6 +1903,7 @@ components:
                 - code
                 - ects
                 - eqfLevelProvided
+                - lastModified
               properties:
                 title:
                   type: array
@@ -1933,15 +1971,23 @@ components:
                   items:
                     $ref: '#/components/schemas/HttpWithOptionalLang'
                 validSince:
-                  type: date
+                  type: string
+                  format: date
                   description: |
                     The first date in which the Programme was offered, formatted as
                      [_YYYY-MM-DD_](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
                 validUntil:
-                  type: date
+                  type: string
+                  format: date
                   description: |
                     The last date in which the Programme was offered, formatted as
                      [_YYYY-MM-DD_](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+                lastModified:
+                  type: string
+                  format: date-time
+                  description: |
+                    Timestamp of the latest change to this resource, formatted as
+                     [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
             links:
               type: object
               description: JSON:API _links_ object.
@@ -2169,6 +2215,7 @@ components:
                   - title
                   - code
                   - ects
+                  - lastModified
                 properties:
                   title:
                     type: array
@@ -2184,8 +2231,7 @@ components:
                     type: integer
                     minimum: 0
                     description: |
-                      Number of ECTS credits awarded to the learner upon completing the
-                        Course.
+                      Number of ECTS credits awarded to the learner upon completing the Course.
                   academicTerm:
                     type: array
                     description: |
@@ -2257,6 +2303,12 @@ components:
                     description: External URL with optional language code.
                     items:
                       $ref: '#/components/schemas/HttpWithOptionalLang'
+                  lastModified:
+                    type: string
+                    format: date-time
+                    description: |
+                      Timestamp of the latest change to this resource, formatted as
+                       [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
               meta:
                 $ref: '#/components/schemas/CourseMeta'
               links:
@@ -2304,6 +2356,7 @@ components:
                 - title
                 - code
                 - ects
+                - lastModified
               properties:
                 title:
                   type: array
@@ -2319,8 +2372,7 @@ components:
                   type: integer
                   minimum: 0
                   description: |
-                    Number of ECTS credits awarded to the learner upon completing the
-                      Course.
+                    Number of ECTS credits awarded to the learner upon completing the Course.
                 academicTerm:
                   type: array
                   description: |
@@ -2428,6 +2480,12 @@ components:
                     **Note:** It is preferable to use `elmAssessmentType` instead.
                   items:
                     $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                lastModified:
+                  type: string
+                  format: date-time
+                  description: |
+                    Timestamp of the latest change to this resource, formatted as
+                     [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
             meta:
               $ref: '#/components/schemas/CourseMeta'
             links:

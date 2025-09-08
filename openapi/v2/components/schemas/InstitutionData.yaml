@@ -12,6 +12,7 @@ attributes:
   required:
     - title
     - heiId
+    - lastModified
   properties:
     title:
       type: array
@@ -30,6 +31,12 @@ attributes:
       description: External URL with optional language code.
       items:
         $ref: ./HttpWithOptionalLang.yaml
+    lastModified:
+      type: string
+      format: date-time
+      description: |
+        Timestamp of the latest change to this resource, formatted as
+        [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
 links:
   type: object
   description: JSON:API _links_ object.

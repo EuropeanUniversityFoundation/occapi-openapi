@@ -64,12 +64,20 @@ url:
   items:
     $ref: ./HttpWithOptionalLang.yaml
 validSince:
-  type: date
+  type: string
+  format: date
   description: |
     The first date in which the Programme was offered, formatted as
      [_YYYY-MM-DD_](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
 validUntil:
-  type: date
+  type: string
+  format: date
   description: |
     The last date in which the Programme was offered, formatted as
      [_YYYY-MM-DD_](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+lastModified:
+  type: string
+  format: date-time
+  description: |
+    Timestamp of the latest change to this resource, formatted as
+     [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).

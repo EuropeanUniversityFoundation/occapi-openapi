@@ -15,6 +15,7 @@ attributes:
     - code
     - ects
     - eqfLevelProvided
+    - lastModified
   properties:
     $ref: ./ProgrammeDataProperties.yaml
 links:

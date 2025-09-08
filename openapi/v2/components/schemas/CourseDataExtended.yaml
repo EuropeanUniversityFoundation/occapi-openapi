@@ -13,6 +13,7 @@ attributes:
     - title
     - code
     - ects
+    - lastModified
   properties:
     $ref: ./CourseDataExtendedProperties.yaml
 meta:

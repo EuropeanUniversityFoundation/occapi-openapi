@@ -12,8 +12,7 @@ ects:
   type: integer
   minimum: 0
   description: |
-    Number of ECTS credits awarded to the learner upon completing the
-      Course.
+    Number of ECTS credits awarded to the learner upon completing the Course.
 academicTerm:
   type: array
   description: |
@@ -85,3 +84,9 @@ url:
   description: External URL with optional language code.
   items:
     $ref: ./HttpWithOptionalLang.yaml
+lastModified:
+  type: string
+  format: date-time
+  description: |
+    Timestamp of the latest change to this resource, formatted as
+     [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
