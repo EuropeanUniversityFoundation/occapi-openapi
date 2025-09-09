@@ -4,8 +4,8 @@ type:
   enum: ['programme']
 id:
   type: string
-  description: JSON:API resource ID; UUID v4 is **recommended**,
-   but any value that is unique within the realm of the Institution may be used.
+  description: JSON:API resource ID; UUID v4 is **recommended**, but any value
+   that is unique within the Institution may be used.
   # format: uuid
 attributes:
   type: object

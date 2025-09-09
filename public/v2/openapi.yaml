@@ -1514,7 +1514,7 @@ components:
                   - ounit
               id:
                 type: string
-                description: JSON:API resource ID; UUID v4 is **recommended**, but any string that is unique within the realm of the Institution may be used.
+                description: JSON:API resource ID; UUID v4 is **recommended**, but any value that is unique within the Institution may be used.
                 format: uuid
               attributes:
                 type: object
@@ -1593,7 +1593,7 @@ components:
                 - ounit
             id:
               type: string
-              description: JSON:API resource ID; UUID v4 is **recommended**, but any string that is unique within the realm of the Institution may be used.
+              description: JSON:API resource ID; UUID v4 is **recommended**, but any value that is unique within the Institution may be used.
               format: uuid
             attributes:
               type: object
@@ -1802,7 +1802,7 @@ components:
                   - programme
               id:
                 type: string
-                description: JSON:API resource ID; UUID v4 is **recommended**, but any value that is unique within the realm of the Institution may be used.
+                description: JSON:API resource ID; UUID v4 is **recommended**, but any value that is unique within the Institution may be used.
               attributes:
                 type: object
                 description: JSON:API _attributes_ object.
@@ -1936,7 +1936,7 @@ components:
                 - programme
             id:
               type: string
-              description: JSON:API resource ID; UUID v4 is **recommended**, but any value that is unique within the realm of the Institution may be used.
+              description: JSON:API resource ID; UUID v4 is **recommended**, but any value that is unique within the Institution may be used.
             attributes:
               type: object
               description: JSON:API _attributes_ object.
@@ -2209,6 +2209,49 @@ components:
                    length of three and a half years (3.5) which must be rounded up in
                    the current context.
                 pattern: \d\/[1-9]
+    CourseRelationships:
+      type: object
+      description: |
+        JSON:API _relationships_ object.
+      properties:
+        prerequisiteCourse:
+          type: array
+          description: |
+            List of other Courses that **must** be completed before enrollment in the
+             present Course is allowed.
+
+            If the prerequisites for the present Course cannot be matched to concrete
+             Courses, use the `prerequisites` data attribute for a more detailed
+             description.
+          items:
+            type: object
+            required:
+              - data
+              - links
+            properties:
+              data:
+                type: object
+                description: Related _Course_ data.
+                required:
+                  - type
+                  - id
+                properties:
+                  type:
+                    type: string
+                    description: JSON:API resource type.
+                    enum:
+                      - course
+                  id:
+                    type: string
+                    description: JSON:API resource ID; UUID v4 is **recommended**, but any value that is unique within the Institution may be used.
+              links:
+                type: object
+                description: JSON:API _links_ object.
+                required:
+                  - self
+                properties:
+                  self:
+                    $ref: '#/components/schemas/LinksResource'
     CourseCollection:
       type: object
       description: JSON:API collection of _Course_ resources.
@@ -2235,7 +2278,7 @@ components:
                   - course
               id:
                 type: string
-                description: JSON:API resource ID; UUID v4 is **recommended**, but any value that is unique within the realm of the Institution may be used.
+                description: JSON:API resource ID; UUID v4 is **recommended**, but any value that is unique within the Institution may be used.
               attributes:
                 type: object
                 description: JSON:API _attributes_ object.
@@ -2339,6 +2382,8 @@ components:
                        [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
               meta:
                 $ref: '#/components/schemas/CourseMeta'
+              relationships:
+                $ref: '#/components/schemas/CourseRelationships'
               links:
                 type: object
                 description: JSON:API _links_ object.
@@ -2375,7 +2420,7 @@ components:
               description: JSON:API resource type.
             id:
               type: string
-              description: JSON:API resource ID; UUID v4 is **recommended**, but any string that is unique within the realm of the Institution may be used.
+              description: JSON:API resource ID; UUID v4 is **recommended**, but any value that is unique within the Institution may be used.
               format: uuid
             attributes:
               type: object
@@ -2516,6 +2561,8 @@ components:
                      [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
             meta:
               $ref: '#/components/schemas/CourseMeta'
+            relationships:
+              $ref: '#/components/schemas/CourseRelationships'
             links:
               type: object
               description: JSON:API _links_ object.
