@@ -19,7 +19,7 @@ attributes:
       minItems: 1
       description: Title with optional language code.
       items:
-        $ref: ./StringWithOptionalLang.yaml
+        $ref: ./fields/StringWithOptionalLang.yaml
     heiId:
       type: string
       description: The SCHAC code of the Institution.
@@ -29,12 +29,12 @@ attributes:
       description: Most widely recognized abbbreviation with optional language
        code.
       items:
-        $ref: ./StringWithOptionalLang.yaml
+        $ref: ./fields/StringWithOptionalLang.yaml
     url:
       type: array
       description: External URL with optional language code.
       items:
-        $ref: ./HttpWithOptionalLang.yaml
+        $ref: ./fields/HttpWithOptionalLang.yaml
     lastModified:
       type: string
       format: date-time
@@ -48,10 +48,10 @@ links:
     - self
   properties:
     self:
-      $ref: ./LinksResource.yaml
+      $ref: ./links/LinksResource.yaml
     ounit:
-      $ref: ./LinksOunitCollection.yaml
+      $ref: ./links/LinksOunitCollection.yaml
     programme:
-      $ref: ./LinksProgrammeCollection.yaml
+      $ref: ./links/LinksProgrammeCollection.yaml
     course:
-      $ref: ./LinksCourseCollection.yaml
+      $ref: ./links/LinksCourseCollection.yaml

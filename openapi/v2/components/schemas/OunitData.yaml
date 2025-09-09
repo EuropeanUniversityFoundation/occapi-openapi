@@ -20,7 +20,7 @@ attributes:
       type: array
       description: Title with optional language code.
       items:
-        $ref: ./StringWithOptionalLang.yaml
+        $ref: ./fields/StringWithOptionalLang.yaml
     ounitId:
       type: string
       description: Unique identifier within the Institution. Can be a UUID.
@@ -29,7 +29,7 @@ attributes:
       description: Most widely recognized abbbreviation with optional language
        code.
       items:
-        $ref: ./StringWithOptionalLang.yaml
+        $ref: ./fields/StringWithOptionalLang.yaml
     ounitCode:
       type: string
       description: Human readable code identifying the Organisational Unit.
@@ -37,7 +37,7 @@ attributes:
       type: array
       description: External URL with optional language code.
       items:
-        $ref: ./HttpWithOptionalLang.yaml
+        $ref: ./fields/HttpWithOptionalLang.yaml
     lastModified:
       type: string
       format: date-time
@@ -51,8 +51,8 @@ links:
     - self
   properties:
     self:
-      $ref: ./LinksResource.yaml
+      $ref: ./links/LinksResource.yaml
     programme:
-      $ref: ./LinksProgrammeCollection.yaml
+      $ref: ./links/LinksProgrammeCollection.yaml
     course:
-      $ref: ./LinksCourseCollection.yaml
+      $ref: ./links/LinksCourseCollection.yaml

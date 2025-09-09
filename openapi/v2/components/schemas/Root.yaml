@@ -4,7 +4,7 @@ required:
   - data
 properties:
   jsonapi:
-    $ref: ./Jsonapi.yaml
+    $ref: ./links/Jsonapi.yaml
   data:
     $ref: ./ServerData.yaml
   meta:
@@ -15,4 +15,4 @@ properties:
     description: JSON:API _links_ object.
     properties:
       self:
-        $ref: ./LinksSelf.yaml
+        $ref: ./links/LinksSelf.yaml

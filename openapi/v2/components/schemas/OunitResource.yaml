@@ -4,7 +4,7 @@ required:
   - data
 properties:
   jsonapi:
-    $ref: ./Jsonapi.yaml
+    $ref: ./links/Jsonapi.yaml
   data:
     type: object
     description: _Organisational Unit_ resource data.
@@ -20,4 +20,4 @@ properties:
     description: JSON:API _links_ object.
     properties:
       self:
-        $ref: ./LinksResource.yaml
+        $ref: ./links/LinksResource.yaml

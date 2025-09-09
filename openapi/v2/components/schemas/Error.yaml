@@ -4,7 +4,7 @@ required:
   - errors
 properties:
   jsonapi:
-    $ref: ./Jsonapi.yaml
+    $ref: ./links/Jsonapi.yaml
   errors:
     type: array
     description: List of errors.

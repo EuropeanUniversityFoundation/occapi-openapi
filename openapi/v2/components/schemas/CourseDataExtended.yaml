@@ -28,4 +28,4 @@ links:
     - self
   properties:
     self:
-      $ref: ./LinksResource.yaml
+      $ref: ./links/LinksResource.yaml

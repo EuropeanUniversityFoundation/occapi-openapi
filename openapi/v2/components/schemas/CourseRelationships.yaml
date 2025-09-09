@@ -40,7 +40,7 @@ properties:
             - self
           properties:
             self:
-              $ref: ./LinksResource.yaml
+              $ref: ./links/LinksResource.yaml
   relatedProgramme:
     type: array
     description: |
@@ -76,4 +76,4 @@ properties:
             - self
           properties:
             self:
-              $ref: ./LinksResource.yaml
+              $ref: ./links/LinksResource.yaml
