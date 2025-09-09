@@ -5,12 +5,12 @@ properties:
   prerequisiteCourse:
     type: array
     description: |
-      List of other Courses that **must** be completed before enrollment in the
-       present Course is allowed.
+      Another Course that **must** be completed before enrollment in the present
+       Course is allowed.
 
-      If the prerequisites for the present Course cannot be matched to concrete
-       Courses, use the `prerequisites` data attribute for a more detailed
-       description.
+      If the prerequisites for the present Course cannot be matched to a single
+       Course (or multiple Courses), use the `prerequisites` data attribute for
+       a more detailed description.
     items:
       type: object
       required:
@@ -19,7 +19,7 @@ properties:
       properties:
         data:
           type: object
-          description: Related _Course_ data.
+          description: Prerequisite Course data.
           required:
             - type
             - id
@@ -28,6 +28,42 @@ properties:
               type: string
               description: JSON:API resource type.
               enum: ['course']
+            id:
+              type: string
+              description: JSON:API resource ID; UUID v4 is **recommended**, but
+               any value that is unique within the Institution may be used.
+              # format: uuid
+        links:
+          type: object
+          description: JSON:API _links_ object.
+          required:
+            - self
+          properties:
+            self:
+              $ref: ./LinksResource.yaml
+  relatedProgramme:
+    type: array
+    description: |
+      Any Programme which includes the present Course in its curricular plan.
+
+      This **must** match all related Programmes indicated in the `meta` object.
+    items:
+      type: object
+      required:
+        - data
+        - links
+      properties:
+        data:
+          type: object
+          description: Related Programme data.
+          required:
+            - type
+            - id
+          properties:
+            type:
+              type: string
+              description: JSON:API resource type.
+              enum: ['programme']
             id:
               type: string
               description: JSON:API resource ID; UUID v4 is **recommended**, but

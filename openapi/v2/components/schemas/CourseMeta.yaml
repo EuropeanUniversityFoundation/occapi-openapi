@@ -3,9 +3,12 @@ description: |
   JSON:API _meta_ object containing information about the relation between
    a Course and all or specific Programmes.
 properties:
-  relatedProgrammes:
+  relatedProgramme:
     type: array
-    description: Describes the inclusion of a Course in specific Programmes.
+    description: Describes the inclusion of a Course in a specific Programme.
+
+      Any Programme indicated here **must** also be indicated in the
+      `relationships` object.
     items:
       type: object
       required:
