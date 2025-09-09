@@ -1,0 +1,38 @@
+type: object
+description: |
+  JSON:API _relationships_ object.
+required:
+  - course
+properties:
+  course:
+    type: object
+    description: |
+      The _Course_ resource the _Course instance_ refers to.
+    required:
+      - data
+      - links
+    properties:
+      data:
+        type: object
+        description: _Course_ data.
+        required:
+          - type
+          - id
+        properties:
+          type:
+            type: string
+            description: JSON:API resource type.
+            enum: ['course']
+          id:
+            type: string
+            description: JSON:API resource ID; UUID v4 is **recommended**, but
+              any value that is unique within the Institution may be used.
+            # format: uuid
+      links:
+        type: object
+        description: JSON:API _links_ object.
+        required:
+          - self
+        properties:
+          self:
+            $ref: ./links/LinksResource.yaml

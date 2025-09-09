@@ -18,6 +18,7 @@ data:
       url:
         - uri: www.domain.tld/eou
           lang: en
+      lastModified: 2025-09-01T12:00:00Z
     links:
       self:
         href: 'http://example.com/occapi/v2/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff'

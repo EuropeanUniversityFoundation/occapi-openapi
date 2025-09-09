@@ -105,6 +105,8 @@ data:
   links:
     self:
       href: 'http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900'
+    instance:
+      href: 'http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900/instance'
 links:
   self:
     href: 'http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900'

@@ -63,3 +63,8 @@ paths:
     $ref: 'v2/paths/programme@{id}-course.yaml'
   '/hei/{heiId}/course/{id}':
     $ref: 'v2/paths/course@{id}.yaml'
+  # Course instance endpoints.
+  '/hei/{heiId}/course/{id}/instance':
+    $ref: 'v2/paths/course@{id}-instance.yaml'
+  '/hei/{heiId}/instance/{id}':
+    $ref: 'v2/paths/instance@{id}.yaml'

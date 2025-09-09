@@ -304,6 +304,7 @@ paths:
                       url:
                         - uri: www.domain.tld/eou
                           lang: en
+                      lastModified: '2025-09-01T12:00:00Z'
                     links:
                       self:
                         href: http://example.com/occapi/v2/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff
@@ -390,6 +391,7 @@ paths:
                     url:
                       - uri: www.domain.tld/eou
                         lang: en
+                    lastModified: '2025-09-01T12:00:00Z'
                   links:
                     self:
                       href: http://example.com/occapi/v2/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff
@@ -831,6 +833,8 @@ paths:
                     links:
                       self:
                         href: http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                      instance:
+                        href: http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900/instance
                 links:
                   self:
                     href: http://example.com/occapi/v2/hei/domain.tld/course
@@ -957,6 +961,8 @@ paths:
                     links:
                       self:
                         href: http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                      instance:
+                        href: http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900/instance
                 links:
                   self:
                     href: http://example.com/occapi/v2/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/course
@@ -1083,6 +1089,8 @@ paths:
                     links:
                       self:
                         href: http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                      instance:
+                        href: http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900/instance
                 links:
                   self:
                     href: http://example.com/occapi/v2/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890/course
@@ -1248,9 +1256,166 @@ paths:
                   links:
                     self:
                       href: http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                    instance:
+                      href: http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900/instance
                 links:
                   self:
                     href: http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+        '404':
+          description: Resource not found.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                jsonapi:
+                  version: '1.1'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.1/
+                errors:
+                  - status: '404'
+                    title: Resource not found.
+  /hei/{heiId}/course/{id}/instance:
+    get:
+      tags:
+        - Course instance
+      summary: GET /hei/{heiId}/course/{id}/instance
+      description: |
+        This endpoint lists all _Course instances_ filtered by _Course_.
+      operationId: getCourseInstances
+      parameters:
+        - name: heiId
+          in: path
+          description: The SCHAC code of the Institution.
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: The UUID of the _Course_ resource to filter by.
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user.
+              schema:
+                type: integer
+                format: int32
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CourseInstanceCollection'
+              example:
+                jsonapi:
+                  version: '1.1'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.1/
+                data:
+                  - type: instance
+                    id: 13579bdf-0246-8ace-1357-9bdf02468ace
+                    attributes:
+                      lastModified: '2025-09-01T12:00:00Z'
+                    relationships:
+                      course:
+                        data:
+                          type: course
+                          id: aabbccdd-eeff-1122-3344-556677889900
+                        links:
+                          self:
+                            href: http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                    links:
+                      self:
+                        href: http://example.com/occapi/v2/hei/domain.tld/instance/13579bdf-0246-8ace-1357-9bdf02468ace
+                links:
+                  self:
+                    href: http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900/instance
+        '404':
+          description: Endpoint not available.
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                jsonapi:
+                  version: '1.1'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.1/
+                errors:
+                  - status: '404'
+                    title: Endpoint not available.
+  /hei/{heiId}/instance/{id}:
+    get:
+      tags:
+        - Course instance
+      summary: GET /hei/{heiId}/instance/{id}
+      description: |
+        This endpoint exposes extended information about a _Course instance_.
+      operationId: getCourseInstanceByUuid
+      parameters:
+        - name: heiId
+          in: path
+          description: The SCHAC code of the Institution.
+          required: true
+          schema:
+            type: string
+            format: hostname
+        - name: id
+          in: path
+          description: The UUID of the _Course instance_ resource.
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user.
+              schema:
+                type: integer
+                format: int32
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/CourseInstanceResource'
+              example:
+                jsonapi:
+                  version: '1.1'
+                  meta:
+                    links:
+                      self:
+                        href: http://jsonapi.org/format/1.1/
+                data:
+                  type: instance
+                  id: 13579bdf-0246-8ace-1357-9bdf02468ace
+                  attributes:
+                    lastModified: '2025-09-01T12:00:00Z'
+                  relationships:
+                    course:
+                      data:
+                        type: course
+                        id: aabbccdd-eeff-1122-3344-556677889900
+                      links:
+                        self:
+                          href: http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                  links:
+                    self:
+                      href: http://example.com/occapi/v2/hei/domain.tld/instance/13579bdf-0246-8ace-1357-9bdf02468ace
+                links:
+                  self:
+                    href: http://example.com/occapi/v2/hei/domain.tld/instance/13579bdf-0246-8ace-1357-9bdf02468ace
         '404':
           description: Resource not found.
           content:
@@ -2477,6 +2642,16 @@ components:
                 properties:
                   self:
                     $ref: '#/components/schemas/LinksResource'
+    LinksCourseInstanceCollection:
+      type: object
+      description: |
+        Hypermedia link to the _Course instance_ collection associated with this resource.
+      required:
+        - href
+      properties:
+        href:
+          type: string
+          format: uri
     CourseCollection:
       type: object
       description: JSON:API collection of _Course_ resources.
@@ -2632,6 +2807,8 @@ components:
                 properties:
                   self:
                     $ref: '#/components/schemas/LinksResource'
+                  instance:
+                    $ref: '#/components/schemas/LinksCourseInstanceCollection'
         links:
           type: object
           description: JSON:API _links_ object.
@@ -2818,6 +2995,158 @@ components:
               $ref: '#/components/schemas/CourseMeta'
             relationships:
               $ref: '#/components/schemas/CourseRelationships'
+            links:
+              type: object
+              description: JSON:API _links_ object.
+              required:
+                - self
+              properties:
+                self:
+                  $ref: '#/components/schemas/LinksResource'
+                instance:
+                  $ref: '#/components/schemas/LinksCourseInstanceCollection'
+        links:
+          type: object
+          description: JSON:API _links_ object.
+          properties:
+            self:
+              $ref: '#/components/schemas/LinksResource'
+    CourseInstanceRelationships:
+      type: object
+      description: |
+        JSON:API _relationships_ object.
+      required:
+        - course
+      properties:
+        course:
+          type: object
+          description: |
+            The _Course_ resource the _Course instance_ refers to.
+          required:
+            - data
+            - links
+          properties:
+            data:
+              type: object
+              description: _Course_ data.
+              required:
+                - type
+                - id
+              properties:
+                type:
+                  type: string
+                  description: JSON:API resource type.
+                  enum:
+                    - course
+                id:
+                  type: string
+                  description: JSON:API resource ID; UUID v4 is **recommended**, but any value that is unique within the Institution may be used.
+            links:
+              type: object
+              description: JSON:API _links_ object.
+              required:
+                - self
+              properties:
+                self:
+                  $ref: '#/components/schemas/LinksResource'
+    CourseInstanceCollection:
+      type: object
+      description: JSON:API collection of _Course instance_ resources.
+      required:
+        - data
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/Jsonapi'
+        data:
+          type: array
+          description: List of _Course instance_ resources.
+          items:
+            type: object
+            required:
+              - type
+              - id
+              - attributes
+              - relationships
+              - links
+            properties:
+              type:
+                type: string
+                description: JSON:API resource type.
+                enum:
+                  - instance
+              id:
+                type: string
+                description: JSON:API resource ID; UUID v4 is **recommended**, but any value that is unique within the Institution may be used.
+                format: uuid
+              attributes:
+                type: object
+                description: JSON:API _attributes_ object.
+                required:
+                  - lastModified
+                properties:
+                  lastModified:
+                    type: string
+                    format: date-time
+                    description: |
+                      Time of latest change to this resource, formatted as
+                      [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+              relationships:
+                $ref: '#/components/schemas/CourseInstanceRelationships'
+              links:
+                type: object
+                description: JSON:API _links_ object.
+                required:
+                  - self
+                properties:
+                  self:
+                    $ref: '#/components/schemas/LinksResource'
+        links:
+          type: object
+          description: JSON:API _links_ object.
+          properties:
+            self:
+              $ref: '#/components/schemas/LinksCollection'
+    CourseInstanceResource:
+      type: object
+      description: JSON:API _Course instance_ resource.
+      required:
+        - data
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/Jsonapi'
+        data:
+          type: object
+          description: _Course instance_ resource data.
+          required:
+            - type
+            - id
+            - attributes
+            - relationships
+            - links
+          properties:
+            type:
+              type: string
+              description: JSON:API resource type.
+              enum:
+                - instance
+            id:
+              type: string
+              description: JSON:API resource ID; UUID v4 is **recommended**, but any value that is unique within the Institution may be used.
+              format: uuid
+            attributes:
+              type: object
+              description: JSON:API _attributes_ object.
+              required:
+                - lastModified
+              properties:
+                lastModified:
+                  type: string
+                  format: date-time
+                  description: |
+                    Time of latest change to this resource, formatted as
+                    [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+            relationships:
+              $ref: '#/components/schemas/CourseInstanceRelationships'
             links:
               type: object
               description: JSON:API _links_ object.

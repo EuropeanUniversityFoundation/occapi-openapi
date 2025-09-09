@@ -29,3 +29,5 @@ links:
   properties:
     self:
       $ref: ./links/LinksResource.yaml
+    instance:
+      $ref: ./links/LinksCourseInstanceCollection.yaml

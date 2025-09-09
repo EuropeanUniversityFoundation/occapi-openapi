@@ -1,26 +1,27 @@
 type:
   type: string
   description: JSON:API resource type.
-  enum: ['course']
+  enum: ['instance']
 id:
   type: string
   description: JSON:API resource ID; UUID v4 is **recommended**, but any value
    that is unique within the Institution may be used.
   # format: uuid
+  format: uuid
 attributes:
   type: object
   description: JSON:API _attributes_ object.
   required:
-    - title
-    - code
-    - ects
     - lastModified
   properties:
-    $ref: ./CourseDataProperties.yaml
-meta:
-  $ref: ./CourseMeta.yaml
+    lastModified:
+      type: string
+      format: date-time
+      description: |
+        Time of latest change to this resource, formatted as
+        [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
 relationships:
-  $ref: ./CourseRelationships.yaml
+  $ref: ./CourseInstanceRelationships.yaml
 links:
   type: object
   description: JSON:API _links_ object.
@@ -29,5 +30,3 @@ links:
   properties:
     self:
       $ref: ./links/LinksResource.yaml
-    instance:
-      $ref: ./links/LinksCourseInstanceCollection.yaml
