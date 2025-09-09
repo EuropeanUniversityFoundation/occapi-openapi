@@ -12,23 +12,44 @@ data:
         - string: Example Programme
           lang: en
       code: PROG01
+      ects: 120
+      eqfLevelProvided: 5
+      abbreviation:
+        - string: P1
       description:
         - multiline: |
             This is the description of the Programme.
 
             This is a long text field.
           lang: en
-      ects: 120
-      eqfLevelProvided: 5
-      iscedCode: 0000
-      languageOfInstruction: en
-      length: 2
+      elmLearningOpportunityType:
+        - 74a4a268e8
+      elmLearningScheduleType:
+        - 67395e6b5a
+      elmModeOfLearning:
+        - e92d221e4d
+      iscedCode:
+        - '0000'
+      languageOfInstruction:
+        - en
+      learningOutcomes:
+        - multiline: |
+            These are the learning outcomes of the Programme.
+
+            This is a long text field.
+          lang: en
+      length: 4/2
       url:
         - uri: www.domain.tld/example/programme
           lang: en
+      validSince: 2020-01-01
+      validUntil: 2029-12-31
+      lastModified: 2025-09-01T12:00:00Z
     links:
       self:
-        href: 'http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890'
+        href: 'http://example.com/occapi/v2/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890'
+      course:
+        href: 'http://example.com/occapi/v2/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890/course'
 links:
   self:
-    href: 'http://example.com/occapi/v1/hei/domain.tld/programme'
+    href: 'http://example.com/occapi/v2/hei/domain.tld/programme'

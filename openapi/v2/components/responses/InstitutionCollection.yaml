@@ -6,19 +6,27 @@ jsonapi:
         href: "http://jsonapi.org/format/1.1/"
 data:
   - type: hei
-    id: 12345678-90ab-cdef-1234-567890abcdef
+    id: domain.tld
     attributes:
       title:
         - string: Example Institution
           lang: en
-      abbreviation: EI
+      abbreviation:
+        - string: EI
       heiId: domain.tld
       url:
         - uri: www.domain.tld
           lang: en
+      lastModified: 2025-09-01T12:00:00Z
     links:
       self:
-        href: 'http://example.com/occapi/v1/hei/domain.tld'
+        href: 'http://example.com/occapi/v2/hei/domain.tld'
+      ounit:
+        href: 'http://example.com/occapi/v2/hei/domain.tld/ounit'
+      programme:
+        href: 'http://example.com/occapi/v2/hei/domain.tld/programme'
+      course:
+        href: 'http://example.com/occapi/v2/hei/domain.tld/course'
 links:
   self:
-    href: 'http://example.com/occapi/v1/hei'
+    href: 'http://example.com/occapi/v2/hei'

@@ -58,12 +58,25 @@ paths:
                     links:
                       self:
                         href: http://jsonapi.org/format/1.1/
+                data:
+                  type: server
+                  id: 12345678-90ab-cdef-1234-567890abcdef
+                  attributes:
+                    serverName:
+                      - string: Test server
+                        lang: en
+                      - string: Servidor de testes
+                        lang: pt
+                    termsOfService: []
+                  links:
+                    self:
+                      href: http://example.com/occapi/v2
+                    hei:
+                      href: http://example.com/occapi/v2/hei
                 meta: {}
                 links:
                   self:
-                    href: http://example.com/occapi/v1
-                  hei:
-                    href: http://example.com/occapi/v1/hei
+                    href: http://example.com/occapi/v2
         '404':
           description: Endpoint not available.
           content:
@@ -115,22 +128,30 @@ paths:
                         href: http://jsonapi.org/format/1.1/
                 data:
                   - type: hei
-                    id: 12345678-90ab-cdef-1234-567890abcdef
+                    id: domain.tld
                     attributes:
                       title:
                         - string: Example Institution
                           lang: en
-                      abbreviation: EI
+                      abbreviation:
+                        - string: EI
                       heiId: domain.tld
                       url:
                         - uri: www.domain.tld
                           lang: en
+                      lastModified: '2025-09-01T12:00:00Z'
                     links:
                       self:
-                        href: http://example.com/occapi/v1/hei/domain.tld
+                        href: http://example.com/occapi/v2/hei/domain.tld
+                      ounit:
+                        href: http://example.com/occapi/v2/hei/domain.tld/ounit
+                      programme:
+                        href: http://example.com/occapi/v2/hei/domain.tld/programme
+                      course:
+                        href: http://example.com/occapi/v2/hei/domain.tld/course
                 links:
                   self:
-                    href: http://example.com/occapi/v1/hei
+                    href: http://example.com/occapi/v2/hei
         '404':
           description: Endpoint not available.
           content:
@@ -191,28 +212,30 @@ paths:
                         href: http://jsonapi.org/format/1.1/
                 data:
                   type: hei
-                  id: 12345678-90ab-cdef-1234-567890abcdef
+                  id: domain.tld
                   attributes:
                     title:
                       - string: Example Institution
                         lang: en
-                    abbreviation: EI
+                    abbreviation:
+                      - string: EI
                     heiId: domain.tld
                     url:
                       - uri: www.domain.tld
                         lang: en
+                    lastModified: '2025-09-01T12:00:00Z'
                   links:
                     self:
-                      href: http://example.com/occapi/v1/hei/domain.tld
+                      href: http://example.com/occapi/v2/hei/domain.tld
+                    ounit:
+                      href: http://example.com/occapi/v2/hei/domain.tld/ounit
+                    programme:
+                      href: http://example.com/occapi/v2/hei/domain.tld/programme
+                    course:
+                      href: http://example.com/occapi/v2/hei/domain.tld/course
                 links:
                   self:
-                    href: http://example.com/occapi/v1/hei/domain.tld
-                  ounit:
-                    href: http://example.com/occapi/v1/hei/domain.tld/ounit
-                  programme:
-                    href: http://example.com/occapi/v1/hei/domain.tld/programme
-                  course:
-                    href: http://example.com/occapi/v1/hei/domain.tld/course
+                    href: http://example.com/occapi/v2/hei/domain.tld
         '404':
           description: Resource not found.
           content:
@@ -274,7 +297,8 @@ paths:
                       title:
                         - string: Example Organisational Unit
                           lang: en
-                      abbreviation: EOU
+                      abbreviation:
+                        - string: EOU
                       ounitId: 11223344-5566-7788-9900-aabbccddeeff
                       ounitCode: EI-EOU
                       url:
@@ -282,10 +306,14 @@ paths:
                           lang: en
                     links:
                       self:
-                        href: http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff
+                        href: http://example.com/occapi/v2/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff
+                      programme:
+                        href: http://example.com/occapi/v2/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/programme
+                      course:
+                        href: http://example.com/occapi/v2/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/course
                 links:
                   self:
-                    href: http://example.com/occapi/v1/hei/domain.tld/ounit
+                    href: http://example.com/occapi/v2/hei/domain.tld/ounit
         '404':
           description: Endpoint not available.
           content:
@@ -355,7 +383,8 @@ paths:
                     title:
                       - string: Example Organisational Unit
                         lang: en
-                    abbreviation: EOU
+                    abbreviation:
+                      - string: EOU
                     ounitId: 11223344-5566-7788-9900-aabbccddeeff
                     ounitCode: EI-EOU
                     url:
@@ -363,14 +392,14 @@ paths:
                         lang: en
                   links:
                     self:
-                      href: http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff
+                      href: http://example.com/occapi/v2/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff
+                    programme:
+                      href: http://example.com/occapi/v2/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/programme
+                    course:
+                      href: http://example.com/occapi/v2/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/course
                 links:
                   self:
-                    href: http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff
-                  programme:
-                    href: http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/programme
-                  course:
-                    href: http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/course
+                    href: http://example.com/occapi/v2/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff
         '404':
           description: Resource not found.
           content:
@@ -430,26 +459,47 @@ paths:
                         - string: Example Programme
                           lang: en
                       code: PROG01
+                      ects: 120
+                      eqfLevelProvided: 5
+                      abbreviation:
+                        - string: P1
                       description:
                         - multiline: |
                             This is the description of the Programme.
 
                             This is a long text field.
                           lang: en
-                      ects: 120
-                      eqfLevelProvided: 5
-                      iscedCode: 0
-                      languageOfInstruction: en
-                      length: 2
+                      elmLearningOpportunityType:
+                        - 74a4a268e8
+                      elmLearningScheduleType:
+                        - 67395e6b5a
+                      elmModeOfLearning:
+                        - e92d221e4d
+                      iscedCode:
+                        - '0000'
+                      languageOfInstruction:
+                        - en
+                      learningOutcomes:
+                        - multiline: |
+                            These are the learning outcomes of the Programme.
+
+                            This is a long text field.
+                          lang: en
+                      length: 4/2
                       url:
                         - uri: www.domain.tld/example/programme
                           lang: en
+                      validSince: '2020-01-01'
+                      validUntil: '2029-12-31'
+                      lastModified: '2025-09-01T12:00:00Z'
                     links:
                       self:
-                        href: http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
+                        href: http://example.com/occapi/v2/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
+                      course:
+                        href: http://example.com/occapi/v2/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890/course
                 links:
                   self:
-                    href: http://example.com/occapi/v1/hei/domain.tld/programme
+                    href: http://example.com/occapi/v2/hei/domain.tld/programme
         '404':
           description: Endpoint not available.
           content:
@@ -516,26 +566,47 @@ paths:
                         - string: Example Programme
                           lang: en
                       code: PROG01
+                      ects: 120
+                      eqfLevelProvided: 5
+                      abbreviation:
+                        - string: P1
                       description:
                         - multiline: |
                             This is the description of the Programme.
 
                             This is a long text field.
                           lang: en
-                      ects: 120
-                      eqfLevelProvided: 5
-                      iscedCode: 0
-                      languageOfInstruction: en
-                      length: 2
+                      elmLearningOpportunityType:
+                        - 74a4a268e8
+                      elmLearningScheduleType:
+                        - 67395e6b5a
+                      elmModeOfLearning:
+                        - e92d221e4d
+                      iscedCode:
+                        - '0000'
+                      languageOfInstruction:
+                        - en
+                      learningOutcomes:
+                        - multiline: |
+                            These are the learning outcomes of the Programme.
+
+                            This is a long text field.
+                          lang: en
+                      length: 4/2
                       url:
                         - uri: www.domain.tld/example/programme
                           lang: en
+                      validSince: '2020-01-01'
+                      validUntil: '2029-12-31'
+                      lastModified: '2025-09-01T12:00:00Z'
                     links:
                       self:
-                        href: http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
+                        href: http://example.com/occapi/v2/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
+                      course:
+                        href: http://example.com/occapi/v2/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890/course
                 links:
                   self:
-                    href: http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/programme
+                    href: http://example.com/occapi/v2/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/programme
         '404':
           description: Endpoint not available.
           content:
@@ -603,28 +674,47 @@ paths:
                       - string: Example Programme
                         lang: en
                     code: PROG01
+                    ects: 120
+                    eqfLevelProvided: 5
+                    abbreviation:
+                      - string: P1
                     description:
                       - multiline: |
                           This is the description of the Programme.
 
                           This is a long text field.
                         lang: en
-                    ects: 120
-                    eqfLevelProvided: 5
-                    iscedCode: '0000'
-                    languageOfInstruction: en
-                    length: 2
+                    elmLearningOpportunityType:
+                      - 74a4a268e8
+                    elmLearningScheduleType:
+                      - 67395e6b5a
+                    elmModeOfLearning:
+                      - e92d221e4d
+                    iscedCode:
+                      - '0000'
+                    languageOfInstruction:
+                      - en
+                    learningOutcomes:
+                      - multiline: |
+                          These are the learning outcomes of the Programme.
+
+                          This is a long text field.
+                        lang: en
+                    length: 4/2
                     url:
                       - uri: www.domain.tld/example/programme
                         lang: en
+                    validSince: '2020-01-01'
+                    validUntil: '2029-12-31'
+                    lastModified: '2025-09-01T12:00:00Z'
                   links:
                     self:
-                      href: http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
+                      href: http://example.com/occapi/v2/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
+                    course:
+                      href: http://example.com/occapi/v2/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890/course
                 links:
                   self:
-                    href: http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
-                  course:
-                    href: http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890/course
+                    href: http://example.com/occapi/v2/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
         '404':
           description: Resource not found.
           content:
@@ -684,42 +774,66 @@ paths:
                         - string: Example Course
                           lang: en
                       code: COUR01
+                      ects: 7.5
+                      academicTerm:
+                        - 1/2
                       description:
                         - multiline: |
                             This is the description of the Course.
 
                             This is a long text field.
                           lang: en
+                      elmAssessmentType:
+                        - 3484bd7e51
+                        - d30284d7df
+                        - 6e6cb2cc78
+                      elmLearningActivityType:
+                        - ff436ea7c9
+                        - 3c8bd58d62
+                      elmLearningOpportunityType:
+                        - 05053c1cbe
+                      elmModeOfLearning:
+                        - e92d221e4d
+                      iscedCode:
+                        - '0000'
+                      languageOfInstruction:
+                        - en
                       learningOutcomes:
                         - multiline: |
                             These are the learning outcomes of the Course.
 
                             This is a long text field.
                           lang: en
-                      academicTerm: 1/2
-                      ects: 6
-                      languageOfInstruction: en
-                      iscedCode: '0000'
-                      subjectArea: '00.0'
-                      otherCategorization: zero
-                      unavailableForIncomingMobility: false
+                      localClassification:
+                        - classificationSystem: erasmus
+                          classificationValue: '00.0'
+                      restrictedToLocalStudents: false
+                      restrictedToAllianceStudents: true
                       url:
                         - uri: www.domain.tld/example/course
                           lang: en
+                      lastModified: '2025-09-01T12:00:00Z'
+                      deprecated: false
                     meta:
-                      global:
-                        eqfLevel: 6
-                        year: 1/3
-                      programme:
+                      relatedProgramme:
                         - programmeId: abcdef12-3456-7890-abcd-ef1234567890
                           mandatoryCourse: true
                           year: 1/2
+                    relationships:
+                      prerequisiteCourse: []
+                      relatedProgramme:
+                        - data:
+                            type: programme
+                            id: abcdef12-3456-7890-abcd-ef1234567890
+                          links:
+                            self:
+                              href: http://example.com/occapi/v2/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
                     links:
                       self:
-                        href: http://example.com/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                        href: http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
                 links:
                   self:
-                    href: http://example.com/occapi/v1/hei/domain.tld/course
+                    href: http://example.com/occapi/v2/hei/domain.tld/course
         '404':
           description: Endpoint not available.
           content:
@@ -786,41 +900,66 @@ paths:
                         - string: Example Course
                           lang: en
                       code: COUR01
+                      ects: 7.5
+                      academicTerm:
+                        - 1/2
                       description:
                         - multiline: |
                             This is the description of the Course.
 
                             This is a long text field.
                           lang: en
+                      elmAssessmentType:
+                        - 3484bd7e51
+                        - d30284d7df
+                        - 6e6cb2cc78
+                      elmLearningActivityType:
+                        - ff436ea7c9
+                        - 3c8bd58d62
+                      elmLearningOpportunityType:
+                        - 05053c1cbe
+                      elmModeOfLearning:
+                        - e92d221e4d
+                      iscedCode:
+                        - '0000'
+                      languageOfInstruction:
+                        - en
                       learningOutcomes:
                         - multiline: |
                             These are the learning outcomes of the Course.
 
                             This is a long text field.
                           lang: en
-                      academicTerm: 1/2
-                      ects: 6
-                      languageOfInstruction: en
-                      iscedCode: '0000'
-                      subjectArea: '00.0'
-                      otherCategorization: zero
+                      localClassification:
+                        - classificationSystem: erasmus
+                          classificationValue: '00.0'
+                      restrictedToLocalStudents: false
+                      restrictedToAllianceStudents: true
                       url:
                         - uri: www.domain.tld/example/course
                           lang: en
+                      lastModified: '2025-09-01T12:00:00Z'
+                      deprecated: false
                     meta:
-                      global:
-                        eqfLevel: 6
-                        year: 1/3
-                      programme:
+                      relatedProgramme:
                         - programmeId: abcdef12-3456-7890-abcd-ef1234567890
                           mandatoryCourse: true
                           year: 1/2
+                    relationships:
+                      prerequisiteCourse: []
+                      relatedProgramme:
+                        - data:
+                            type: programme
+                            id: abcdef12-3456-7890-abcd-ef1234567890
+                          links:
+                            self:
+                              href: http://example.com/occapi/v2/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
                     links:
                       self:
-                        href: http://example.com/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                        href: http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
                 links:
                   self:
-                    href: http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/course
+                    href: http://example.com/occapi/v2/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/course
         '404':
           description: Endpoint not available.
           content:
@@ -887,41 +1026,66 @@ paths:
                         - string: Example Course
                           lang: en
                       code: COUR01
+                      ects: 7.5
+                      academicTerm:
+                        - 1/2
                       description:
                         - multiline: |
                             This is the description of the Course.
 
                             This is a long text field.
                           lang: en
+                      elmAssessmentType:
+                        - 3484bd7e51
+                        - d30284d7df
+                        - 6e6cb2cc78
+                      elmLearningActivityType:
+                        - ff436ea7c9
+                        - 3c8bd58d62
+                      elmLearningOpportunityType:
+                        - 05053c1cbe
+                      elmModeOfLearning:
+                        - e92d221e4d
+                      iscedCode:
+                        - '0000'
+                      languageOfInstruction:
+                        - en
                       learningOutcomes:
                         - multiline: |
                             These are the learning outcomes of the Course.
 
                             This is a long text field.
                           lang: en
-                      academicTerm: 1/2
-                      ects: 6
-                      languageOfInstruction: en
-                      iscedCode: '0000'
-                      subjectArea: '00.0'
-                      otherCategorization: zero
+                      localClassification:
+                        - classificationSystem: erasmus
+                          classificationValue: '00.0'
+                      restrictedToLocalStudents: false
+                      restrictedToAllianceStudents: true
                       url:
                         - uri: www.domain.tld/example/course
                           lang: en
+                      lastModified: '2025-09-01T12:00:00Z'
+                      deprecated: false
                     meta:
-                      global:
-                        eqfLevel: 6
-                        year: 1/3
-                      programme:
+                      relatedProgramme:
                         - programmeId: abcdef12-3456-7890-abcd-ef1234567890
                           mandatoryCourse: true
                           year: 1/2
+                    relationships:
+                      prerequisiteCourse: []
+                      relatedProgramme:
+                        - data:
+                            type: programme
+                            id: abcdef12-3456-7890-abcd-ef1234567890
+                          links:
+                            self:
+                              href: http://example.com/occapi/v2/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
                     links:
                       self:
-                        href: http://example.com/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                        href: http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
                 links:
                   self:
-                    href: http://example.com/occapi/v1/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890/course
+                    href: http://example.com/occapi/v2/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890/course
         '404':
           description: Endpoint not available.
           content:
@@ -991,25 +1155,41 @@ paths:
                       - string: Example Course
                         lang: en
                     code: COUR01
+                    ects: 7.5
+                    academicTerm:
+                      - 1/2
                     description:
                       - multiline: |
                           This is the description of the Course.
 
                           This is a long text field.
                         lang: en
+                    elmAssessmentType:
+                      - 3484bd7e51
+                      - d30284d7df
+                      - 6e6cb2cc78
+                    elmLearningActivityType:
+                      - ff436ea7c9
+                      - 3c8bd58d62
+                    elmLearningOpportunityType:
+                      - 05053c1cbe
+                    elmModeOfLearning:
+                      - e92d221e4d
+                    iscedCode:
+                      - '0000'
+                    languageOfInstruction:
+                      - en
                     learningOutcomes:
                       - multiline: |
                           These are the learning outcomes of the Course.
 
                           This is a long text field.
                         lang: en
-                    academicTerm: 1/2
-                    ects: 6
-                    languageOfInstruction: en
-                    iscedCode: '0000'
-                    subjectArea: '00.0'
-                    otherCategorization: zero
-                    unavailableForIncomingMobility: false
+                    localClassification:
+                      - classificationSystem: erasmus
+                        classificationValue: '00.0'
+                    restrictedToLocalStudents: false
+                    restrictedToAllianceStudents: true
                     url:
                       - uri: www.domain.tld/example/course
                         lang: en
@@ -1049,20 +1229,28 @@ paths:
 
                           This is a long text field.
                         lang: en
+                    lastModified: '2025-09-01T12:00:00Z'
+                    deprecated: false
                   meta:
-                    global:
-                      eqfLevel: 6
-                      year: 1/3
-                    programme:
+                    relatedProgramme:
                       - programmeId: abcdef12-3456-7890-abcd-ef1234567890
                         mandatoryCourse: true
                         year: 1/2
+                  relationships:
+                    prerequisiteCourse: []
+                    relatedProgramme:
+                      - data:
+                          type: programme
+                          id: abcdef12-3456-7890-abcd-ef1234567890
+                        links:
+                          self:
+                            href: http://example.com/occapi/v2/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
                   links:
                     self:
-                      href: http://example.com/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                      href: http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
                 links:
                   self:
-                    href: http://example.com/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
+                    href: http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
         '404':
           description: Resource not found.
           content:
@@ -1387,7 +1575,7 @@ components:
                     format: date-time
                     description: |
                       Time of latest change to this resource, formatted as
-                      [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+                      [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
               links:
                 type: object
                 description: JSON:API _links_ object.
@@ -1467,7 +1655,7 @@ components:
                   format: date-time
                   description: |
                     Time of latest change to this resource, formatted as
-                    [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+                    [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
             links:
               type: object
               description: JSON:API _links_ object.
@@ -1550,7 +1738,7 @@ components:
                     format: date-time
                     description: |
                       Time of latest change to this resource, formatted as
-                      [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+                      [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
               links:
                 type: object
                 description: JSON:API _links_ object.
@@ -1629,7 +1817,7 @@ components:
                   format: date-time
                   description: |
                     Time of latest change to this resource, formatted as
-                    [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+                    [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
             links:
               type: object
               description: JSON:API _links_ object.
@@ -1883,19 +2071,19 @@ components:
                     format: date
                     description: |
                       The first date in which the Programme was offered, formatted as
-                       [_YYYY-MM-DD_](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+                       [YYYY-MM-DD](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
                   validUntil:
                     type: string
                     format: date
                     description: |
                       The last date in which the Programme was offered, formatted as
-                       [_YYYY-MM-DD_](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+                       [YYYY-MM-DD](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
                   lastModified:
                     type: string
                     format: date-time
                     description: |
                       Time of latest change to this resource, formatted as
-                       [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+                       [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
               links:
                 type: object
                 description: JSON:API _links_ object.
@@ -2017,19 +2205,19 @@ components:
                   format: date
                   description: |
                     The first date in which the Programme was offered, formatted as
-                     [_YYYY-MM-DD_](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+                     [YYYY-MM-DD](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
                 validUntil:
                   type: string
                   format: date
                   description: |
                     The last date in which the Programme was offered, formatted as
-                     [_YYYY-MM-DD_](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+                     [YYYY-MM-DD](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
                 lastModified:
                   type: string
                   format: date-time
                   description: |
                     Time of latest change to this resource, formatted as
-                     [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+                     [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
             links:
               type: object
               description: JSON:API _links_ object.

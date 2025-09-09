@@ -11,7 +11,8 @@ data:
       title:
         - string: Example Organisational Unit
           lang: en
-      abbreviation: EOU
+      abbreviation:
+        - string: EOU
       ounitId: 11223344-5566-7788-9900-aabbccddeeff
       ounitCode: EI-EOU
       url:
@@ -19,7 +20,11 @@ data:
           lang: en
     links:
       self:
-        href: 'http://example.com/occapi/v1/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff'
+        href: 'http://example.com/occapi/v2/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff'
+      programme:
+        href: 'http://example.com/occapi/v2/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/programme'
+      course:
+        href: 'http://example.com/occapi/v2/hei/domain.tld/ounit/11223344-5566-7788-9900-aabbccddeeff/course'
 links:
   self:
-    href: 'http://example.com/occapi/v1/hei/domain.tld/ounit'
+    href: 'http://example.com/occapi/v2/hei/domain.tld/ounit'

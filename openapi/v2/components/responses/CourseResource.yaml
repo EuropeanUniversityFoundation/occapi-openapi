@@ -12,25 +12,41 @@ data:
       - string: Example Course
         lang: en
     code: COUR01
+    ects: 7.5
+    academicTerm:
+      - '1/2'
     description:
       - multiline: |
           This is the description of the Course.
 
           This is a long text field.
         lang: en
+    elmAssessmentType:
+      - 3484bd7e51
+      - d30284d7df
+      - 6e6cb2cc78
+    elmLearningActivityType:
+      - ff436ea7c9
+      - 3c8bd58d62
+    elmLearningOpportunityType:
+      - 05053c1cbe
+    elmModeOfLearning:
+      - e92d221e4d
+    iscedCode:
+      - '0000'
+    languageOfInstruction:
+      - en
     learningOutcomes:
       - multiline: |
           These are the learning outcomes of the Course.
 
           This is a long text field.
         lang: en
-    academicTerm: '1/2'
-    ects: 6
-    languageOfInstruction: en
-    iscedCode: '0000'
-    subjectArea: '00.0'
-    otherCategorization: 'zero'
-    unavailableForIncomingMobility: false
+    localClassification:
+      - classificationSystem: 'erasmus'
+        classificationValue: '00.0'
+    restrictedToLocalStudents: false
+    restrictedToAllianceStudents: true
     url:
       - uri: www.domain.tld/example/course
         lang: en
@@ -70,17 +86,25 @@ data:
 
           This is a long text field.
         lang: en
+    lastModified: 2025-09-01T12:00:00Z
+    deprecated: false
   meta:
-    global:
-      eqfLevel: 6
-      year: '1/3'
-    programme:
+    relatedProgramme:
       - programmeId: abcdef12-3456-7890-abcd-ef1234567890
         mandatoryCourse: true
         year: '1/2'
+  relationships:
+    prerequisiteCourse: []
+    relatedProgramme:
+      - data:
+          type: programme
+          id: abcdef12-3456-7890-abcd-ef1234567890
+        links:
+          self:
+            href: 'http://example.com/occapi/v2/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890'
   links:
     self:
-      href: 'http://example.com/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900'
+      href: 'http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900'
 links:
   self:
-    href: 'http://example.com/occapi/v1/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900'
+    href: 'http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900'
