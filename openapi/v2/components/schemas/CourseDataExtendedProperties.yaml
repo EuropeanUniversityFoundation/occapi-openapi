@@ -9,7 +9,7 @@ code:
   minItems: 1
   description: Human readable code identifying the Course.
 ects:
-  type: integer
+  type: float
   minimum: 0
   description: |
     Number of ECTS credits awarded to the learner upon completing the Course.

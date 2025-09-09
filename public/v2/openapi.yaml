@@ -2699,7 +2699,7 @@ components:
                     minItems: 1
                     description: Human readable code identifying the Course.
                   ects:
-                    type: integer
+                    type: float
                     minimum: 0
                     description: |
                       Number of ECTS credits awarded to the learner upon completing the Course.
@@ -2859,7 +2859,7 @@ components:
                   minItems: 1
                   description: Human readable code identifying the Course.
                 ects:
-                  type: integer
+                  type: float
                   minimum: 0
                   description: |
                     Number of ECTS credits awarded to the learner upon completing the Course.
@@ -3077,13 +3077,42 @@ components:
               id:
                 type: string
                 description: JSON:API resource ID; UUID v4 is **recommended**, but any value that is unique within the Institution may be used.
-                format: uuid
               attributes:
                 type: object
                 description: JSON:API _attributes_ object.
                 required:
+                  - startDate
+                  - endDate
+                  - ects
                   - lastModified
                 properties:
+                  startDate:
+                    type: string
+                    format: date
+                    description: |
+                      The first date in which the Course instance was offered, formatted as
+                      [YYYY-MM-DD](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+                  endDate:
+                    type: string
+                    format: date
+                    description: |
+                      The last date in which the Course instance was offered, formatted as
+                      [YYYY-MM-DD](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+                  ects:
+                    type: float
+                    minimum: 0
+                    description: |
+                      Number of ECTS credits awarded to the learner upon completing the Course.
+                  elmAssessmentType:
+                    $ref: '#/components/schemas/ElmAssessmentType'
+                  elmLearningActivityType:
+                    $ref: '#/components/schemas/ElmLearningActivityType'
+                  elmLearningOpportunityType:
+                    $ref: '#/components/schemas/ElmLearningOpportunityTypeCourse'
+                  elmModeOfLearning:
+                    $ref: '#/components/schemas/ElmModeOfLearningAndAssessment'
+                  languageOfInstruction:
+                    $ref: '#/components/schemas/LanguageOfInstruction'
                   lastModified:
                     type: string
                     format: date-time
@@ -3132,13 +3161,42 @@ components:
             id:
               type: string
               description: JSON:API resource ID; UUID v4 is **recommended**, but any value that is unique within the Institution may be used.
-              format: uuid
             attributes:
               type: object
               description: JSON:API _attributes_ object.
               required:
+                - startDate
+                - endDate
+                - ects
                 - lastModified
               properties:
+                startDate:
+                  type: string
+                  format: date
+                  description: |
+                    The first date in which the Course instance was offered, formatted as
+                    [YYYY-MM-DD](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+                endDate:
+                  type: string
+                  format: date
+                  description: |
+                    The last date in which the Course instance was offered, formatted as
+                    [YYYY-MM-DD](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+                ects:
+                  type: float
+                  minimum: 0
+                  description: |
+                    Number of ECTS credits awarded to the learner upon completing the Course.
+                elmAssessmentType:
+                  $ref: '#/components/schemas/ElmAssessmentType'
+                elmLearningActivityType:
+                  $ref: '#/components/schemas/ElmLearningActivityType'
+                elmLearningOpportunityType:
+                  $ref: '#/components/schemas/ElmLearningOpportunityTypeCourse'
+                elmModeOfLearning:
+                  $ref: '#/components/schemas/ElmModeOfLearningAndAssessment'
+                languageOfInstruction:
+                  $ref: '#/components/schemas/LanguageOfInstruction'
                 lastModified:
                   type: string
                   format: date-time
