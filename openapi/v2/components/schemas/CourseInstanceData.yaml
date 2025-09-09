@@ -13,6 +13,7 @@ attributes:
   required:
     - startDate
     - endDate
+    - academicTermId
     - ects
     - lastModified
   properties:

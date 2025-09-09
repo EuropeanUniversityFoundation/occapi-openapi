@@ -1401,6 +1401,23 @@ paths:
                   type: instance
                   id: 13579bdf-0246-8ace-1357-9bdf02468ace
                   attributes:
+                    startDate: '2025-02-01'
+                    endDate: '2025-06-30'
+                    academicTermId: 2025/2026-2/2
+                    ects: 7.5
+                    elmAssessmentType:
+                      - 3484bd7e51
+                      - 6e6cb2cc78
+                    elmLearningActivityType:
+                      - ff436ea7c9
+                      - 3c8bd58d62
+                    elmLearningOpportunityType:
+                      - 05053c1cbe
+                    elmModeOfLearning:
+                      - e92d221e4d
+                    engagementHours: 42
+                    languageOfInstruction:
+                      - en
                     lastModified: '2025-09-01T12:00:00Z'
                   relationships:
                     course:
@@ -3011,6 +3028,23 @@ components:
           properties:
             self:
               $ref: '#/components/schemas/LinksResource'
+    AcademicTermId:
+      type: string
+      description: |
+        The academic term ID, as defined by [Erasmus Without Paper](#),
+         combines the exact academic year with the (generic) academic term as seen
+         at the Course level.
+
+        **Usage**
+
+        - The exact academic year component is described as `yearStart/yearEnd`;
+        - Wherever the academic year begins and ends in different calendar years,
+         the values of `yearStart` and `yearEnd` will be consecutive: `2025/2026`;
+        - Wherever the academic year begins and ends in the same calendar year,
+         the values of `yearStart` and `yearEnd` will be the same: `2026/2026`;
+        - The (generic) academic term component is taken from the [Course]();
+        - The resulting format is `YYYY/YYYY-t/T` i.e. `2025/2026-1/2` means the
+         **first** (1) **semester** (2) of the academic year **2025/2026**.
     CourseInstanceRelationships:
       type: object
       description: |
@@ -3083,6 +3117,7 @@ components:
                 required:
                   - startDate
                   - endDate
+                  - academicTermId
                   - ects
                   - lastModified
                 properties:
@@ -3098,6 +3133,8 @@ components:
                     description: |
                       The last date in which the Course instance was offered, formatted as
                       [YYYY-MM-DD](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+                  academicTermId:
+                    $ref: '#/components/schemas/AcademicTermId'
                   ects:
                     type: float
                     minimum: 0
@@ -3111,6 +3148,9 @@ components:
                     $ref: '#/components/schemas/ElmLearningOpportunityTypeCourse'
                   elmModeOfLearning:
                     $ref: '#/components/schemas/ElmModeOfLearningAndAssessment'
+                  engagementHours:
+                    type: float
+                    description: Total number of engagement hours during the entire Instance.
                   languageOfInstruction:
                     $ref: '#/components/schemas/LanguageOfInstruction'
                   lastModified:
@@ -3167,6 +3207,7 @@ components:
               required:
                 - startDate
                 - endDate
+                - academicTermId
                 - ects
                 - lastModified
               properties:
@@ -3182,6 +3223,8 @@ components:
                   description: |
                     The last date in which the Course instance was offered, formatted as
                     [YYYY-MM-DD](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+                academicTermId:
+                  $ref: '#/components/schemas/AcademicTermId'
                 ects:
                   type: float
                   minimum: 0
@@ -3195,6 +3238,9 @@ components:
                   $ref: '#/components/schemas/ElmLearningOpportunityTypeCourse'
                 elmModeOfLearning:
                   $ref: '#/components/schemas/ElmModeOfLearningAndAssessment'
+                engagementHours:
+                  type: float
+                  description: Total number of engagement hours during the entire Instance.
                 languageOfInstruction:
                   $ref: '#/components/schemas/LanguageOfInstruction'
                 lastModified:
