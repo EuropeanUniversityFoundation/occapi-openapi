@@ -125,4 +125,19 @@ lastModified:
   format: date-time
   description: |
     Time of latest change to this resource, formatted as
-     [_YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+     [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+deprecated:
+  type: boolean
+  description: |
+    Return `true` if a Course will no longer be delivered, or there is no
+     expectation that it will be delivered in the foreseeable future.
+
+    **Deprecate, do not delete!**
+
+    Institutions **must** keep a permanent record of all Courses ever delivered
+     so that they may be dereferenced from _Course instances_.
+
+    Servers **must** omit deprecated Courses from Course collections (unless
+     `deprecated` is used as a filter).
+
+    Servers **must** provide deprecated Course data via its **canonical path**.
