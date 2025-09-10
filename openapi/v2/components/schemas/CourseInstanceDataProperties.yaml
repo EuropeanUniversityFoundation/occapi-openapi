@@ -17,6 +17,8 @@ ects:
   minimum: 0
   description: |
     Number of ECTS credits awarded to the learner upon completing the Course.
+languageOfInstruction:
+  $ref: ./fields/LanguageOfInstruction.yaml
 elmAssessmentType:
   $ref: ./fields/ElmAssessmentType.yaml
 elmLearningActivityType:
@@ -28,8 +30,6 @@ elmModeOfLearning:
 engagementHours:
   type: float
   description: Total number of engagement hours during the entire Instance.
-languageOfInstruction:
-  $ref: ./fields/LanguageOfInstruction.yaml
 lastModified:
   type: string
   format: date-time

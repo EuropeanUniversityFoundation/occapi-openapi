@@ -15,6 +15,7 @@ attributes:
     - endDate
     - academicTermId
     - ects
+    - languageOfInstruction
     - lastModified
   properties:
     $ref: ./CourseInstanceDataProperties.yaml

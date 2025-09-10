@@ -14,6 +14,7 @@ attributes:
     - title
     - code
     - ects
+    - languageOfInstruction
     - lastModified
   properties:
     $ref: ./CourseDataExtendedProperties.yaml

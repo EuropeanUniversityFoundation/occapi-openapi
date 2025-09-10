@@ -2036,6 +2036,29 @@ components:
         **References**
 
         [European Qualifications Framework - EU Vocabularies](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/eqf/25831c2)
+    LanguageOfInstruction:
+      type: array
+      minItems: 1
+      description: |
+        IETF BCP 47 language tag.
+
+        Language tags allow to specify languages and their variations on script,
+          region, etc.
+
+        **Usage**
+
+        - `el` for Greek
+        - `el-Latn` for Greek in Latin script.
+        - `el-CY` for Cypriot Greek
+        - `el-Latn-CY` for Cypriot Greek in Latin script.
+
+        **References**
+
+        - [Current specification](https://www.rfc-editor.org/info/bcp47)
+        - [Language subtag registry](https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry)
+      items:
+        type: string
+        minLength: 2
     MultilineStringWithOptionalLang:
       type: object
       required:
@@ -2103,29 +2126,6 @@ components:
           - 7813801c77
           - ed4c557045
           - 729f3bed4b
-    LanguageOfInstruction:
-      type: array
-      minItems: 1
-      description: |
-        IETF BCP 47 language tag.
-
-        Language tags allow to specify languages and their variations on script,
-          region, etc.
-
-        **Usage**
-
-        - `el` for Greek
-        - `el-Latn` for Greek in Latin script.
-        - `el-CY` for Cypriot Greek
-        - `el-Latn-CY` for Cypriot Greek in Latin script.
-
-        **References**
-
-        - [Current specification](https://www.rfc-editor.org/info/bcp47)
-        - [Language subtag registry](https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry)
-      items:
-        type: string
-        minLength: 2
     ProgrammeLength:
       type: string
       pattern: ^\d{1,2}\/\d$
@@ -2181,6 +2181,7 @@ components:
                   - code
                   - ects
                   - eqfLevelProvided
+                  - languageOfInstruction
                   - lastModified
                 properties:
                   title:
@@ -2199,6 +2200,8 @@ components:
                     description: Number of ECTS credits required to complete the Programme.
                   eqfLevelProvided:
                     $ref: '#/components/schemas/EqfLevelProvided'
+                  languageOfInstruction:
+                    $ref: '#/components/schemas/LanguageOfInstruction'
                   abbreviation:
                     type: array
                     description: Abbbreviation with optional language code.
@@ -2233,8 +2236,6 @@ components:
                       type: string
                       minLength: 2
                       maxLength: 4
-                  languageOfInstruction:
-                    $ref: '#/components/schemas/LanguageOfInstruction'
                   learningOutcomes:
                     type: array
                     minItems: 1
@@ -2315,6 +2316,7 @@ components:
                 - code
                 - ects
                 - eqfLevelProvided
+                - languageOfInstruction
                 - lastModified
               properties:
                 title:
@@ -2333,6 +2335,8 @@ components:
                   description: Number of ECTS credits required to complete the Programme.
                 eqfLevelProvided:
                   $ref: '#/components/schemas/EqfLevelProvided'
+                languageOfInstruction:
+                  $ref: '#/components/schemas/LanguageOfInstruction'
                 abbreviation:
                   type: array
                   description: Abbbreviation with optional language code.
@@ -2367,8 +2371,6 @@ components:
                     type: string
                     minLength: 2
                     maxLength: 4
-                languageOfInstruction:
-                  $ref: '#/components/schemas/LanguageOfInstruction'
                 learningOutcomes:
                   type: array
                   minItems: 1
@@ -2703,6 +2705,7 @@ components:
                   - title
                   - code
                   - ects
+                  - languageOfInstruction
                   - lastModified
                 properties:
                   title:
@@ -2720,6 +2723,8 @@ components:
                     minimum: 0
                     description: |
                       Number of ECTS credits awarded to the learner upon completing the Course.
+                  languageOfInstruction:
+                    $ref: '#/components/schemas/LanguageOfInstruction'
                   academicTerm:
                     type: array
                     description: |
@@ -2766,8 +2771,6 @@ components:
                       type: string
                       minLength: 2
                       maxLength: 4
-                  languageOfInstruction:
-                    $ref: '#/components/schemas/LanguageOfInstruction'
                   learningOutcomes:
                     type: array
                     minItems: 1
@@ -2863,6 +2866,7 @@ components:
                 - title
                 - code
                 - ects
+                - languageOfInstruction
                 - lastModified
               properties:
                 title:
@@ -2880,6 +2884,8 @@ components:
                   minimum: 0
                   description: |
                     Number of ECTS credits awarded to the learner upon completing the Course.
+                languageOfInstruction:
+                  $ref: '#/components/schemas/LanguageOfInstruction'
                 academicTerm:
                   type: array
                   description: |
@@ -2926,8 +2932,6 @@ components:
                     type: string
                     minLength: 2
                     maxLength: 4
-                languageOfInstruction:
-                  $ref: '#/components/schemas/LanguageOfInstruction'
                 learningOutcomes:
                   type: array
                   minItems: 1
@@ -3119,6 +3123,7 @@ components:
                   - endDate
                   - academicTermId
                   - ects
+                  - languageOfInstruction
                   - lastModified
                 properties:
                   startDate:
@@ -3140,6 +3145,8 @@ components:
                     minimum: 0
                     description: |
                       Number of ECTS credits awarded to the learner upon completing the Course.
+                  languageOfInstruction:
+                    $ref: '#/components/schemas/LanguageOfInstruction'
                   elmAssessmentType:
                     $ref: '#/components/schemas/ElmAssessmentType'
                   elmLearningActivityType:
@@ -3151,8 +3158,6 @@ components:
                   engagementHours:
                     type: float
                     description: Total number of engagement hours during the entire Instance.
-                  languageOfInstruction:
-                    $ref: '#/components/schemas/LanguageOfInstruction'
                   lastModified:
                     type: string
                     format: date-time
@@ -3209,6 +3214,7 @@ components:
                 - endDate
                 - academicTermId
                 - ects
+                - languageOfInstruction
                 - lastModified
               properties:
                 startDate:
@@ -3230,6 +3236,8 @@ components:
                   minimum: 0
                   description: |
                     Number of ECTS credits awarded to the learner upon completing the Course.
+                languageOfInstruction:
+                  $ref: '#/components/schemas/LanguageOfInstruction'
                 elmAssessmentType:
                   $ref: '#/components/schemas/ElmAssessmentType'
                 elmLearningActivityType:
@@ -3241,8 +3249,6 @@ components:
                 engagementHours:
                   type: float
                   description: Total number of engagement hours during the entire Instance.
-                languageOfInstruction:
-                  $ref: '#/components/schemas/LanguageOfInstruction'
                 lastModified:
                   type: string
                   format: date-time

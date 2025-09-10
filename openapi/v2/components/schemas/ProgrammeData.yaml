@@ -15,6 +15,7 @@ attributes:
     - code
     - ects
     - eqfLevelProvided
+    - languageOfInstruction
     - lastModified
   properties:
     $ref: ./ProgrammeDataProperties.yaml

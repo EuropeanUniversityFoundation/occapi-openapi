@@ -13,6 +13,8 @@ ects:
   minimum: 0
   description: |
     Number of ECTS credits awarded to the learner upon completing the Course.
+languageOfInstruction:
+  $ref: ./fields/LanguageOfInstruction.yaml
 academicTerm:
   type: array
   description: |
@@ -59,8 +61,6 @@ iscedCode:
     type: string
     minLength: 2
     maxLength: 4
-languageOfInstruction:
-  $ref: ./fields/LanguageOfInstruction.yaml
 learningOutcomes:
   type: array
   minItems: 1
