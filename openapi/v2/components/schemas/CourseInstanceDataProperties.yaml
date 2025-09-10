@@ -30,6 +30,11 @@ elmModeOfLearning:
 engagementHours:
   type: float
   description: Total number of engagement hours during the entire Instance.
+  minimum: 0
+gradingScheme:
+  $ref: './GradingScheme.yaml'
+resultDistribution:
+  $ref: ./ResultDistribution.yaml
 lastModified:
   type: string
   format: date-time

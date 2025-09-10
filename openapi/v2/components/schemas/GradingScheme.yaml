@@ -1,0 +1,17 @@
+type: object
+description: |
+  Grading scheme used at the Institution.
+required:
+  - label
+properties:
+  label:
+    type: array
+    description: Human readable label of the grading scheme with optional
+     language code.
+    items:
+      $ref: ./fields/StringWithOptionalLang.yaml
+  description:
+    type: array
+    description: Description of the grading scheme with optional language code.
+    items:
+      $ref: ./fields/MultilineStringWithOptionalLang.yaml
