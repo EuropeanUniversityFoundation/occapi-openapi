@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  version: 2.0.0-dev
+  version: 2.0.0-alpha
   title: Open Course Catalogue API
   termsOfService: ''
   contact:
@@ -13,9 +13,6 @@ info:
     url: 'https://uni-foundation.eu/wp-content/uploads/2019/04/EUF-1.png'
   description:
     $ref: ./v2/info-description.md
-# externalDocs:
-#   description: Find out how to create a GitHub repo for your OpenAPI definition.
-#   url: 'https://github.com/Rebilly/generator-openapi-repo'
 tags:
   - name: API server
     description: Information about the server.
@@ -30,8 +27,12 @@ tags:
       Information about Courses offered by an Institution.
 
       _Course_ resources include a JSON:API _meta_ object containing information
-       about the relation between each Course and all or specific Programmes.
-  # - name: Tag
+       about the relation between each Course and specific Programmes.
+  - name: Course instance
+    description: |
+      Information about instances of Courses offered by an Institution.
+
+      _Course instance_ resources are directly linked to _Course_ resources.
 servers:
   - url: '/occapi/v2'
     description: Sandbox server (example data)

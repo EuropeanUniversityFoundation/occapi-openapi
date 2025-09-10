@@ -3,7 +3,7 @@ get:
     - Course instance
   summary: GET /hei/{heiId}/instance/{id}
   description: |
-    This endpoint exposes extended information about a _Course instance_.
+    This endpoint exposes information about a _Course instance_.
   operationId: getCourseInstanceByUuid
   parameters:
     - name: heiId
@@ -24,11 +24,11 @@ get:
     '200':
       description: OK
       headers:
-        X-Rate-Limit:
-          description: calls per hour allowed by the user.
+        Content-Type:
+          description: HTTP Content-Type representation header.
           schema:
-            type: integer
-            format: int32
+            type: string
+            enum: ['application/vnd.api+json']
       content:
         application/vnd.api+json:
           schema:

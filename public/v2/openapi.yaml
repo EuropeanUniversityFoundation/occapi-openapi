@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  version: 2.0.0-dev
+  version: 2.0.0-alpha
   title: Open Course Catalogue API
   termsOfService: ''
   contact:
@@ -11,7 +11,7 @@ info:
   description: |
     # Current status
 
-    This version (`v2@dev`) of the OCCAPI specification is a **work in progress** and reflects the discussions within the community, which are documented in the [GitHub issue queue](https://github.com/EuropeanUniversityFoundation/occapi-openapi/issues).
+    This version (`v2@alpha`) of the OCCAPI specification is a **work in progress** and reflects the discussions within the community, which are documented in the [GitHub issue queue](https://github.com/EuropeanUniversityFoundation/occapi-openapi/issues).
 servers:
   - url: /occapi/v2
     description: Sandbox server (example data)
@@ -29,7 +29,12 @@ tags:
       Information about Courses offered by an Institution.
 
       _Course_ resources include a JSON:API _meta_ object containing information
-       about the relation between each Course and all or specific Programmes.
+       about the relation between each Course and specific Programmes.
+  - name: Course instance
+    description: |
+      Information about instances of Courses offered by an Institution.
+
+      _Course instance_ resources are directly linked to _Course_ resources.
 paths:
   /:
     get:
@@ -42,11 +47,12 @@ paths:
         '200':
           description: OK
           headers:
-            X-Rate-Limit:
-              description: calls per hour allowed by the user.
+            Content-Type:
+              description: HTTP Content-Type representation header.
               schema:
-                type: integer
-                format: int32
+                type: string
+                enum:
+                  - application/vnd.api+json
           content:
             application/vnd.api+json:
               schema:
@@ -110,11 +116,12 @@ paths:
         '200':
           description: OK
           headers:
-            X-Rate-Limit:
-              description: calls per hour allowed by the user.
+            Content-Type:
+              description: HTTP Content-Type representation header.
               schema:
-                type: integer
-                format: int32
+                type: string
+                enum:
+                  - application/vnd.api+json
           content:
             application/vnd.api+json:
               schema:
@@ -194,11 +201,12 @@ paths:
         '200':
           description: OK
           headers:
-            X-Rate-Limit:
-              description: calls per hour allowed by the user.
+            Content-Type:
+              description: HTTP Content-Type representation header.
               schema:
-                type: integer
-                format: int32
+                type: string
+                enum:
+                  - application/vnd.api+json
           content:
             application/vnd.api+json:
               schema:
@@ -260,8 +268,9 @@ paths:
       description: |
         This endpoint lists all _Organisational Units_ in an _Institution_.
 
-        Implementation is optional but **recommended** since exposing collections by
-         _Organisational Unit_ can help avoid large HTTP responses.
+        Implementation is optional but **recommended** since exposing collections of
+         _Programmes_ or _Courses_ filtered by _Organisational Unit_ can help avoid
+         large HTTP responses.
       operationId: getOunits
       parameters:
         - name: heiId
@@ -274,11 +283,12 @@ paths:
         '200':
           description: OK
           headers:
-            X-Rate-Limit:
-              description: calls per hour allowed by the user.
+            Content-Type:
+              description: HTTP Content-Type representation header.
               schema:
-                type: integer
-                format: int32
+                type: string
+                enum:
+                  - application/vnd.api+json
           content:
             application/vnd.api+json:
               schema:
@@ -361,11 +371,12 @@ paths:
         '200':
           description: OK
           headers:
-            X-Rate-Limit:
-              description: calls per hour allowed by the user.
+            Content-Type:
+              description: HTTP Content-Type representation header.
               schema:
-                type: integer
-                format: int32
+                type: string
+                enum:
+                  - application/vnd.api+json
           content:
             application/vnd.api+json:
               schema:
@@ -437,11 +448,12 @@ paths:
         '200':
           description: OK
           headers:
-            X-Rate-Limit:
-              description: calls per hour allowed by the user.
+            Content-Type:
+              description: HTTP Content-Type representation header.
               schema:
-                type: integer
-                format: int32
+                type: string
+                enum:
+                  - application/vnd.api+json
           content:
             application/vnd.api+json:
               schema:
@@ -544,11 +556,12 @@ paths:
         '200':
           description: OK
           headers:
-            X-Rate-Limit:
-              description: calls per hour allowed by the user.
+            Content-Type:
+              description: HTTP Content-Type representation header.
               schema:
-                type: integer
-                format: int32
+                type: string
+                enum:
+                  - application/vnd.api+json
           content:
             application/vnd.api+json:
               schema:
@@ -652,11 +665,12 @@ paths:
         '200':
           description: OK
           headers:
-            X-Rate-Limit:
-              description: calls per hour allowed by the user.
+            Content-Type:
+              description: HTTP Content-Type representation header.
               schema:
-                type: integer
-                format: int32
+                type: string
+                enum:
+                  - application/vnd.api+json
           content:
             application/vnd.api+json:
               schema:
@@ -752,11 +766,12 @@ paths:
         '200':
           description: OK
           headers:
-            X-Rate-Limit:
-              description: calls per hour allowed by the user.
+            Content-Type:
+              description: HTTP Content-Type representation header.
               schema:
-                type: integer
-                format: int32
+                type: string
+                enum:
+                  - application/vnd.api+json
           content:
             application/vnd.api+json:
               schema:
@@ -880,11 +895,12 @@ paths:
         '200':
           description: OK
           headers:
-            X-Rate-Limit:
-              description: calls per hour allowed by the user.
+            Content-Type:
+              description: HTTP Content-Type representation header.
               schema:
-                type: integer
-                format: int32
+                type: string
+                enum:
+                  - application/vnd.api+json
           content:
             application/vnd.api+json:
               schema:
@@ -1008,11 +1024,12 @@ paths:
         '200':
           description: OK
           headers:
-            X-Rate-Limit:
-              description: calls per hour allowed by the user.
+            Content-Type:
+              description: HTTP Content-Type representation header.
               schema:
-                type: integer
-                format: int32
+                type: string
+                enum:
+                  - application/vnd.api+json
           content:
             application/vnd.api+json:
               schema:
@@ -1139,11 +1156,12 @@ paths:
         '200':
           description: OK
           headers:
-            X-Rate-Limit:
-              description: calls per hour allowed by the user.
+            Content-Type:
+              description: HTTP Content-Type representation header.
               schema:
-                type: integer
-                format: int32
+                type: string
+                enum:
+                  - application/vnd.api+json
           content:
             application/vnd.api+json:
               schema:
@@ -1303,11 +1321,12 @@ paths:
         '200':
           description: OK
           headers:
-            X-Rate-Limit:
-              description: calls per hour allowed by the user.
+            Content-Type:
+              description: HTTP Content-Type representation header.
               schema:
-                type: integer
-                format: int32
+                type: string
+                enum:
+                  - application/vnd.api+json
           content:
             application/vnd.api+json:
               schema:
@@ -1360,7 +1379,7 @@ paths:
         - Course instance
       summary: GET /hei/{heiId}/instance/{id}
       description: |
-        This endpoint exposes extended information about a _Course instance_.
+        This endpoint exposes information about a _Course instance_.
       operationId: getCourseInstanceByUuid
       parameters:
         - name: heiId
@@ -1381,11 +1400,12 @@ paths:
         '200':
           description: OK
           headers:
-            X-Rate-Limit:
-              description: calls per hour allowed by the user.
+            Content-Type:
+              description: HTTP Content-Type representation header.
               schema:
-                type: integer
-                format: int32
+                type: string
+                enum:
+                  - application/vnd.api+json
           content:
             application/vnd.api+json:
               schema:
@@ -1541,7 +1561,7 @@ components:
     LinksInstitutionCollection:
       type: object
       description: |
-        Hypermedia link to the _Institution_ collection covered with this server.
+        Hypermedia link to the _Institution_ collection covered by this server.
       required:
         - href
       properties:
@@ -1659,7 +1679,7 @@ components:
     LinksOunitCollection:
       type: object
       description: |
-        Hypermedia link to the _Organizational Unit_ collection associated with this
+        Hypermedia link to the _Organisational Unit_ collection associated with this
          resource.
       required:
         - href

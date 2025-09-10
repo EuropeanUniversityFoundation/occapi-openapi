@@ -1,6 +1,6 @@
 type: object
 description: |
-  Hypermedia link to the _Institution_ collection covered with this server.
+  Hypermedia link to the _Institution_ collection covered by this server.
 required:
   - href
 properties:
