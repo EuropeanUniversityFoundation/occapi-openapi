@@ -1762,6 +1762,12 @@ components:
                     type: string
                     description: The SCHAC code of the Institution.
                     format: hostname
+                  lastModified:
+                    type: string
+                    format: date-time
+                    description: |
+                      Time of latest change to this resource, formatted as
+                      [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
                   abbreviation:
                     type: array
                     description: Most widely recognized abbbreviation with optional language code.
@@ -1772,12 +1778,6 @@ components:
                     description: External URL with optional language code.
                     items:
                       $ref: '#/components/schemas/HttpWithOptionalLang'
-                  lastModified:
-                    type: string
-                    format: date-time
-                    description: |
-                      Time of latest change to this resource, formatted as
-                      [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
               links:
                 type: object
                 description: JSON:API _links_ object.
@@ -1842,6 +1842,12 @@ components:
                   type: string
                   description: The SCHAC code of the Institution.
                   format: hostname
+                lastModified:
+                  type: string
+                  format: date-time
+                  description: |
+                    Time of latest change to this resource, formatted as
+                    [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
                 abbreviation:
                   type: array
                   description: Most widely recognized abbbreviation with optional language code.
@@ -1852,12 +1858,6 @@ components:
                   description: External URL with optional language code.
                   items:
                     $ref: '#/components/schemas/HttpWithOptionalLang'
-                lastModified:
-                  type: string
-                  format: date-time
-                  description: |
-                    Time of latest change to this resource, formatted as
-                    [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
             links:
               type: object
               description: JSON:API _links_ object.
@@ -1904,7 +1904,7 @@ components:
                   - ounit
               id:
                 type: string
-                description: JSON:API resource ID; UUID v4 is **recommended**, but any value that is unique within the Institution may be used.
+                description: JSON:API resource ID; UUID v4 is **recommended**, but any value that is unique within the Institution may be used. **Must** match `ounitId`.
                 format: uuid
               attributes:
                 type: object
@@ -1921,7 +1921,13 @@ components:
                       $ref: '#/components/schemas/StringWithOptionalLang'
                   ounitId:
                     type: string
-                    description: Unique identifier within the Institution. Can be a UUID.
+                    description: Unique identifier within the Institution.
+                  lastModified:
+                    type: string
+                    format: date-time
+                    description: |
+                      Time of latest change to this resource, formatted as
+                      [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
                   abbreviation:
                     type: array
                     description: Most widely recognized abbbreviation with optional language code.
@@ -1935,12 +1941,6 @@ components:
                     description: External URL with optional language code.
                     items:
                       $ref: '#/components/schemas/HttpWithOptionalLang'
-                  lastModified:
-                    type: string
-                    format: date-time
-                    description: |
-                      Time of latest change to this resource, formatted as
-                      [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
               links:
                 type: object
                 description: JSON:API _links_ object.
@@ -1983,7 +1983,7 @@ components:
                 - ounit
             id:
               type: string
-              description: JSON:API resource ID; UUID v4 is **recommended**, but any value that is unique within the Institution may be used.
+              description: JSON:API resource ID; UUID v4 is **recommended**, but any value that is unique within the Institution may be used. **Must** match `ounitId`.
               format: uuid
             attributes:
               type: object
@@ -2000,7 +2000,13 @@ components:
                     $ref: '#/components/schemas/StringWithOptionalLang'
                 ounitId:
                   type: string
-                  description: Unique identifier within the Institution. Can be a UUID.
+                  description: Unique identifier within the Institution.
+                lastModified:
+                  type: string
+                  format: date-time
+                  description: |
+                    Time of latest change to this resource, formatted as
+                    [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
                 abbreviation:
                   type: array
                   description: Most widely recognized abbbreviation with optional language code.
@@ -2014,12 +2020,6 @@ components:
                   description: External URL with optional language code.
                   items:
                     $ref: '#/components/schemas/HttpWithOptionalLang'
-                lastModified:
-                  type: string
-                  format: date-time
-                  description: |
-                    Time of latest change to this resource, formatted as
-                    [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
             links:
               type: object
               description: JSON:API _links_ object.
@@ -2222,17 +2222,29 @@ components:
                     $ref: '#/components/schemas/EqfLevelProvided'
                   languageOfInstruction:
                     $ref: '#/components/schemas/LanguageOfInstruction'
-                  abbreviation:
-                    type: array
-                    description: Abbbreviation with optional language code.
-                    items:
-                      $ref: '#/components/schemas/StringWithOptionalLang'
+                  lastModified:
+                    type: string
+                    format: date-time
+                    description: |
+                      Time of latest change to this resource, formatted as
+                       [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
                   description:
                     type: array
                     minItems: 1
                     description: Description with optional language code.
                     items:
                       $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                  learningOutcomes:
+                    type: array
+                    minItems: 1
+                    description: Learning outcomes with optional language code.
+                    items:
+                      $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                  abbreviation:
+                    type: array
+                    description: Abbbreviation with optional language code.
+                    items:
+                      $ref: '#/components/schemas/StringWithOptionalLang'
                   elmLearningOpportunityType:
                     $ref: '#/components/schemas/ElmLearningOpportunityTypeProgramme'
                   elmLearningScheduleType:
@@ -2256,12 +2268,6 @@ components:
                       type: string
                       minLength: 2
                       maxLength: 4
-                  learningOutcomes:
-                    type: array
-                    minItems: 1
-                    description: Learning outcomes with optional language code.
-                    items:
-                      $ref: '#/components/schemas/MultilineStringWithOptionalLang'
                   length:
                     $ref: '#/components/schemas/ProgrammeLength'
                   url:
@@ -2281,12 +2287,6 @@ components:
                     description: |
                       The last date in which the Programme was offered, formatted as
                        [YYYY-MM-DD](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
-                  lastModified:
-                    type: string
-                    format: date-time
-                    description: |
-                      Time of latest change to this resource, formatted as
-                       [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
               links:
                 type: object
                 description: JSON:API _links_ object.
@@ -2357,17 +2357,29 @@ components:
                   $ref: '#/components/schemas/EqfLevelProvided'
                 languageOfInstruction:
                   $ref: '#/components/schemas/LanguageOfInstruction'
-                abbreviation:
-                  type: array
-                  description: Abbbreviation with optional language code.
-                  items:
-                    $ref: '#/components/schemas/StringWithOptionalLang'
+                lastModified:
+                  type: string
+                  format: date-time
+                  description: |
+                    Time of latest change to this resource, formatted as
+                     [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
                 description:
                   type: array
                   minItems: 1
                   description: Description with optional language code.
                   items:
                     $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                learningOutcomes:
+                  type: array
+                  minItems: 1
+                  description: Learning outcomes with optional language code.
+                  items:
+                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                abbreviation:
+                  type: array
+                  description: Abbbreviation with optional language code.
+                  items:
+                    $ref: '#/components/schemas/StringWithOptionalLang'
                 elmLearningOpportunityType:
                   $ref: '#/components/schemas/ElmLearningOpportunityTypeProgramme'
                 elmLearningScheduleType:
@@ -2391,12 +2403,6 @@ components:
                     type: string
                     minLength: 2
                     maxLength: 4
-                learningOutcomes:
-                  type: array
-                  minItems: 1
-                  description: Learning outcomes with optional language code.
-                  items:
-                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
                 length:
                   $ref: '#/components/schemas/ProgrammeLength'
                 url:
@@ -2416,12 +2422,6 @@ components:
                   description: |
                     The last date in which the Programme was offered, formatted as
                      [YYYY-MM-DD](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
-                lastModified:
-                  type: string
-                  format: date-time
-                  description: |
-                    Time of latest change to this resource, formatted as
-                     [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
             links:
               type: object
               description: JSON:API _links_ object.
@@ -2745,6 +2745,24 @@ components:
                       Number of ECTS credits awarded to the learner upon completing the Course.
                   languageOfInstruction:
                     $ref: '#/components/schemas/LanguageOfInstruction'
+                  lastModified:
+                    type: string
+                    format: date-time
+                    description: |
+                      Time of latest change to this resource, formatted as
+                       [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+                  description:
+                    type: array
+                    minItems: 1
+                    description: Description with optional language code.
+                    items:
+                      $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                  learningOutcomes:
+                    type: array
+                    minItems: 1
+                    description: Learning outcomes with optional language code.
+                    items:
+                      $ref: '#/components/schemas/MultilineStringWithOptionalLang'
                   academicTerm:
                     type: array
                     description: |
@@ -2761,12 +2779,6 @@ components:
                     items:
                       type: string
                       pattern: ^[1-9]\/[1/9]$
-                  description:
-                    type: array
-                    minItems: 1
-                    description: Description with optional language code.
-                    items:
-                      $ref: '#/components/schemas/MultilineStringWithOptionalLang'
                   elmAssessmentType:
                     $ref: '#/components/schemas/ElmAssessmentType'
                   elmLearningActivityType:
@@ -2791,12 +2803,6 @@ components:
                       type: string
                       minLength: 2
                       maxLength: 4
-                  learningOutcomes:
-                    type: array
-                    minItems: 1
-                    description: Learning outcomes with optional language code.
-                    items:
-                      $ref: '#/components/schemas/MultilineStringWithOptionalLang'
                   localClassification:
                     $ref: '#/components/schemas/LocalClassification'
                   restrictedToLocalStudents:
@@ -2814,12 +2820,6 @@ components:
                     description: External URL with optional language code.
                     items:
                       $ref: '#/components/schemas/HttpWithOptionalLang'
-                  lastModified:
-                    type: string
-                    format: date-time
-                    description: |
-                      Time of latest change to this resource, formatted as
-                       [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
                   deprecated:
                     type: boolean
                     description: |
@@ -2906,6 +2906,24 @@ components:
                     Number of ECTS credits awarded to the learner upon completing the Course.
                 languageOfInstruction:
                   $ref: '#/components/schemas/LanguageOfInstruction'
+                lastModified:
+                  type: string
+                  format: date-time
+                  description: |
+                    Time of latest change to this resource, formatted as
+                     [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+                description:
+                  type: array
+                  minItems: 1
+                  description: Description with optional language code.
+                  items:
+                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                learningOutcomes:
+                  type: array
+                  minItems: 1
+                  description: Learning outcomes with optional language code.
+                  items:
+                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
                 academicTerm:
                   type: array
                   description: |
@@ -2922,10 +2940,27 @@ components:
                   items:
                     type: string
                     pattern: ^[1-9]\/[1/9]$
-                description:
+                assessmentMethod:
                   type: array
-                  minItems: 1
-                  description: Description with optional language code.
+                  description: |
+                    Assessment method with optional language code.
+
+                    **Note:** It is preferable to use `elmAssessmentType` instead.
+                  items:
+                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                bibliography:
+                  type: array
+                  description: Bibliography with optional language code.
+                  items:
+                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                courseAvailability:
+                  type: array
+                  description: Course availability with optional language code.
+                  items:
+                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
+                courseContent:
+                  type: array
+                  description: Course content with optional language code.
                   items:
                     $ref: '#/components/schemas/MultilineStringWithOptionalLang'
                 elmAssessmentType:
@@ -2952,14 +2987,13 @@ components:
                     type: string
                     minLength: 2
                     maxLength: 4
-                learningOutcomes:
-                  type: array
-                  minItems: 1
-                  description: Learning outcomes with optional language code.
-                  items:
-                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
                 localClassification:
                   $ref: '#/components/schemas/LocalClassification'
+                prerequisites:
+                  type: array
+                  description: Prerequisites with optional language code.
+                  items:
+                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
                 restrictedToLocalStudents:
                   type: boolean
                   description: |
@@ -2970,31 +3004,6 @@ components:
                   description: |
                     Return `true` when enrollment in the Course is restricted to students
                      enrolled at a partner Institution in the same University Alliance.
-                url:
-                  type: array
-                  description: External URL with optional language code.
-                  items:
-                    $ref: '#/components/schemas/HttpWithOptionalLang'
-                bibliography:
-                  type: array
-                  description: Bibliography with optional language code.
-                  items:
-                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
-                courseContent:
-                  type: array
-                  description: Course content with optional language code.
-                  items:
-                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
-                prerequisites:
-                  type: array
-                  description: Prerequisites with optional language code.
-                  items:
-                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
-                courseAvailability:
-                  type: array
-                  description: Course availability with optional language code.
-                  items:
-                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
                 teachingMethod:
                   type: array
                   description: |
@@ -3003,20 +3012,11 @@ components:
                     **Note:** It is preferable to use `elmLearningActivityType` instead.
                   items:
                     $ref: '#/components/schemas/MultilineStringWithOptionalLang'
-                assessmentMethod:
+                url:
                   type: array
-                  description: |
-                    Assessment method with optional language code.
-
-                    **Note:** It is preferable to use `elmAssessmentType` instead.
+                  description: External URL with optional language code.
                   items:
-                    $ref: '#/components/schemas/MultilineStringWithOptionalLang'
-                lastModified:
-                  type: string
-                  format: date-time
-                  description: |
-                    Time of latest change to this resource, formatted as
-                     [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+                    $ref: '#/components/schemas/HttpWithOptionalLang'
                 deprecated:
                   type: boolean
                   description: |
@@ -3224,6 +3224,12 @@ components:
                       Number of ECTS credits awarded to the learner upon completing the Course.
                   languageOfInstruction:
                     $ref: '#/components/schemas/LanguageOfInstruction'
+                  lastModified:
+                    type: string
+                    format: date-time
+                    description: |
+                      Time of latest change to this resource, formatted as
+                      [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
                   elmAssessmentType:
                     $ref: '#/components/schemas/ElmAssessmentType'
                   elmLearningActivityType:
@@ -3240,12 +3246,6 @@ components:
                     $ref: '#/components/schemas/GradingScheme'
                   resultDistribution:
                     $ref: '#/components/schemas/ResultDistribution'
-                  lastModified:
-                    type: string
-                    format: date-time
-                    description: |
-                      Time of latest change to this resource, formatted as
-                      [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
               relationships:
                 $ref: '#/components/schemas/CourseInstanceRelationships'
               links:
@@ -3320,6 +3320,12 @@ components:
                     Number of ECTS credits awarded to the learner upon completing the Course.
                 languageOfInstruction:
                   $ref: '#/components/schemas/LanguageOfInstruction'
+                lastModified:
+                  type: string
+                  format: date-time
+                  description: |
+                    Time of latest change to this resource, formatted as
+                    [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
                 elmAssessmentType:
                   $ref: '#/components/schemas/ElmAssessmentType'
                 elmLearningActivityType:
@@ -3336,12 +3342,6 @@ components:
                   $ref: '#/components/schemas/GradingScheme'
                 resultDistribution:
                   $ref: '#/components/schemas/ResultDistribution'
-                lastModified:
-                  type: string
-                  format: date-time
-                  description: |
-                    Time of latest change to this resource, formatted as
-                    [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
             relationships:
               $ref: '#/components/schemas/CourseInstanceRelationships'
             links:

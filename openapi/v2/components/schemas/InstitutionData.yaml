@@ -24,6 +24,12 @@ attributes:
       type: string
       description: The SCHAC code of the Institution.
       format: hostname
+    lastModified:
+      type: string
+      format: date-time
+      description: |
+        Time of latest change to this resource, formatted as
+        [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
     abbreviation:
       type: array
       description: Most widely recognized abbbreviation with optional language
@@ -35,12 +41,6 @@ attributes:
       description: External URL with optional language code.
       items:
         $ref: ./fields/HttpWithOptionalLang.yaml
-    lastModified:
-      type: string
-      format: date-time
-      description: |
-        Time of latest change to this resource, formatted as
-        [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
 links:
   type: object
   description: JSON:API _links_ object.

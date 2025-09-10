@@ -16,17 +16,29 @@ eqfLevelProvided:
   $ref: ./fields/EqfLevelProvided.yaml
 languageOfInstruction:
   $ref: ./fields/LanguageOfInstruction.yaml
-abbreviation:
-  type: array
-  description: Abbbreviation with optional language code.
-  items:
-    $ref: ./fields/StringWithOptionalLang.yaml
+lastModified:
+  type: string
+  format: date-time
+  description: |
+    Time of latest change to this resource, formatted as
+     [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
 description:
   type: array
   minItems: 1
   description: Description with optional language code.
   items:
     $ref: ./fields/MultilineStringWithOptionalLang.yaml
+learningOutcomes:
+  type: array
+  minItems: 1
+  description: Learning outcomes with optional language code.
+  items:
+    $ref: ./fields/MultilineStringWithOptionalLang.yaml
+abbreviation:
+  type: array
+  description: Abbbreviation with optional language code.
+  items:
+    $ref: ./fields/StringWithOptionalLang.yaml
 elmLearningOpportunityType:
   $ref: ./fields/ElmLearningOpportunityTypeProgramme.yaml
 elmLearningScheduleType:
@@ -50,12 +62,6 @@ iscedCode:
     type: string
     minLength: 2
     maxLength: 4
-learningOutcomes:
-  type: array
-  minItems: 1
-  description: Learning outcomes with optional language code.
-  items:
-    $ref: ./fields/MultilineStringWithOptionalLang.yaml
 length:
   $ref: ./fields/ProgrammeLength.yaml
 url:
@@ -75,9 +81,3 @@ validUntil:
   description: |
     The last date in which the Programme was offered, formatted as
      [YYYY-MM-DD](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
-lastModified:
-  type: string
-  format: date-time
-  description: |
-    Time of latest change to this resource, formatted as
-     [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).

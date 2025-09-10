@@ -19,6 +19,12 @@ ects:
     Number of ECTS credits awarded to the learner upon completing the Course.
 languageOfInstruction:
   $ref: ./fields/LanguageOfInstruction.yaml
+lastModified:
+  type: string
+  format: date-time
+  description: |
+    Time of latest change to this resource, formatted as
+    [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
 elmAssessmentType:
   $ref: ./fields/ElmAssessmentType.yaml
 elmLearningActivityType:
@@ -35,9 +41,3 @@ gradingScheme:
   $ref: './GradingScheme.yaml'
 resultDistribution:
   $ref: ./ResultDistribution.yaml
-lastModified:
-  type: string
-  format: date-time
-  description: |
-    Time of latest change to this resource, formatted as
-    [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
