@@ -11,8 +11,7 @@ data:
       title:
         - string: Example Institution
           lang: en
-      abbreviation:
-        - string: EI
+      abbreviation: EI
       heiId: domain.tld
       url:
         - uri: www.domain.tld

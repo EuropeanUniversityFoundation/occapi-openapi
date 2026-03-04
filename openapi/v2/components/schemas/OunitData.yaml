@@ -31,11 +31,8 @@ attributes:
         Time of latest change to this resource, formatted as
         [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
     abbreviation:
-      type: array
-      description: Most widely recognized abbbreviation with optional language
-       code.
-      items:
-        $ref: ./fields/StringWithOptionalLang.yaml
+      type: string
+      description: Most widely recognized abbbreviation
     ounitCode:
       type: string
       description: Human readable code identifying the Organisational Unit.

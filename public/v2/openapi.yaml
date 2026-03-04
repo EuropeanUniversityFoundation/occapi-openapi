@@ -387,12 +387,8 @@ paths:
                                 Time of latest change to this resource, formatted as
                                 [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
                             abbreviation:
-                              type: array
-                              description: Most widely recognized abbbreviation with optional language code.
-                              items:
-                                type: object
-                                required: *ref_3
-                                properties: *ref_4
+                              type: string
+                              description: Most widely recognized abbbreviation.
                             url:
                               type: array
                               description: External URL with optional language code.
@@ -469,8 +465,7 @@ paths:
                       title:
                         - string: Example Institution
                           lang: en
-                      abbreviation:
-                        - string: EI
+                      abbreviation: EI
                       heiId: domain.tld
                       url:
                         - uri: www.domain.tld
@@ -581,8 +576,7 @@ paths:
                     title:
                       - string: Example Institution
                         lang: en
-                    abbreviation:
-                      - string: EI
+                    abbreviation: EI
                     heiId: domain.tld
                     url:
                       - uri: www.domain.tld
@@ -706,12 +700,8 @@ paths:
                                 Time of latest change to this resource, formatted as
                                 [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
                             abbreviation:
-                              type: array
-                              description: Most widely recognized abbbreviation with optional language code.
-                              items:
-                                type: object
-                                required: *ref_3
-                                properties: *ref_4
+                              type: string
+                              description: Most widely recognized abbbreviation
                             ounitCode:
                               type: string
                               description: Human readable code identifying the Organisational Unit.
@@ -768,8 +758,7 @@ paths:
                       title:
                         - string: Example Organisational Unit
                           lang: en
-                      abbreviation:
-                        - string: EOU
+                      abbreviation: EOU
                       ounitId: 11223344-5566-7788-9900-aabbccddeeff
                       ounitCode: EI-EOU
                       url:
@@ -883,8 +872,7 @@ paths:
                     title:
                       - string: Example Organisational Unit
                         lang: en
-                    abbreviation:
-                      - string: EOU
+                    abbreviation: EOU
                     ounitId: 11223344-5566-7788-9900-aabbccddeeff
                     ounitCode: EI-EOU
                     url:
