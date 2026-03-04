@@ -986,7 +986,7 @@ paths:
                               minLength: 1
                               description: Human readable code identifying the Programme.
                             ects:
-                              type: integer
+                              type: float
                               minimum: 0
                               description: Number of ECTS credits required to complete the Programme.
                             eqfLevelProvided:

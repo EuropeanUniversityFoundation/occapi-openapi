@@ -12,7 +12,7 @@ data:
         - string: Example Programme
           lang: en
       code: PROG01
-      ects: 120
+      ects: 120.00
       eqfLevelProvided: 5
       abbreviation:
         - string: P1
