@@ -1894,7 +1894,9 @@ paths:
                             JSON:API _relationships_ object.
                           properties: &ref_46
                             prerequisiteCourse:
-                              type: array
+                              type:
+                                - object
+                                - null
                               description: |
                                 Another Course that **must** be completed before enrollment in the present
                                  Course is allowed.
@@ -1902,15 +1904,14 @@ paths:
                                 If the prerequisites for the present Course cannot be matched to a single
                                  Course (or multiple Courses), use the `prerequisites` data attribute for
                                  a more detailed description.
-                              items:
-                                type: object
-                                required:
-                                  - data
-                                  - links
-                                properties:
-                                  data:
+                              required:
+                                - data
+                              properties:
+                                data:
+                                  type: array
+                                  description: Prerequisite Course data.
+                                  items:
                                     type: object
-                                    description: Prerequisite Course data.
                                     required:
                                       - type
                                       - id
@@ -1923,32 +1924,22 @@ paths:
                                       id:
                                         type: string
                                         description: JSON:API resource ID; UUID v4 is **recommended**, but any value that is unique within the Institution may be used.
-                                  links:
-                                    type: object
-                                    description: JSON:API _links_ object.
-                                    required:
-                                      - self
-                                    properties:
-                                      self:
-                                        type: object
-                                        description: Hypermedia link to the **canonical path** of this resource.
-                                        required: *ref_7
-                                        properties: *ref_8
                             relatedProgramme:
-                              type: array
+                              type:
+                                - object
+                                - null
                               description: |
                                 Any Programme which includes the present Course in its curricular plan.
 
                                 This **must** match all related Programmes indicated in the `meta` object.
-                              items:
-                                type: object
-                                required:
-                                  - data
-                                  - links
-                                properties:
-                                  data:
+                              required:
+                                - data
+                              properties:
+                                data:
+                                  type: array
+                                  description: Related Programme data.
+                                  items:
                                     type: object
-                                    description: Related Programme data.
                                     required:
                                       - type
                                       - id
@@ -1961,17 +1952,6 @@ paths:
                                       id:
                                         type: string
                                         description: JSON:API resource ID; UUID v4 is **recommended**, but any value that is unique within the Institution may be used.
-                                  links:
-                                    type: object
-                                    description: JSON:API _links_ object.
-                                    required:
-                                      - self
-                                    properties:
-                                      self:
-                                        type: object
-                                        description: Hypermedia link to the **canonical path** of this resource.
-                                        required: *ref_7
-                                        properties: *ref_8
                         links:
                           type: object
                           description: JSON:API _links_ object.
@@ -2063,14 +2043,11 @@ paths:
                           mandatoryCourse: true
                           year: 1/2
                     relationships:
-                      prerequisiteCourse: []
+                      prerequisiteCourse: null
                       relatedProgramme:
-                        - data:
-                            type: programme
+                        data:
+                          - type: programme
                             id: abcdef12-3456-7890-abcd-ef1234567890
-                          links:
-                            self:
-                              href: http://example.com/occapi/v2/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
                     links:
                       self:
                         href: http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
@@ -2191,14 +2168,11 @@ paths:
                           mandatoryCourse: true
                           year: 1/2
                     relationships:
-                      prerequisiteCourse: []
+                      prerequisiteCourse: null
                       relatedProgramme:
-                        - data:
-                            type: programme
+                        data:
+                          - type: programme
                             id: abcdef12-3456-7890-abcd-ef1234567890
-                          links:
-                            self:
-                              href: http://example.com/occapi/v2/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
                     links:
                       self:
                         href: http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
@@ -2319,14 +2293,11 @@ paths:
                           mandatoryCourse: true
                           year: 1/2
                     relationships:
-                      prerequisiteCourse: []
+                      prerequisiteCourse: null
                       relatedProgramme:
-                        - data:
-                            type: programme
+                        data:
+                          - type: programme
                             id: abcdef12-3456-7890-abcd-ef1234567890
-                          links:
-                            self:
-                              href: http://example.com/occapi/v2/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
                     links:
                       self:
                         href: http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
@@ -2798,14 +2769,11 @@ paths:
                         mandatoryCourse: true
                         year: 1/2
                   relationships:
-                    prerequisiteCourse: []
+                    prerequisiteCourse: null
                     relatedProgramme:
-                      - data:
-                          type: programme
+                      data:
+                        - type: programme
                           id: abcdef12-3456-7890-abcd-ef1234567890
-                        links:
-                          self:
-                            href: http://example.com/occapi/v2/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890
                   links:
                     self:
                       href: http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
@@ -3103,7 +3071,6 @@ paths:
                                 The _Course_ resource the _Course instance_ refers to.
                               required:
                                 - data
-                                - links
                               properties:
                                 data:
                                   type: object
@@ -3120,17 +3087,6 @@ paths:
                                     id:
                                       type: string
                                       description: JSON:API resource ID; UUID v4 is **recommended**, but any value that is unique within the Institution may be used.
-                                links:
-                                  type: object
-                                  description: JSON:API _links_ object.
-                                  required:
-                                    - self
-                                  properties:
-                                    self:
-                                      type: object
-                                      description: Hypermedia link to the **canonical path** of this resource.
-                                      required: *ref_7
-                                      properties: *ref_8
                         links: &ref_53
                           type: object
                           description: JSON:API _links_ object.
@@ -3162,15 +3118,29 @@ paths:
                   - type: instance
                     id: 13579bdf-0246-8ace-1357-9bdf02468ace
                     attributes:
+                      startDate: '2025-02-01'
+                      endDate: '2025-06-30'
+                      academicTermId: 2025/2026-2/2
+                      ects: 7.5
+                      elmAssessmentType:
+                        - 3484bd7e51
+                        - 6e6cb2cc78
+                      elmLearningActivityType:
+                        - ff436ea7c9
+                        - 3c8bd58d62
+                      elmLearningOpportunityType:
+                        - 05053c1cbe
+                      elmModeOfLearning:
+                        - e92d221e4d
+                      engagementHours: 42
+                      languageOfInstruction:
+                        - en
                       lastModified: '2025-09-01T12:00:00Z'
                     relationships:
                       course:
                         data:
                           type: course
                           id: aabbccdd-eeff-1122-3344-556677889900
-                        links:
-                          self:
-                            href: http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900
                     links:
                       self:
                         href: http://example.com/occapi/v2/hei/domain.tld/instance/13579bdf-0246-8ace-1357-9bdf02468ace

@@ -10,7 +10,6 @@ properties:
       The _Course_ resource the _Course instance_ refers to.
     required:
       - data
-      - links
     properties:
       data:
         type: object
@@ -28,11 +27,3 @@ properties:
             description: JSON:API resource ID; UUID v4 is **recommended**, but
               any value that is unique within the Institution may be used.
             # format: uuid
-      links:
-        type: object
-        description: JSON:API _links_ object.
-        required:
-          - self
-        properties:
-          self:
-            $ref: ./links/LinksResource.yaml

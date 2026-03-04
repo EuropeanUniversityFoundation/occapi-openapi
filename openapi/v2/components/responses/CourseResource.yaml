@@ -94,14 +94,11 @@ data:
         mandatoryCourse: true
         year: '1/2'
   relationships:
-    prerequisiteCourse: []
+    prerequisiteCourse: null
     relatedProgramme:
-      - data:
-          type: programme
+      data:
+        - type: programme
           id: abcdef12-3456-7890-abcd-ef1234567890
-        links:
-          self:
-            href: 'http://example.com/occapi/v2/hei/domain.tld/programme/abcdef12-3456-7890-abcd-ef1234567890'
   links:
     self:
       href: 'http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900'
