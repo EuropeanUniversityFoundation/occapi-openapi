@@ -1107,7 +1107,7 @@ paths:
                                   - 0f7dac46ca
                                   - 74a4a268e8
                             elmLearningScheduleType:
-                              type: array
+                              type: string
                               description: |
                                 **Learning schedule type** as defined in the European Learning Model (ELM).
 
@@ -1120,12 +1120,10 @@ paths:
                                 **References**
 
                                 [Learning schedule type - EU Vocabularies](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/learning-schedule/25831c2)
-                              items: &ref_73
-                                type: string
-                                enum:
-                                  - 72a0ab92fa
-                                  - f230bae523
-                                  - 67395e6b5a
+                              enum: &ref_73
+                                - 72a0ab92fa
+                                - f230bae523
+                                - 67395e6b5a
                             elmModeOfLearning:
                               type: array
                               description: "**Mode of learning and assessment** as defined in the European Learning\n  Model (ELM).\n\n**Usage**\n\n- `e92d221e4d` represents\t_Blended_\n- `c_3a90b26d` represents\t_Hybrid_\n- `920fbb3cbe` represents\t_Online_\n- `9191af2ed9` represents\t_Presential_\n- `7813801c77` represents\t_Project based_\n- `ed4c557045` represents\t_Research-Lab based_\n- `729f3bed4b` represents\t_Workbased_\n\n**References**\n\n[Mode of learning and assessment - EU Vocabularies](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/learning-assessment/25831c2)\n"
@@ -1248,8 +1246,7 @@ paths:
                           lang: en
                       elmLearningOpportunityType:
                         - 74a4a268e8
-                      elmLearningScheduleType:
-                        - 67395e6b5a
+                      elmLearningScheduleType: 67395e6b5a
                       elmModeOfLearning:
                         - e92d221e4d
                       iscedCode:
@@ -1355,8 +1352,7 @@ paths:
                           lang: en
                       elmLearningOpportunityType:
                         - 74a4a268e8
-                      elmLearningScheduleType:
-                        - 67395e6b5a
+                      elmLearningScheduleType: 67395e6b5a
                       elmModeOfLearning:
                         - e92d221e4d
                       iscedCode:
@@ -1491,8 +1487,7 @@ paths:
                         lang: en
                     elmLearningOpportunityType:
                       - 74a4a268e8
-                    elmLearningScheduleType:
-                      - 67395e6b5a
+                    elmLearningScheduleType: 67395e6b5a
                     elmModeOfLearning:
                       - e92d221e4d
                     iscedCode:
@@ -3459,7 +3454,7 @@ components:
         [Learning opportunity type - EU Vocabularies](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/learning-opportunity/25831c2)
       items: *ref_72
     ElmLearningScheduleType:
-      type: array
+      type: string
       description: |
         **Learning schedule type** as defined in the European Learning Model (ELM).
 
@@ -3472,7 +3467,7 @@ components:
         **References**
 
         [Learning schedule type - EU Vocabularies](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/learning-schedule/25831c2)
-      items: *ref_73
+      enum: *ref_73
     ElmModeOfLearningAndAssessment:
       type: array
       description: "**Mode of learning and assessment** as defined in the European Learning\n  Model (ELM).\n\n**Usage**\n\n- `e92d221e4d` represents\t_Blended_\n- `c_3a90b26d` represents\t_Hybrid_\n- `920fbb3cbe` represents\t_Online_\n- `9191af2ed9` represents\t_Presential_\n- `7813801c77` represents\t_Project based_\n- `ed4c557045` represents\t_Research-Lab based_\n- `729f3bed4b` represents\t_Workbased_\n\n**References**\n\n[Mode of learning and assessment - EU Vocabularies](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/learning-assessment/25831c2)\n"

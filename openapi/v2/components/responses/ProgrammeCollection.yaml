@@ -24,8 +24,7 @@ data:
           lang: en
       elmLearningOpportunityType:
         - 74a4a268e8
-      elmLearningScheduleType:
-        - 67395e6b5a
+      elmLearningScheduleType: 67395e6b5a
       elmModeOfLearning:
         - e92d221e4d
       iscedCode:
