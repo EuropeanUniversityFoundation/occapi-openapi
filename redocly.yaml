@@ -7,8 +7,10 @@ apis:
     root: ./openapi/occapi_v2.yaml
     output: ./public/v2/openapi.yaml
 rules:
-  no-unused-components: warn
+  info-license: off
+  no-unused-components: error
 openapi:
+  showConsole: true
   htmlTemplate: ./docs/index.html
   theme:
     colors:
