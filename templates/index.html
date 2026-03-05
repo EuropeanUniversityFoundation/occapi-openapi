@@ -46,6 +46,9 @@
       .deprecated {
         background-color: grey;
       }
+      .small {
+        font-size: small;
+      }
     </style>
     <!-- Matomo -->
     <script>
@@ -64,7 +67,7 @@
     <!-- End Matomo Code -->
   </head>
   <body>
-    <div id="messages">Switch to &nbsp;
+    <div id="messages"{% if version == current %} class="small"{% endif %}>Switch to &nbsp;
     {% for link in links %}
       <a href="./{{ link.version }}" class="{{ link.stability }}">{{ link.version }} ({{ link.stability }})</a>
     {% endfor %}
