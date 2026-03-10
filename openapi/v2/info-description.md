@@ -1,6 +1,6 @@
 # MARCH 2026 UPDATE
 
-With this version (`v2@beta`) of the OCCAPI specification, **the data model will now remain unchanged**.
+With this release (`2.0.0-beta`) of the OCCAPI specification, **the data model will now remain backwards compatible** within this major version. Non breaking changes to the data model may be introduced in minor versions (`2.1.x`, `2.2.x`...).
 
 In terms of functionality, this specification is a **work in progress** and reflects the discussions within the community, which are documented in the [GitHub issue queue](https://github.com/EuropeanUniversityFoundation/occapi-openapi/issues).
 

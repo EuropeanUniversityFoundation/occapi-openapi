@@ -16,6 +16,7 @@ data:
     eqfLevelProvided: 5
     abbreviation:
       - string: P1
+        lang: null
     description:
       - multiline: |
           This is the description of the Programme.

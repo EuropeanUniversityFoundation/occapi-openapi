@@ -11,7 +11,7 @@ info:
   description: |
     # MARCH 2026 UPDATE
 
-    With this version (`v2@beta`) of the OCCAPI specification, **the data model will now remain unchanged**.
+    With this release (`2.0.0-beta`) of the OCCAPI specification, **the data model will now remain backwards compatible** within this major version. Non breaking changes to the data model may be introduced in minor versions (`2.1.x`, `2.2.x`...).
 
     In terms of functionality, this specification is a **work in progress** and reflects the discussions within the community, which are documented in the [GitHub issue queue](https://github.com/EuropeanUniversityFoundation/occapi-openapi/issues).
 
@@ -284,7 +284,6 @@ paths:
             application/vnd.api+json:
               schema:
                 type: object
-                description: JSON:API `errors` object.
                 required: &ref_9
                   - errors
                 properties: &ref_10
@@ -295,29 +294,76 @@ paths:
                     properties: *ref_2
                   errors:
                     type: array
-                    description: List of errors.
+                    description: |
+                      From the JSON:API specification:
+                       _Error objects provide additional information about problems encountered
+                       while performing an operation. Error objects MUST be returned as an array
+                       keyed by errors in the top level of a JSON:API document._
+
+                      [Read more](https://jsonapi.org/format/#errors)
                     items:
                       type: object
                       description: JSON:API `error` object.
                       properties:
+                        id:
+                          type: string
+                          description: |
+                            _A unique identifier for this particular occurrence of the problem._
+                        links:
+                          type: object
+                          properties:
+                            about:
+                              type: string
+                              description: |
+                                _A link that leads to further details about this particular
+                                 occurrence of the problem. When dereferenced, this URI SHOULD
+                                 return a human-readable description of the error._
                         status:
                           type: string
-                          description: The HTTP status code applicable to this problem.
+                          description: |
+                            _The HTTP status code applicable to this problem, expressed as a
+                             string value. This SHOULD be provided._
+                        code:
+                          type: string
+                          description: |
+                            _An application-specific error code, expressed as a string value._
                         title:
                           type: string
-                          description: Human-readable summary of the problem.
+                          description: |
+                            _A short, human-readable summary of the problem that SHOULD NOT
+                             change from occurrence to occurrence of the problem, except for
+                             purposes of localization._
+                        detail:
+                          type: object
+                          description: |
+                            _A human-readable explanation specific to this occurrence of the
+                             problem. Like `title`, this field’s value can be localized.
                         source:
                           type: object
                           description: |
-                            An object containing references to the source of the error.
+                            _An object containing references to the primary source of the
+                             error. It SHOULD include one of the following members or be
+                             omitted:_
                           properties:
                             pointer:
                               type: string
                               description: |
-                                A JSON Pointer to the associated entity in the request document.
+                                _A JSON Pointer [RFC6901](https://tools.ietf.org/html/rfc6901)
+                                 to the value in the request document that caused the error
+                                 [e.g. `"/data"` for a primary data object, or
+                                 `"/data/attributes/title"` for a specific attribute]. This
+                                 MUST point to a value in the request document that exists; if
+                                 it doesn’t, the client SHOULD simply ignore the pointer._
                             parameter:
                               type: string
-                              description: Which URI query parameter caused the error.
+                              description: |
+                                _A string indicating which URI query parameter caused the
+                                 error._
+                            meta:
+                              type: string
+                              description: |
+                                _A meta object containing non-standard meta-information about
+                                 the error._
               example:
                 jsonapi: &ref_11
                   version: '1.1'
@@ -515,7 +561,6 @@ paths:
             application/vnd.api+json:
               schema:
                 type: object
-                description: JSON:API `errors` object.
                 required: *ref_9
                 properties: *ref_10
               example:
@@ -626,7 +671,6 @@ paths:
             application/vnd.api+json:
               schema:
                 type: object
-                description: JSON:API `errors` object.
                 required: *ref_9
                 properties: *ref_10
               example:
@@ -809,7 +853,6 @@ paths:
             application/vnd.api+json:
               schema:
                 type: object
-                description: JSON:API `errors` object.
                 required: *ref_9
                 properties: *ref_10
               example:
@@ -923,7 +966,6 @@ paths:
             application/vnd.api+json:
               schema:
                 type: object
-                description: JSON:API `errors` object.
                 required: *ref_9
                 properties: *ref_10
               example:
@@ -1176,8 +1218,7 @@ paths:
                                   (PDF)
                               items:
                                 type: string
-                                minLength: 2
-                                maxLength: 4
+                                pattern: ^[0-9]{2,4}$
                             length:
                               type: string
                               pattern: ^\d{1,2}\/\d$
@@ -1304,7 +1345,6 @@ paths:
             application/vnd.api+json:
               schema:
                 type: object
-                description: JSON:API `errors` object.
                 required: *ref_9
                 properties: *ref_10
               example:
@@ -1410,7 +1450,6 @@ paths:
             application/vnd.api+json:
               schema:
                 type: object
-                description: JSON:API `errors` object.
                 required: *ref_9
                 properties: *ref_10
               example:
@@ -1503,6 +1542,7 @@ paths:
                     eqfLevelProvided: 5
                     abbreviation:
                       - string: P1
+                        lang: null
                     description:
                       - multiline: |
                           This is the description of the Programme.
@@ -1545,7 +1585,6 @@ paths:
             application/vnd.api+json:
               schema:
                 type: object
-                description: JSON:API `errors` object.
                 required: *ref_9
                 properties: *ref_10
               example:
@@ -1816,8 +1855,7 @@ paths:
                                   (PDF)
                               items:
                                 type: string
-                                minLength: 2
-                                maxLength: 4
+                                pattern: ^[0-9]{2,4}$
                             localClassification:
                               type: array
                               description: |
@@ -2085,7 +2123,6 @@ paths:
             application/vnd.api+json:
               schema:
                 type: object
-                description: JSON:API `errors` object.
                 required: *ref_9
                 properties: *ref_10
               example:
@@ -2210,7 +2247,6 @@ paths:
             application/vnd.api+json:
               schema:
                 type: object
-                description: JSON:API `errors` object.
                 required: *ref_9
                 properties: *ref_10
               example:
@@ -2335,7 +2371,6 @@ paths:
             application/vnd.api+json:
               schema:
                 type: object
-                description: JSON:API `errors` object.
                 required: *ref_9
                 properties: *ref_10
               example:
@@ -2811,7 +2846,6 @@ paths:
             application/vnd.api+json:
               schema:
                 type: object
-                description: JSON:API `errors` object.
                 required: *ref_9
                 properties: *ref_10
               example:
@@ -3176,7 +3210,6 @@ paths:
             application/vnd.api+json:
               schema:
                 type: object
-                description: JSON:API `errors` object.
                 required: *ref_9
                 properties: *ref_10
               example:
@@ -3301,7 +3334,6 @@ paths:
             application/vnd.api+json:
               schema:
                 type: object
-                description: JSON:API `errors` object.
                 required: *ref_9
                 properties: *ref_10
               example:
@@ -3369,7 +3401,6 @@ components:
       properties: *ref_61
     Error:
       type: object
-      description: JSON:API `errors` object.
       required: *ref_9
       properties: *ref_10
     LinksOunitCollection:
