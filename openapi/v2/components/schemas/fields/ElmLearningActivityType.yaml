@@ -1,0 +1,38 @@
+type: array
+description: |
+  **Learning activity type** as defined in the European Learning Model (ELM).
+
+  **Usage**
+
+  - `d46a826a39` represents _apprenticeship_;
+  - `ff436ea7c9` represents _classroom coursework_;
+  - `bf2e3a7bae` represents _e-learning coursework_;
+  - `fd33e234ae` represents _educational programme_;
+  - `bf5588ff84` represents _internship_;
+  - `4357e0e681` represents _job experience_;
+  - `3c8bd58d62` represents _lab / simulation / practice coursework_;
+  - `c_5665a0ad` represents _mentoring and monitoring activity_;
+  - `a7e556215a` represents _research_;
+  - `b660f5dcea` represents _self-motivated study_;
+  - `59eaf34fab` represents _volunteering_;
+  - `efff75e10a` represents _workshop, seminar or conference_.
+
+  **References**
+
+  [Learning activity type - EU Vocabularies](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/learning-activity/25831c2)
+items:
+  type: string
+  enum: [
+    d46a826a39,
+    ff436ea7c9,
+    bf2e3a7bae,
+    fd33e234ae,
+    bf5588ff84,
+    4357e0e681,
+    3c8bd58d62,
+    c_5665a0ad,
+    a7e556215a,
+    b660f5dcea,
+    59eaf34fab,
+    efff75e10a
+  ]

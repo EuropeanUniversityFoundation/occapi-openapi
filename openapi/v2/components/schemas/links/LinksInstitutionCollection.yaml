@@ -1,0 +1,9 @@
+type: object
+description: |
+  Hypermedia link to the _Institution_ collection covered by this server.
+required:
+  - href
+properties:
+  href:
+    type: string
+    format: uri

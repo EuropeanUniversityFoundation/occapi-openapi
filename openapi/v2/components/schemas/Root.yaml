@@ -1,0 +1,18 @@
+type: object
+description: Available endpoints and metadata.
+required:
+  - data
+properties:
+  jsonapi:
+    $ref: ./links/Jsonapi.yaml
+  data:
+    $ref: ./ServerData.yaml
+  meta:
+    type: object
+    description: Optional metadata.
+  links:
+    type: object
+    description: JSON:API _links_ object.
+    properties:
+      self:
+        $ref: ./links/LinksSelf.yaml

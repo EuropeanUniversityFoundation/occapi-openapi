@@ -1,0 +1,31 @@
+type:
+  type: string
+  description: JSON:API resource type.
+  enum: ['instance']
+id:
+  type: string
+  description: JSON:API resource ID; UUID v4 is **recommended**, but any value
+   that is unique within the Institution may be used.
+  # format: uuid
+attributes:
+  type: object
+  description: JSON:API _attributes_ object.
+  required:
+    - startDate
+    - endDate
+    - academicTermId
+    - ects
+    - languageOfInstruction
+    - lastModified
+  properties:
+    $ref: ./CourseInstanceDataProperties.yaml
+relationships:
+  $ref: ./CourseInstanceRelationships.yaml
+links:
+  type: object
+  description: JSON:API _links_ object.
+  required:
+    - self
+  properties:
+    self:
+      $ref: ./links/LinksResource.yaml

@@ -1,0 +1,25 @@
+type: object
+description: JSON:API collection of _Organisational Unit_ resources.
+required:
+  - data
+properties:
+  jsonapi:
+    $ref: ./links/Jsonapi.yaml
+  data:
+    type: array
+    description: List of _Organisational Unit_ resources.
+    items:
+      type: object
+      required:
+        - type
+        - id
+        - attributes
+        - links
+      properties:
+        $ref: ./OunitData.yaml
+  links:
+    type: object
+    description: JSON:API _links_ object.
+    properties:
+      self:
+        $ref: ./links/LinksCollection.yaml

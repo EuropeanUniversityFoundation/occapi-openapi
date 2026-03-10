@@ -1,0 +1,24 @@
+type: object
+description: JSON:API _Course instance_ resource.
+required:
+  - data
+properties:
+  jsonapi:
+    $ref: ./links/Jsonapi.yaml
+  data:
+    type: object
+    description: _Course instance_ resource data.
+    required:
+      - type
+      - id
+      - attributes
+      - relationships
+      - links
+    properties:
+      $ref: ./CourseInstanceData.yaml
+  links:
+    type: object
+    description: JSON:API _links_ object.
+    properties:
+      self:
+        $ref: ./links/LinksResource.yaml

@@ -1,0 +1,17 @@
+type: integer
+minimum: 5
+maximum: 8
+description: |
+  European Qualifications Framework (EQF) level provided to the learner
+    upon completing the Programme.
+
+  **Usage**
+
+  - EQF level **5** for short cycle Programmes;
+  - EQF level **6** for first cycle Programmes (i.e. Bachelor's degree);
+  - EQF level **7** for short cycle Programmes (i.e. Master's degree);
+  - EQF level **8** for short cycle Programmes (i.e. Doctorate).
+
+  **References**
+
+  [European Qualifications Framework - EU Vocabularies](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/eqf/25831c2)

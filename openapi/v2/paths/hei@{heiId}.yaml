@@ -1,0 +1,44 @@
+get:
+  tags:
+    - Institution
+  summary: GET /hei/{heiId}
+  description: |
+    This endpoint exposes some basic information about an Institution covered by
+     the server, which should be sufficient to satisfy basic UX/UI needs of
+     app developers.
+
+    In order to obtain more detailed and up to date information about an
+     Institution, it is **recommended** that client implementations use the
+     [HEI API](https://hei.api.uni-foundation.eu) service provided by the
+     [European University Foundation](https://uni-foundation.eu/).
+  operationId: getInstitutionById
+  parameters:
+    - name: heiId
+      in: path
+      description: The SCHAC code of the Institution.
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK
+      headers:
+        Content-Type:
+          description: HTTP Content-Type representation header.
+          schema:
+            type: string
+            enum: ['application/vnd.api+json']
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: ../components/schemas/InstitutionResource.yaml
+          example:
+            $ref: ../components/responses/InstitutionResource.yaml
+    '404':
+      description: Resource not found.
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: ../components/schemas/Error.yaml
+          example:
+            $ref: ../components/responses/ResourceNotFound.yaml

@@ -1,0 +1,20 @@
+type: object
+description: |
+  _This describes a single range within the histogram._
+required:
+  - label
+  - count
+properties:
+  label:
+    type: string
+    minLength: 1
+    description: |
+      _The label of the histogram range. Should correspond to the grading scheme
+        which have been used. E.g. "C", or "20-30". If possible, the label
+        should be understandable in any language. If not, you should try to use
+        English._
+  count:
+    type: integer
+    minimum: 0
+    description: |
+      _The number of students whose grades fall within that category._

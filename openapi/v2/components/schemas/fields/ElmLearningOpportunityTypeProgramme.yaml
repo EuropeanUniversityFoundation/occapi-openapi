@@ -1,0 +1,23 @@
+type: array
+description: |
+  **Learning opportunity type** as defined in the European Learning Model (ELM).
+
+  _Note_: limited to the items in the controlled vocabulary that may apply
+    to Programmes.
+
+  **Usage**
+
+  - `79343569f3` represents _Educational programme_
+  - `0f7dac46ca` represents _Programme module_
+  - `74a4a268e8` represents _Short learning programme_
+
+  **References**
+
+  [Learning opportunity type - EU Vocabularies](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/learning-opportunity/25831c2)
+items:
+  type: string
+  enum: [
+    '79343569f3',
+    '0f7dac46ca',
+    '74a4a268e8'
+  ]

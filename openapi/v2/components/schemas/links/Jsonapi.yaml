@@ -1,0 +1,34 @@
+type: object
+description: JSON:API header.
+required:
+  - version
+  - meta
+properties:
+  version:
+    type: string
+    description: JSON:API schema version.
+  meta:
+    type: object
+    description: JSON:API meta object.
+    required:
+      - links
+    properties:
+      links:
+        type: object
+        description: JSON:API _links_ object.
+        required:
+          - self
+        properties:
+          self:
+            type: object
+            description: Hypermedia link to the current path.
+            required:
+              - href
+            properties:
+              href:
+                type: string
+                format: uri
+                description: |
+                  JSON:API version supported by the server.
+
+                  http://jsonapi.org/format/1.1/

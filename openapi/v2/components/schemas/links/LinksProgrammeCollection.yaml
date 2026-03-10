@@ -1,0 +1,9 @@
+type: object
+description: |
+  Hypermedia link to the _Programme_ collection associated with this resource.
+required:
+  - href
+properties:
+  href:
+    type: string
+    format: uri

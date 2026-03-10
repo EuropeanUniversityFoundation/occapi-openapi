@@ -1,0 +1,55 @@
+type:
+  type: string
+  description: JSON:API resource type.
+  enum: ['ounit']
+id:
+  type: string
+  description: JSON:API resource ID; UUID v4 is **recommended**, but any value
+   that is unique within the Institution may be used. **Must** match `ounitId`.
+  # format: uuid
+  format: uuid
+attributes:
+  type: object
+  description: JSON:API _attributes_ object.
+  required:
+    - title
+    - ounitId
+    - lastModified
+  properties:
+    title:
+      type: array
+      description: Title with optional language code.
+      items:
+        $ref: ./fields/StringWithOptionalLang.yaml
+    ounitId:
+      type: string
+      description: Unique identifier within the Institution.
+    lastModified:
+      type: string
+      format: date-time
+      description: |
+        Time of latest change to this resource, formatted as
+        [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+    abbreviation:
+      type: [string, null]
+      description: Most widely recognized abbbreviation
+    ounitCode:
+      type: string
+      description: Human readable code identifying the Organisational Unit.
+    url:
+      type: array
+      description: External URL with optional language code.
+      items:
+        $ref: ./fields/HttpWithOptionalLang.yaml
+links:
+  type: object
+  description: JSON:API _links_ object.
+  required:
+    - self
+  properties:
+    self:
+      $ref: ./links/LinksResource.yaml
+    programme:
+      $ref: ./links/LinksProgrammeCollection.yaml
+    course:
+      $ref: ./links/LinksCourseCollection.yaml

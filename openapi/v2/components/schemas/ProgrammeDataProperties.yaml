@@ -1,0 +1,82 @@
+title:
+  type: array
+  minItems: 1
+  description: Title with optional language code.
+  items:
+    $ref: ./fields/StringWithOptionalLang.yaml
+code:
+  type: string
+  minLength: 1
+  description: Human readable code identifying the Programme.
+ects:
+  type: float
+  minimum: 0
+  description: Number of ECTS credits required to complete the Programme.
+eqfLevelProvided:
+  $ref: ./fields/EqfLevelProvided.yaml
+languageOfInstruction:
+  $ref: ./fields/LanguageOfInstruction.yaml
+lastModified:
+  type: string
+  format: date-time
+  description: |
+    Time of latest change to this resource, formatted as
+     [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+description:
+  type: array
+  minItems: 1
+  description: Description with optional language code.
+  items:
+    $ref: ./fields/MultilineStringWithOptionalLang.yaml
+learningOutcomes:
+  type: array
+  minItems: 1
+  description: Learning outcomes with optional language code.
+  items:
+    $ref: ./fields/MultilineStringWithOptionalLang.yaml
+abbreviation:
+  type: array
+  description: Abbbreviation with optional language code.
+  items:
+    $ref: ./fields/StringWithOptionalLang.yaml
+elmLearningOpportunityType:
+  $ref: ./fields/ElmLearningOpportunityTypeProgramme.yaml
+elmLearningScheduleType:
+  $ref: ./fields/ElmLearningScheduleType.yaml
+elmModeOfLearning:
+  $ref: ./fields/ElmModeOfLearningAndAssessment.yaml
+iscedCode:
+  type: array
+  minItems: 1
+  description: |
+    ISCED-F code describing the field of education of the Programme.
+
+    Multiple values are allowed in order to support multidisplinary
+      Programmes.
+
+    **References**
+
+    [Fields of education and training 2013](http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-fields-of-education-and-training-2013-detailed-field-descriptions-2015-en.pdf)
+      (PDF)
+  items:
+    type: string
+    pattern: '^[0-9]{2,4}$'
+length:
+  $ref: ./fields/ProgrammeLength.yaml
+url:
+  type: array
+  description: External URL with optional language code.
+  items:
+    $ref: ./fields/HttpWithOptionalLang.yaml
+validSince:
+  type: string
+  format: date
+  description: |
+    The first date in which the Programme was offered, formatted as
+     [YYYY-MM-DD](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+validUntil:
+  type: string
+  format: date
+  description: |
+    The last date in which the Programme was offered, formatted as
+     [YYYY-MM-DD](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).

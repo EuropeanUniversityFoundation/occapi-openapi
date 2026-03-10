@@ -1,0 +1,35 @@
+get:
+  tags:
+    - Institution
+  summary: GET /hei
+  description: |
+    This endpoint lists all _Institutions_ covered by this server.
+
+    In order to obtain more detailed and up to date information about an
+     Institution, it is **recommended** that client implementations use the
+     [HEI API](https://hei.api.uni-foundation.eu) service provided by the
+     [European University Foundation](https://uni-foundation.eu/).
+  operationId: getInstitutions
+  responses:
+    '200':
+      description: OK
+      headers:
+        Content-Type:
+          description: HTTP Content-Type representation header.
+          schema:
+            type: string
+            enum: ['application/vnd.api+json']
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: ../components/schemas/InstitutionCollection.yaml
+          example:
+            $ref: ../components/responses/InstitutionCollection.yaml
+    '404':
+      description: Endpoint not available.
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: ../components/schemas/Error.yaml
+          example:
+            $ref: ../components/responses/EndpointNotAvailable.yaml

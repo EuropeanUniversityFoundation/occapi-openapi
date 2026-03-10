@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  version: 2.0.0-dev
+  version: 2.0.0-beta
   title: Open Course Catalogue API
   termsOfService: ''
   contact:
@@ -13,14 +13,11 @@ info:
     url: 'https://uni-foundation.eu/wp-content/uploads/2019/04/EUF-1.png'
   description:
     $ref: ./v2/info-description.md
-# externalDocs:
-#   description: Find out how to create a GitHub repo for your OpenAPI definition.
-#   url: 'https://github.com/Rebilly/generator-openapi-repo'
 tags:
-  - name: API provider
-    description: Information about the provider.
+  - name: API server
+    description: Information about the server.
   - name: Institution
-    description: Information about the Institutions covered by the provider.
+    description: Information about the Institutions covered by the server.
   - name: Organisational Unit
     description: Information about Organisational Units in an Institution.
   - name: Programme
@@ -30,41 +27,45 @@ tags:
       Information about Courses offered by an Institution.
 
       _Course_ resources include a JSON:API _meta_ object containing information
-       about the relation between each Course and all or specific Programmes.
-  # - name: Tag
+       about the relation between each Course and specific Programmes.
+  - name: Course instance
+    description: |
+      Information about instances of Courses offered by an Institution.
+
+      _Course instance_ resources are directly linked to _Course_ resources.
 servers:
   - url: '/occapi/v2'
     description: Sandbox server (example data)
 paths:
   /:
-    $ref: paths/root.yaml
+    $ref: v2/paths/root.yaml
   # Institution & Organisational Unit endpoints.
   /hei:
-    $ref: paths/hei.yaml
+    $ref: v2/paths/hei.yaml
   '/hei/{heiId}':
-    $ref: 'paths/hei@{heiId}.yaml'
+    $ref: 'v2/paths/hei@{heiId}.yaml'
   '/hei/{heiId}/ounit':
-    $ref: 'paths/ounit.yaml'
+    $ref: 'v2/paths/ounit.yaml'
   '/hei/{heiId}/ounit/{id}':
-    $ref: 'paths/ounit@{id}.yaml'
+    $ref: 'v2/paths/ounit@{id}.yaml'
   # Programme endpoints.
   '/hei/{heiId}/programme':
-    $ref: 'paths/programme.yaml'
+    $ref: 'v2/paths/programme.yaml'
   '/hei/{heiId}/ounit/{id}/programme':
-    $ref: 'paths/ounit@{id}-programme.yaml'
+    $ref: 'v2/paths/ounit@{id}-programme.yaml'
   '/hei/{heiId}/programme/{id}':
-    $ref: 'paths/programme@{id}.yaml'
+    $ref: 'v2/paths/programme@{id}.yaml'
   # Course endpoints.
   '/hei/{heiId}/course':
-    $ref: 'paths/course.yaml'
+    $ref: 'v2/paths/course.yaml'
   '/hei/{heiId}/ounit/{id}/course':
-    $ref: 'paths/ounit@{id}-course.yaml'
+    $ref: 'v2/paths/ounit@{id}-course.yaml'
   '/hei/{heiId}/programme/{id}/course':
-    $ref: 'paths/programme@{id}-course.yaml'
+    $ref: 'v2/paths/programme@{id}-course.yaml'
   '/hei/{heiId}/course/{id}':
-    $ref: 'paths/course@{id}.yaml'
-  # Exanples
-  # '/path':
-  #   $ref: 'paths/path-item.yaml'
-  # '/path/example':
-  #   $ref: 'paths/path-item-with-examples.yaml'
+    $ref: 'v2/paths/course@{id}.yaml'
+  # Course instance endpoints.
+  '/hei/{heiId}/course/{id}/instance':
+    $ref: 'v2/paths/course@{id}-instance.yaml'
+  '/hei/{heiId}/instance/{id}':
+    $ref: 'v2/paths/instance@{id}.yaml'

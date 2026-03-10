@@ -1,0 +1,18 @@
+type: string
+description: |
+  **Learning schedule type** as defined in the European Learning Model (ELM).
+
+  **Usage**
+
+  - `72a0ab92fa` represents _Full time_
+  - `f230bae523` represents _Part time intensive_
+  - `67395e6b5a` represents _Part time light_
+
+  **References**
+
+  [Learning schedule type - EU Vocabularies](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/learning-schedule/25831c2)
+enum: [
+  '72a0ab92fa',
+  'f230bae523',
+  '67395e6b5a'
+]

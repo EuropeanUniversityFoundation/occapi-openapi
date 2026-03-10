@@ -10,35 +10,38 @@ use Slim\Views\Twig;
 final class SpecificationAction
 {
     const ALL_VERSIONS = [
-        'v1',
-        'v2',
+        'v1' => 'deprecated',
+        'v2' => 'beta',
     ];
 
-    const STABLE_VERSION = 'v1';
-    const LATEST_VERSION = 'v2';
+    const CURRENT_VERSION = 'v2';
 
     public function __invoke(
         ServerRequestInterface $request,
         ResponseInterface $response,
         array $args,
     ): ResponseInterface {
-        $version = strtolower($args['version']);
+        $requested = strtolower($args['version']);
 
-        if (!in_array($version, self::ALL_VERSIONS)) {
+        if (!array_key_exists($requested, self::ALL_VERSIONS)) {
             throw new HttpNotFoundException($request);
         }
 
         $view = Twig::fromRequest($request);
 
-        $vars = ['version' => $version];
+        $vars = [
+            'version' => $requested,
+            'current' => self::CURRENT_VERSION,
+        ];
 
-        if (self::STABLE_VERSION !== self::LATEST_VERSION) {
-            if ($version !== self::STABLE_VERSION) {
-                $vars['has_stable'] = self::STABLE_VERSION;
-            }
+        $vars['links'] = [];
 
-            if ($version !== self::LATEST_VERSION){
-                $vars['has_latest'] = self::LATEST_VERSION;
+        foreach (self::ALL_VERSIONS as $version => $stability) {
+            if ($version !== $requested) {
+                $vars['links'][] = [
+                    'version' => $version,
+                    'stability' => $stability,
+                ];
             }
         }
 

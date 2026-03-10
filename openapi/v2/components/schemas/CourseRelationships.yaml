@@ -1,0 +1,61 @@
+type: object
+description: |
+  JSON:API _relationships_ object.
+properties:
+  prerequisiteCourse:
+    type: [object, null]
+    description: |
+      Another Course that **must** be completed before enrollment in the present
+       Course is allowed.
+
+      If the prerequisites for the present Course cannot be matched to a single
+       Course (or multiple Courses), use the `prerequisites` data attribute for
+       a more detailed description.
+    required:
+      - data
+    properties:
+      data:
+        type: array
+        description: Prerequisite Course data.
+        items:
+          type: object
+          required:
+            - type
+            - id
+          properties:
+            type:
+              type: string
+              description: JSON:API resource type.
+              enum: ['course']
+            id:
+              type: string
+              description: JSON:API resource ID; UUID v4 is **recommended**, but
+                any value that is unique within the Institution may be used.
+              # format: uuid
+  relatedProgramme:
+    type: [object, null]
+    description: |
+      Any Programme which includes the present Course in its curricular plan.
+
+      This **must** match all related Programmes indicated in the `meta` object.
+    required:
+      - data
+    properties:
+      data:
+        type: array
+        description: Related Programme data.
+        items:
+          type: object
+          required:
+            - type
+            - id
+          properties:
+            type:
+              type: string
+              description: JSON:API resource type.
+              enum: ['programme']
+            id:
+              type: string
+              description: JSON:API resource ID; UUID v4 is **recommended**, but
+                any value that is unique within the Institution may be used.
+              # format: uuid

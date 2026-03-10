@@ -1,0 +1,41 @@
+type: object
+description: |
+  JSON:API _meta_ object containing information about the relation between
+   a Course and all or specific Programmes.
+properties:
+  relatedProgramme:
+    type: array
+    description: Describes the inclusion of a Course in a specific Programme.
+
+      Any Programme indicated here **must** also be indicated in the
+      `relationships` object.
+    items:
+      type: object
+      required:
+        - programmeId
+        - mandatoryCourse
+        - year
+      properties:
+        programmeId:
+          type: string
+          description: ID of the _Programme_ resource.
+          # format: uuid
+        mandatoryCourse:
+          type: boolean
+          description: Whether the Course is mandatory within the Programme.
+        year:
+          type: string
+          description: |
+            Year of the Programme in which the Course is delivered.
+
+            **Usage**
+
+            - `2/3` means the Course is delivered in the second (2) of the three
+             (3) years of the Programme duration;
+            - `0/3` means the Course may be completed _at any point_ during the
+             three (3) years of the Programme duration;
+            - `4/4` may also refer to the fourth (4) year in a Programme with a
+             length of three and a half years (3.5) which must be rounded up in
+             the current context.
+
+          pattern: '\d\/[1-9]'

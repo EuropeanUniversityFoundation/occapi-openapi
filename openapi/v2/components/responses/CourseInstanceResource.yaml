@@ -1,0 +1,42 @@
+jsonapi:
+  version: "1.1"
+  meta:
+    links:
+      self:
+        href: "http://jsonapi.org/format/1.1/"
+data:
+  type: instance
+  id: 13579bdf-0246-8ace-1357-9bdf02468ace
+  attributes:
+    startDate: 2025-02-01
+    endDate: 2025-06-30
+    academicTermId: 2025/2026-2/2
+    ects: 7.5
+    elmAssessmentType:
+      - 3484bd7e51
+      - 6e6cb2cc78
+    elmLearningActivityType:
+      - ff436ea7c9
+      - 3c8bd58d62
+    elmLearningOpportunityType:
+      - 05053c1cbe
+    elmModeOfLearning:
+      - e92d221e4d
+    engagementHours: 42
+    languageOfInstruction:
+      - en
+    lastModified: 2025-09-01T12:00:00Z
+  relationships:
+    course:
+      data:
+        type: course
+        id: aabbccdd-eeff-1122-3344-556677889900
+      links:
+        self:
+          href: 'http://example.com/occapi/v2/hei/domain.tld/course/aabbccdd-eeff-1122-3344-556677889900'
+  links:
+    self:
+      href: 'http://example.com/occapi/v2/hei/domain.tld/instance/13579bdf-0246-8ace-1357-9bdf02468ace'
+links:
+  self:
+    href: 'http://example.com/occapi/v2/hei/domain.tld/instance/13579bdf-0246-8ace-1357-9bdf02468ace'

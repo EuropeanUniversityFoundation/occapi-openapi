@@ -1,0 +1,54 @@
+type:
+  type: string
+  description: JSON:API resource type.
+  enum: ['hei']
+id:
+  type: string
+  description: JSON:API resource ID; **must match** `heiId`.
+  format: uuid
+attributes:
+  type: object
+  description: JSON:API _attributes_ object.
+  required:
+    - title
+    - heiId
+    - lastModified
+  properties:
+    title:
+      type: array
+      minItems: 1
+      description: Title with optional language code.
+      items:
+        $ref: ./fields/StringWithOptionalLang.yaml
+    heiId:
+      type: string
+      description: The SCHAC code of the Institution.
+      format: hostname
+    lastModified:
+      type: string
+      format: date-time
+      description: |
+        Time of latest change to this resource, formatted as
+        [YYYY-MM-DDThh:mm:ssZ](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
+    abbreviation:
+      type: [string, null]
+      description: Most widely recognized abbbreviation.
+    url:
+      type: array
+      description: External URL with optional language code.
+      items:
+        $ref: ./fields/HttpWithOptionalLang.yaml
+links:
+  type: object
+  description: JSON:API _links_ object.
+  required:
+    - self
+  properties:
+    self:
+      $ref: ./links/LinksResource.yaml
+    ounit:
+      $ref: ./links/LinksOunitCollection.yaml
+    programme:
+      $ref: ./links/LinksProgrammeCollection.yaml
+    course:
+      $ref: ./links/LinksCourseCollection.yaml

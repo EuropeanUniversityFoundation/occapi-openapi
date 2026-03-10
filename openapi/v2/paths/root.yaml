@@ -1,0 +1,29 @@
+get:
+  tags:
+    - API server
+  summary: GET /
+  description: Get server information and primary Hypermedia links.
+  operationId: getRoot
+  responses:
+    '200':
+      description: OK
+      headers:
+        Content-Type:
+          description: HTTP Content-Type representation header.
+          schema:
+            type: string
+            enum: ['application/vnd.api+json']
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: ../components/schemas/Root.yaml
+          example:
+            $ref: ../components/responses/Root.yaml
+    '404':
+      description: Endpoint not available.
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: ../components/schemas/Error.yaml
+          example:
+            $ref: ../components/responses/EndpointNotAvailable.yaml

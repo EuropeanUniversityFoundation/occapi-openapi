@@ -1,0 +1,48 @@
+get:
+  tags:
+    - Organisational Unit
+  summary: GET /hei/{heiId}/ounit/{id}
+  description: |
+    This endpoint exposes some basic information about an _Organisational Unit_.
+
+    Implementation is optional but **recommended** since exposing collections by
+     _Organisational Unit_ can help avoid large HTTP responses.
+  operationId: getOunitByUuid
+  parameters:
+    - name: heiId
+      in: path
+      description: The SCHAC code of the Institution.
+      required: true
+      schema:
+        type: string
+        format: hostname
+    - name: id
+      in: path
+      description: The UUID of the _Organisational Unit_ resource.
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    '200':
+      description: OK
+      headers:
+        Content-Type:
+          description: HTTP Content-Type representation header.
+          schema:
+            type: string
+            enum: ['application/vnd.api+json']
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: ../components/schemas/OunitResource.yaml
+          example:
+            $ref: ../components/responses/OunitResource.yaml
+    '404':
+      description: Resource not found.
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: ../components/schemas/Error.yaml
+          example:
+            $ref: ../components/responses/ResourceNotFound.yaml

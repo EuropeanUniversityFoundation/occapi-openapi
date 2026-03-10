@@ -1,0 +1,29 @@
+type: array
+description: |
+  **Mode of learning and assessment** as defined in the European Learning
+    Model (ELM).
+
+  **Usage**
+
+  - `e92d221e4d` represents	_Blended_
+  - `c_3a90b26d` represents	_Hybrid_
+  - `920fbb3cbe` represents	_Online_
+  - `9191af2ed9` represents	_Presential_
+  - `7813801c77` represents	_Project based_
+  - `ed4c557045` represents	_Research-Lab based_
+  - `729f3bed4b` represents	_Workbased_
+
+  **References**
+
+  [Mode of learning and assessment - EU Vocabularies](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/learning-assessment/25831c2)
+items:
+  type: string
+  enum: [
+    'e92d221e4d',
+    'c_3a90b26d',
+    '920fbb3cbe',
+    '9191af2ed9',
+    '7813801c77',
+    'ed4c557045',
+    '729f3bed4b'
+  ]

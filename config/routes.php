@@ -10,11 +10,11 @@ return function (App $app) {
     // Redirect app root to specification root.
     $app->redirect('/', '/specification', 301);
 
-    // Redirect specification root to stable version specification.
-    $stable_version = SpecificationAction::STABLE_VERSION;
+    // Redirect specification root to current version specification.
+    $current_version = SpecificationAction::CURRENT_VERSION;
 
-    $stable_specification = '/specification/' . $stable_version;
-    $app->redirect('/specification', $stable_specification, 301);
+    $current_specification = '/specification/' . $current_version;
+    $app->redirect('/specification', $current_specification, 301);
 
     // Specification route.
     $app->get('/specification/{version}', SpecificationAction::class)

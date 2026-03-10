@@ -1,0 +1,41 @@
+get:
+  tags:
+    - Organisational Unit
+  summary: GET /hei/{heiId}/ounit
+  description: |
+    This endpoint lists all _Organisational Units_ in an _Institution_.
+
+    Implementation is optional but **recommended** since exposing collections of
+     _Programmes_ or _Courses_ filtered by _Organisational Unit_ can help avoid
+     large HTTP responses.
+  operationId: getOunits
+  parameters:
+    - name: heiId
+      in: path
+      description: The SCHAC code of the Institution.
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK
+      headers:
+        Content-Type:
+          description: HTTP Content-Type representation header.
+          schema:
+            type: string
+            enum: ['application/vnd.api+json']
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: ../components/schemas/OunitCollection.yaml
+          example:
+            $ref: ../components/responses/OunitCollection.yaml
+    '404':
+      description: Endpoint not available.
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: ../components/schemas/Error.yaml
+          example:
+            $ref: ../components/responses/EndpointNotAvailable.yaml
