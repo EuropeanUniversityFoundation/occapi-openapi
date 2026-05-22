@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  version: 2.0.0-beta
+  version: 2.0.0-beta2
   title: Open Course Catalogue API
   termsOfService: ''
   contact:
@@ -1247,13 +1247,17 @@ paths:
                                 required: *ref_5
                                 properties: *ref_6
                             validSince:
-                              type: string
+                              type:
+                                - string
+                                - 'null'
                               format: date
                               description: |
                                 The first date in which the Programme was offered, formatted as
                                  [YYYY-MM-DD](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6).
                             validUntil:
-                              type: string
+                              type:
+                                - string
+                                - 'null'
                               format: date
                               description: |
                                 The last date in which the Programme was offered, formatted as
@@ -1749,7 +1753,6 @@ paths:
                                 - `d30284d7df` represents _oral examination_;
                                 - `19a2e5e671` represents _peer assessment_;
                                 - `812e3b0ae1` represents _peer review_;
-                                - `812e3b0ae1` represents _peer review_;
                                 - `4f03b91c0e` represents _portfolio_;
                                 - `6a4db9f11d` represents _practical assessment_;
                                 - `c_04b30a72` represents _Presentation_;
@@ -1773,7 +1776,6 @@ paths:
                                   - 2939dae15f
                                   - d30284d7df
                                   - 19a2e5e671
-                                  - 812e3b0ae1
                                   - 812e3b0ae1
                                   - 4f03b91c0e
                                   - 6a4db9f11d
@@ -2573,7 +2575,6 @@ paths:
                               - `d30284d7df` represents _oral examination_;
                               - `19a2e5e671` represents _peer assessment_;
                               - `812e3b0ae1` represents _peer review_;
-                              - `812e3b0ae1` represents _peer review_;
                               - `4f03b91c0e` represents _portfolio_;
                               - `6a4db9f11d` represents _practical assessment_;
                               - `c_04b30a72` represents _Presentation_;
@@ -3003,7 +3004,6 @@ paths:
                                 - `2939dae15f` represents _marked assignment_;
                                 - `d30284d7df` represents _oral examination_;
                                 - `19a2e5e671` represents _peer assessment_;
-                                - `812e3b0ae1` represents _peer review_;
                                 - `812e3b0ae1` represents _peer review_;
                                 - `4f03b91c0e` represents _portfolio_;
                                 - `6a4db9f11d` represents _practical assessment_;
@@ -3572,7 +3572,6 @@ components:
         - `2939dae15f` represents _marked assignment_;
         - `d30284d7df` represents _oral examination_;
         - `19a2e5e671` represents _peer assessment_;
-        - `812e3b0ae1` represents _peer review_;
         - `812e3b0ae1` represents _peer review_;
         - `4f03b91c0e` represents _portfolio_;
         - `6a4db9f11d` represents _practical assessment_;
