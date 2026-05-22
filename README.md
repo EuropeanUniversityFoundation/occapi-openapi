@@ -25,7 +25,6 @@ _Pull requests concerning the build tools are discouraged._
     # Bundle the specification
     make bundle
 
-
 ---
 
 ## Stack
