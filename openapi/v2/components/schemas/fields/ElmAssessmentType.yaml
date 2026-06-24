@@ -13,7 +13,6 @@ description: |
   - `d30284d7df` represents _oral examination_;
   - `19a2e5e671` represents _peer assessment_;
   - `812e3b0ae1` represents _peer review_;
-  - `812e3b0ae1` represents _peer review_;
   - `4f03b91c0e` represents _portfolio_;
   - `6a4db9f11d` represents _practical assessment_;
   - `c_04b30a72` represents _Presentation_;
@@ -37,7 +36,6 @@ items:
     '2939dae15f',
     'd30284d7df',
     '19a2e5e671',
-    '812e3b0ae1',
     '812e3b0ae1',
     '4f03b91c0e',
     '6a4db9f11d',
