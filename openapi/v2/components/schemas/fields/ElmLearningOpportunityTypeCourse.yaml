@@ -23,15 +23,14 @@ description: |
   [Learning opportunity type - EU Vocabularies](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/learning-opportunity/25831c2)
 items:
   type: string
-  enum: [
-    '63f9f6180c',
-    'c_170b037d',
-    '7e1ac538db',
-    '05053c1cbe',
-    '77b99de990',
-    '17744a2647',
-    '11252a5207',
-    '8b965da2d4',
-    '65a4cf5de2',
-    'b2434ca358'
-  ]
+  enum:
+    - '63f9f6180c'
+    - 'c_170b037d'
+    - '7e1ac538db'
+    - '05053c1cbe'
+    - '77b99de990'
+    - '17744a2647'
+    - '11252a5207'
+    - '8b965da2d4'
+    - '65a4cf5de2'
+    - 'b2434ca358'

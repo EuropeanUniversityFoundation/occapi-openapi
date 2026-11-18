@@ -27,22 +27,21 @@ description: |
   [Assessment type - EU Vocabularies](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/assessment/25831c2)
 items:
   type: string
-  enum: [
-    'de4d165a6c',
-    '3484bd7e51',
-    '56539a6507',
-    'c_4f874951',
-    '7331eb4762',
-    '2939dae15f',
-    'd30284d7df',
-    '19a2e5e671',
-    '812e3b0ae1',
-    '4f03b91c0e',
-    '6a4db9f11d',
-    'c_04b30a72',
-    'c4256a2726',
-    '795dac4096',
-    'b1b68f6735',
-    'c_2b3bd410',
-    '6e6cb2cc78'
-  ]
+  enum:
+    - 'de4d165a6c'
+    - '3484bd7e51'
+    - '56539a6507'
+    - 'c_4f874951'
+    - '7331eb4762'
+    - '2939dae15f'
+    - 'd30284d7df'
+    - '19a2e5e671'
+    - '812e3b0ae1'
+    - '4f03b91c0e'
+    - '6a4db9f11d'
+    - 'c_04b30a72'
+    - 'c4256a2726'
+    - '795dac4096'
+    - 'b1b68f6735'
+    - 'c_2b3bd410'
+    - '6e6cb2cc78'

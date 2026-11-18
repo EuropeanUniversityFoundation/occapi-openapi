@@ -18,12 +18,11 @@ description: |
   [Mode of learning and assessment - EU Vocabularies](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/learning-assessment/25831c2)
 items:
   type: string
-  enum: [
-    'e92d221e4d',
-    'c_3a90b26d',
-    '920fbb3cbe',
-    '9191af2ed9',
-    '7813801c77',
-    'ed4c557045',
-    '729f3bed4b'
-  ]
+  enum:
+    - 'e92d221e4d'
+    - 'c_3a90b26d'
+    - '920fbb3cbe'
+    - '9191af2ed9'
+    - '7813801c77'
+    - 'ed4c557045'
+    - '729f3bed4b'
